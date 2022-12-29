@@ -10,7 +10,7 @@
     <children>
         <VBox layoutX="1.0" layoutY="-1.0" prefHeight="610.0" prefWidth="200.0">
             <children>
-                <Button mnemonicParsing="false" text="ALL ROLE" />
+                <Button onAction="#buttonHome" mnemonicParsing="false" text="HOME" />
                 <Button fx:id="button_staff" mnemonicParsing="false" onAction="#buttonStaff" text="STAFF" />
                 <Button mnemonicParsing="false" text="ROLE 1" />
                 <Button mnemonicParsing="false" text="ROLE 1" />
