@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Annotation profile for viespa" enabled="true">
+        <sourceOutputDir name="../viespa/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../viespa/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="viespa" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
