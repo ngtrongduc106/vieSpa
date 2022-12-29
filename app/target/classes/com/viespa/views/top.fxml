@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.viespa.controller.TopController"
+            prefHeight="116.0" prefWidth="1200.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #32cd32);" BorderPane.alignment="CENTER">
+    <children>
+        <Label layoutX="547.0" layoutY="29.0" text="VieSpa">
+            <font>
+                <Font name="Apple Chancery" size="30.0" />
+            </font></Label>
+    </children>
+</AnchorPane>
