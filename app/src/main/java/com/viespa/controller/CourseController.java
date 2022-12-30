@@ -2,14 +2,21 @@ package com.viespa.controller;
 
 import com.viespa.models.Course;
 import com.viespa.models.Staff;
+import com.viespa.models.User;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class CourseController implements Initializable {
@@ -34,6 +41,18 @@ public class CourseController implements Initializable {
     @FXML
     Button  button_update;
 
+    @FXML
+    TextField input_name;
+
+    @FXML
+    TextField input_price;
+
+    @FXML
+    TextArea input_description;
+
+    int id;
+    int myIndex;
+
     public void table(){
         ObservableList<Course> courses = Course.getAllCourses();
         table_course.setItems(courses);
@@ -44,6 +63,73 @@ public class CourseController implements Initializable {
 
         button_update.setDisable(true);
         button_add.setDisable(false);
+
+        table_course.setRowFactory(it -> {
+            TableRow<Course> myRow = new TableRow<>();
+            myRow.setOnMouseClicked(event ->
+            {
+                if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
+                    myIndex = table_course.getSelectionModel().getSelectedIndex();
+                    id = Integer.parseInt(String.valueOf(table_course.getItems().get(myIndex).getId()));
+                    input_name.setText(table_course
+                            .getItems()
+                            .get(myIndex)
+                            .getName());
+                    input_price.setText(table_course
+                            .getItems()
+                            .get(myIndex)
+                            .getPrice());
+                    input_description.setText(table_course
+                            .getItems()
+                            .get(myIndex)
+                            .getDescription());
+
+                    button_add.setDisable(true);
+                    button_update.setDisable(false);
+                }
+            });
+            return myRow;
+        });
+    }
+
+    public void button_add() throws SQLException {
+        String val_name = input_name.getText().trim();
+        String val_price = input_price.getText().trim();
+        String val_description = input_description.getText().trim();
+        int val_createby = User.getInstance().getId();
+
+        if(val_name.isEmpty()){
+            return;
+        } else {
+            Course.addNew(val_name,val_price,val_description, String.valueOf(val_createby));
+            input_name.setText("");
+            input_price.setText("");
+            input_description.setText("");
+        }
+
+        table();
+    }
+
+    public void button_update() throws SQLException {
+        myIndex = table_course.getSelectionModel().getSelectedIndex();
+        id = Integer.parseInt(String.valueOf(table_course.getItems().get(myIndex).getId()));
+
+        String val_name = input_name.getText().trim();
+        String val_price = input_price.getText().trim();
+        String val_description = input_description.getText().trim();
+
+        if(val_name.isEmpty()){
+            return;
+        }else {
+            Course.update(String.valueOf(id), val_name , val_price , val_description);
+            input_name.setText("");
+            input_price.setText("");
+            input_description.setText("");
+
+            button_update.setDisable(true);
+        }
+
+        table();
     }
 
     @Override

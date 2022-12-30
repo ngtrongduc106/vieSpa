@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -94,8 +95,9 @@ public class Course {
                 it.setPrice(rs.getString("price"));
                 it.setDescription(rs.getString("description"));
                 it.setCreateBy(rs.getString("create_by"));
-            }
 
+                courses.add(it);
+            }
             return courses;
 
         } catch (SQLException ex) {
@@ -103,6 +105,75 @@ public class Course {
             return null;
         } finally {
             db.closeAll(connection, pst, rs);
+        }
+    }
+
+    public static void addNew(
+            String name,
+            String price,
+            String description,
+            String create_by
+    ) throws SQLException {
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement statement = null;
+
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(
+                    "INSERT into " +
+                            "courses(name, price, description, create_by) " +
+                            "values (?,?,?,?)");
+
+            statement.setString(1, name);
+            statement.setString(2, price);
+            statement.setString(3, description);
+            statement.setString(4,create_by);
+
+            statement.executeUpdate();
+
+            connection.commit();
+
+        } catch (SQLException e) {
+            connection.rollback();
+            e.printStackTrace();
+
+        } finally {
+            db.closeAll(connection, statement, null);
+        }
+    }
+
+    public static void update(
+            String id ,
+            String name ,
+            String price ,
+            String description
+    ) throws SQLException {
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement statement = null;
+
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(
+                    "UPDATE courses SET name = ? , price = ? , description = ? where id = ?");
+
+
+            statement.setString(1, name);
+            statement.setString(2, price);
+            statement.setString(3, description);
+            statement.setString(4, id);
+
+            statement.executeUpdate();
+
+            connection.commit();
+
+        } catch (SQLException e) {
+            connection.rollback();
+            e.printStackTrace();
+
+        } finally {
+            db.closeAll(connection, statement, null);
         }
     }
 }
