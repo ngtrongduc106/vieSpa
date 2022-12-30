@@ -181,6 +181,7 @@ public class StaffController implements Initializable {
 
         input_enddate.setDisable(true);
         buttonUpdate.setDisable(true);
+        buttonAddNew.setDisable(false);
 
         table_staff.setRowFactory(it -> {
             TableRow<Staff> myRow = new TableRow<>();
