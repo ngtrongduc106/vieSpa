@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 30, 2022 at 10:56 AM
+-- Generation Time: Dec 30, 2022 at 02:29 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -40,7 +40,8 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `name`, `price`, `description`, `create_by`) VALUES
-(1, 'Body massage', '200', 'body massage', 2);
+(1, 'Body massage', '200', 'body massage', 2),
+(2, 'Làm đẹp', '100', '12345', 1);
 
 -- --------------------------------------------------------
 
@@ -64,6 +65,29 @@ CREATE TABLE `customers` (
 INSERT INTO `customers` (`id`, `fullname`, `phone`, `address`, `email`, `dob`) VALUES
 (1, 'Trần Duy Anh', '0912345678', 'Thiên Hùng - Khâm Thiên - Hà Nội', 'duyanh@gmail.com', '2022-12-30'),
 (2, 'Vũ Mạnh Nam', '09123456789', 'Kim Mã - Ba Đình - Hà Nội', '0912345678', '2022-12-30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `staff_id` int(11) NOT NULL,
+  `booking_at` datetime DEFAULT NULL,
+  `transaction_note` varchar(255) DEFAULT NULL,
+  `create_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `customer_id`, `course_id`, `staff_id`, `booking_at`, `transaction_note`, `create_by`) VALUES
+(2, 1, 1, 3, '2022-12-30 12:56:50', '123', 2);
 
 -- --------------------------------------------------------
 
@@ -118,6 +142,16 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `course_id` (`course_id`),
+  ADD KEY `staff_id` (`staff_id`),
+  ADD KEY `create_by` (`create_by`),
+  ADD KEY `transactions_ibfk_4` (`customer_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -131,12 +165,18 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -154,6 +194,15 @@ ALTER TABLE `users`
 --
 ALTER TABLE `courses`
   ADD CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`create_by`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
+  ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`staff_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `transactions_ibfk_3` FOREIGN KEY (`create_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `transactions_ibfk_4` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
