@@ -1,5 +1,6 @@
 package com.viespa.controller;
 
+import com.viespa.models.Course;
 import com.viespa.models.Customer;
 import com.viespa.models.Staff;
 import com.viespa.models.Transaction;
@@ -54,6 +55,12 @@ public class TransactionController implements Initializable {
     @FXML
     ChoiceBox<String> input_customer = new ChoiceBox<>();
 
+    @FXML
+    ChoiceBox<String> input_course = new ChoiceBox<>();
+
+    @FXML
+    ChoiceBox<String> input_staff = new ChoiceBox<>();
+
     public void table(){
         ObservableList<Transaction> transactions = Transaction.getAllTransaction();
         table_transaction.setItems(transactions);
@@ -79,14 +86,15 @@ public class TransactionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         table();
-        input_customer.getItems().add("1");
-        input_customer.getItems().add("2");
-        input_customer.getItems().add("3");
-        input_customer.getItems().add("4");
-
         ObservableList<Customer> customers = Customer.getAllCustomers();
-        
-        customers.stream().map(Customer::getFullName).forEach(System.out::println);
+        customers.stream().map(Customer::getFullName).forEach(t -> input_customer.getItems().add(t));
+
+        ObservableList<Course> courses = Course.getAllCourses();
+        courses.stream().map(Course::getName).forEach(t -> input_course.getItems().add(t));
+
+        ObservableList<Staff> staffs = Staff.getAllStaffs();
+        staffs.stream().map(Staff::getFullname).forEach(t -> input_staff.getItems().add(t));
+
 
     }
 }
