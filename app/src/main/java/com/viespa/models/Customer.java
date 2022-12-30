@@ -2,17 +2,14 @@ package com.viespa.models;
 
 import com.viespa.utils.DButil;
 import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class Customer {
     private final SimpleLongProperty id = new SimpleLongProperty() ;
@@ -20,7 +17,6 @@ public class Customer {
     private final SimpleStringProperty phone = new SimpleStringProperty();
     private final SimpleStringProperty address = new SimpleStringProperty();
     private final SimpleStringProperty email = new SimpleStringProperty();
-    private SimpleObjectProperty<LocalDate> dob = new SimpleObjectProperty<>();
 
     public SimpleLongProperty idProperty(){return id;}
 
@@ -72,33 +68,22 @@ public class Customer {
         email.set(newEmail);
     }
 
-    public SimpleObjectProperty<LocalDate> dobProperty(){return dob;}
-
-    public LocalDate getDob() {
-        return dob.get();
-    }
-
-    public void setDob(LocalDate newDob){
-        dob.set(newDob);
-    }
-
     public static ObservableList<Customer> getAllCustomers() {
             DButil db = new DButil();
             Connection connection = db.connect();
-            PreparedStatement pst = null;
-            ResultSet rs = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
             ObservableList<Customer> customers = FXCollections.observableArrayList();
             try {
-                pst = connection.prepareStatement("select * from customers");
-                rs = pst.executeQuery();
-                while (rs.next()) {
+                statement = connection.prepareStatement("SELECT * from customer");
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
                     Customer it = new Customer();
-                    it.setId(Long.valueOf(rs.getString("id")));
-                    it.setFullName(rs.getString("fullname"));
-                    it.setPhone(rs.getString("phone"));
-                    it.setEmail(rs.getString("email"));
-                    it.setDob((rs.getObject("dob", LocalDate.class)));
-                    it.setAddress(rs.getString("address"));
+                    it.setId(Long.valueOf(resultSet.getString("id")));
+                    it.setFullName(resultSet.getString("name"));
+                    it.setPhone(resultSet.getString("phone"));
+                    it.setEmail(resultSet.getString("email"));
+                    it.setAddress(resultSet.getString("address"));
                     customers.add(it);
                 }
 
@@ -108,11 +93,11 @@ public class Customer {
                 ex.printStackTrace();
                 return null;
             } finally {
-                db.closeAll(connection, pst, rs);
+                db.closeAll(connection, statement, resultSet);
             }
         }
 
-    public static void addNewCustomer(String fullName , String phone , String email , String address , LocalDate dob) throws SQLException {
+    public static void addNewCustomer(String fullName , String phone , String email , String address) throws SQLException {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
@@ -121,14 +106,13 @@ public class Customer {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
                     "INSERT into " +
-                            "customers(fullname, phone, address, email, dob) " +
-                            "values (?,?,?,?,?)");
+                            "customer(name, phone, address, email) " +
+                            "values (?,?,?,?)");
 
             statement.setString(1, fullName);
             statement.setString(2, phone);
             statement.setString(3, address);
             statement.setString(4, email);
-            statement.setDate(5, Date.valueOf(dob));
 
             statement.executeUpdate();
 
@@ -147,7 +131,6 @@ public class Customer {
             String phone,
             String email,
             String address,
-            LocalDate dob,
             int id
     ) throws SQLException {
         DButil db = new DButil();
@@ -157,15 +140,14 @@ public class Customer {
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
-                    "UPDATE customers SET fullname = ? , phone = ? , email = ? , dob = ? , address = ? where id = ?");
+                    "UPDATE customer SET name = ? , phone = ? , email = ? , address = ? where id = ?");
 
 
             statement.setString(1, fullName);
             statement.setString(2, phone);
             statement.setString(3, email);
-            statement.setDate(4, Date.valueOf(dob));
-            statement.setString(5, address);
-            statement.setString(6, String.valueOf(id));
+            statement.setString(4, address);
+            statement.setString(5, String.valueOf(id));
 
             statement.executeUpdate();
 

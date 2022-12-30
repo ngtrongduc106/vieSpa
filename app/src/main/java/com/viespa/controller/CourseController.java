@@ -1,12 +1,9 @@
 package com.viespa.controller;
 
 import com.viespa.models.Course;
-import com.viespa.models.Staff;
-import com.viespa.models.User;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -16,7 +13,6 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class CourseController implements Initializable {
@@ -31,9 +27,6 @@ public class CourseController implements Initializable {
 
     @FXML
     TableColumn<Course , String> column_description;
-
-    @FXML
-    TableColumn<Course , String> column_createby;
 
     @FXML
     Button button_add;
@@ -59,7 +52,6 @@ public class CourseController implements Initializable {
         column_name.setCellValueFactory(f -> f.getValue().nameProperty());
         column_price.setCellValueFactory(f -> f.getValue().priceProperty());
         column_description.setCellValueFactory(f -> f.getValue().descriptionProperty());
-        column_createby.setCellValueFactory(f -> f.getValue().createByProperty());
 
         button_update.setDisable(true);
         button_add.setDisable(false);
@@ -96,12 +88,11 @@ public class CourseController implements Initializable {
         String val_name = input_name.getText().trim();
         String val_price = input_price.getText().trim();
         String val_description = input_description.getText().trim();
-        int val_createby = User.getInstance().getId();
 
         if(val_name.isEmpty()){
             return;
         } else {
-            Course.addNew(val_name,val_price,val_description, String.valueOf(val_createby));
+            Course.addNew(val_name,val_price,val_description);
             input_name.setText("");
             input_price.setText("");
             input_description.setText("");

@@ -17,7 +17,6 @@ public class Course {
     private final SimpleStringProperty name = new SimpleStringProperty();
     private final SimpleStringProperty price = new SimpleStringProperty();
     private final SimpleStringProperty description = new SimpleStringProperty();
-    private final SimpleStringProperty createBy = new SimpleStringProperty();
 
     public SimpleLongProperty idProperty() {
         return id;
@@ -67,18 +66,6 @@ public class Course {
         description.set(newDescription);
     }
 
-    public SimpleStringProperty createByProperty() {
-        return createBy;
-    }
-
-    public String getCreateBy() {
-        return createBy.get();
-    }
-
-    public void setCreateBy(String newCreateBy) {
-        createBy.set(newCreateBy);
-    }
-
     public static ObservableList<Course> getAllCourses() {
         DButil db = new DButil();
         Connection connection = db.connect();
@@ -86,7 +73,7 @@ public class Course {
         ResultSet rs = null;
         ObservableList<Course> courses = FXCollections.observableArrayList();
         try {
-            pst = connection.prepareStatement("SELECT courses.id , courses.name , courses.price , courses.description , users.fullname as create_by FROM courses LEFT JOIN users on courses.create_by = users.id");
+            pst = connection.prepareStatement("SELECT course.id , course.name , course.price , course.description FROM course");
             rs = pst.executeQuery();
             while (rs.next()) {
                 Course it = new Course();
@@ -94,8 +81,6 @@ public class Course {
                 it.setName(rs.getString("name"));
                 it.setPrice(rs.getString("price"));
                 it.setDescription(rs.getString("description"));
-                it.setCreateBy(rs.getString("create_by"));
-
                 courses.add(it);
             }
             return courses;
@@ -111,8 +96,7 @@ public class Course {
     public static void addNew(
             String name,
             String price,
-            String description,
-            String create_by
+            String description
     ) throws SQLException {
         DButil db = new DButil();
         Connection connection = db.connect();
@@ -122,13 +106,12 @@ public class Course {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
                     "INSERT into " +
-                            "courses(name, price, description, create_by) " +
-                            "values (?,?,?,?)");
+                            "course(name, price, description) " +
+                            "values (?,?,?)");
 
             statement.setString(1, name);
             statement.setString(2, price);
             statement.setString(3, description);
-            statement.setString(4,create_by);
 
             statement.executeUpdate();
 
@@ -156,7 +139,7 @@ public class Course {
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
-                    "UPDATE courses SET name = ? , price = ? , description = ? where id = ?");
+                    "UPDATE course SET name = ? , price = ? , description = ? where id = ?");
 
 
             statement.setString(1, name);
