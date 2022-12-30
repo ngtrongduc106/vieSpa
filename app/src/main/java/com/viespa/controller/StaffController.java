@@ -201,7 +201,7 @@ public class StaffController implements Initializable {
                     input_email.setText(table_staff
                             .getItems()
                             .get(myIndex)
-                            .getPhone());
+                            .getEmail());
                     input_address.setText(table_staff
                             .getItems()
                             .get(myIndex)

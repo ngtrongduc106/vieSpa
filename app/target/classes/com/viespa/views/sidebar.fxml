@@ -15,6 +15,7 @@
                 <Button mnemonicParsing="false" onAction="#buttonHome" text="HOME" />
                 <Button fx:id="button_staff" mnemonicParsing="false" onAction="#buttonStaff" text="STAFF" />
             <Button mnemonicParsing="false" onAction="#buttonCustomer" text="CUSTOMER" />
+            <Button mnemonicParsing="false" onAction="#buttonCourse" text="COURSE" />
             </children>
          <padding>
             <Insets left="82.0" top="20.0" />

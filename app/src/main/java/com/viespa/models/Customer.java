@@ -15,11 +15,11 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class Customer {
-    private SimpleLongProperty id = new SimpleLongProperty() ;
-    private SimpleStringProperty fullName = new SimpleStringProperty();
-    private SimpleStringProperty phone = new SimpleStringProperty();
-    private SimpleStringProperty address = new SimpleStringProperty();
-    private SimpleStringProperty email = new SimpleStringProperty();
+    private final SimpleLongProperty id = new SimpleLongProperty() ;
+    private final SimpleStringProperty fullName = new SimpleStringProperty();
+    private final SimpleStringProperty phone = new SimpleStringProperty();
+    private final SimpleStringProperty address = new SimpleStringProperty();
+    private final SimpleStringProperty email = new SimpleStringProperty();
     private SimpleObjectProperty<LocalDate> dob = new SimpleObjectProperty<>();
 
     public SimpleLongProperty idProperty(){return id;}

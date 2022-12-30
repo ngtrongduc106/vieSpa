@@ -46,6 +46,11 @@ public class SideBarController implements Initializable {
         App.setRoot("views/customer-view");
     }
 
+    @FXML
+    public void buttonCourse() throws IOException {
+        App.setRoot("views/course-view");
+    }
+
     public void author_active(){
         if(user.getRole() == 2){
             button_staff.setDisable(true);
