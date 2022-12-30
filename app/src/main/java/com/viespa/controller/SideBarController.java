@@ -4,6 +4,7 @@ import com.viespa.App;
 import com.viespa.models.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -51,6 +52,11 @@ public class SideBarController implements Initializable {
         App.setRoot("views/course-view");
     }
 
+    @FXML
+    public void buttonTransaction() throws IOException {
+        App.setRoot("views/transaction-view");
+    }
+
     public void author_active(){
         if(user.getRole() == 2){
             button_staff.setDisable(true);
@@ -61,4 +67,5 @@ public class SideBarController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         author_active();
     }
+
 }
