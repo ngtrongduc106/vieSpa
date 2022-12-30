@@ -51,7 +51,7 @@ public class Course {
     }
 
     public void setPrice(String newPrice) {
-        this.price.set(newPrice);
+        price.set(newPrice);
     }
 
     public SimpleStringProperty descriptionProperty() {
