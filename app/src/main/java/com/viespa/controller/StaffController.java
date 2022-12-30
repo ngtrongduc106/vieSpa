@@ -98,7 +98,13 @@ public class StaffController implements Initializable {
             alert.setContentText("Staff cannot set role 1");
             alert.show();
             return;
-        }else {
+        } else if (Staff.checkDuplicate(val_account)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setContentText("The account is already on the system ! ");
+            alert.show();
+            return;
+        } else {
             Staff.addStaff(val_account,val_password,val_fullname,val_address,val_email,val_phone, Integer.parseInt(val_role),val_dob,val_joindate);
             input_fullname.setText("");
             input_phone.setText("");

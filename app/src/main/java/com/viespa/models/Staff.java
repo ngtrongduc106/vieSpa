@@ -266,5 +266,25 @@ public class Staff {
         }
     }
 
+    public static boolean checkDuplicate(String data){
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareStatement("select * from users where account = ? ");
+            statement.setString(1,data);
+            rs = statement.executeQuery();
+            if(rs.next()){
+                return true ;
+            }else {
+                return false ;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            db.closeAll(connection,statement,rs);
+        }
+    }
 
 }
