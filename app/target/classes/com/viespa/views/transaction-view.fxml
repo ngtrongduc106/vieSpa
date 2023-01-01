@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
@@ -35,9 +36,10 @@
             <ChoiceBox fx:id="input_course" layoutX="266.0" layoutY="378.0" prefWidth="150.0" />
             <ChoiceBox fx:id="input_staff" layoutX="444.0" layoutY="377.0" prefWidth="150.0" />
             <DatePicker fx:id="input_booking" layoutX="67.0" layoutY="448.0" />
-            <Button fx:id="button_add" layoutX="286.0" layoutY="449.0" mnemonicParsing="false" onAction="#button_add" text="Add new" />
-            <Button fx:id="button_update" layoutX="381.0" layoutY="449.0" mnemonicParsing="false" onAction="#button_update" text="Update" />
+            <Button fx:id="button_add" layoutX="459.0" layoutY="449.0" mnemonicParsing="false" onAction="#button_add" text="Add new" />
+            <Button fx:id="button_update" layoutX="536.0" layoutY="449.0" mnemonicParsing="false" onAction="#button_update" text="Update" />
             <TextArea fx:id="input_note" layoutX="67.0" layoutY="497.0" prefHeight="200.0" prefWidth="380.0" />
+            <TextField fx:id="input_pay" layoutX="287.0" layoutY="449.0" />
          </children></AnchorPane>
     </center>
 </BorderPane>

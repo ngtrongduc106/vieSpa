@@ -57,6 +57,9 @@ public class CustomerController implements Initializable {
     @FXML
     DatePicker input_dob;
 
+    @FXML
+    TextField input_female;
+
     int id ;
     int myIndex;
 
@@ -67,6 +70,7 @@ public class CustomerController implements Initializable {
         column_phone.setCellValueFactory(f -> f.getValue().phoneProperty());
         column_address.setCellValueFactory(f -> f.getValue().addressProperty());
         column_email.setCellValueFactory(f -> f.getValue().emailProperty());
+        column_dob.setCellValueFactory(f -> f.getValue().dobProperty());
 
         button_update.setDisable(true);
         button_add.setDisable(false);
@@ -94,6 +98,10 @@ public class CustomerController implements Initializable {
                             .getItems()
                             .get(myIndex)
                             .getAddress());
+                    input_dob.setValue(table_customer
+                            .getItems()
+                            .get(myIndex)
+                            .getDob());
 
                     button_add.setDisable(true);
                     button_update.setDisable(false);
@@ -110,11 +118,13 @@ public class CustomerController implements Initializable {
         String val_phone = input_phone.getText().trim();
         String val_email = input_email.getText().trim();
         String val_address = input_address.getText().trim();
+        LocalDate val_dob = input_dob.getValue();
+        String val_isfemale = input_female.getText().trim();
 
         if(val_fullname.isEmpty()){
             return;
         }else {
-            Customer.addNewCustomer(val_fullname,val_phone,val_email,val_address);
+            Customer.addNewCustomer(val_fullname,val_phone,val_email,val_address,val_isfemale,val_dob);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");
@@ -133,11 +143,13 @@ public class CustomerController implements Initializable {
         String val_phone = input_phone.getText().trim();
         String val_email = input_email.getText().trim();
         String val_address = input_address.getText().trim();
+        LocalDate val_dob = input_dob.getValue();
+        String val_isfemale = input_female.getText().trim();
 
         if(val_fullname.isEmpty()){
             return;
         }else {
-            Customer.updateCustomer(val_fullname,val_phone,val_email,val_address,id);
+            Customer.updateCustomer(val_fullname,val_phone,val_email,val_address,id,val_isfemale,val_dob);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");

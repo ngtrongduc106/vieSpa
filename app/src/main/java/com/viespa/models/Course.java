@@ -159,4 +159,48 @@ public class Course {
             db.closeAll(connection, statement, null);
         }
     }
+
+    public static String queryId(String data){
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            statement = connection.prepareStatement("SELECT id from course where name = ?");
+            statement.setString(1,data);
+            resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getString("id") ;
+            }else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            db.closeAll(connection,statement,resultSet);
+        }
+    }
+
+    public static String queryPrice(String data){
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            statement = connection.prepareStatement("SELECT price from course where id = ?");
+            statement.setString(1,data);
+            resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getString("price") ;
+            }else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            db.closeAll(connection,statement,resultSet);
+        }
+    }
 }

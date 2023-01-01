@@ -2,6 +2,7 @@ package com.viespa.models;
 
 import com.viespa.utils.DButil;
 import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,12 +11,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class Customer {
     private final SimpleLongProperty id = new SimpleLongProperty() ;
     private final SimpleStringProperty fullName = new SimpleStringProperty();
-    private final SimpleStringProperty phone = new SimpleStringProperty();
+    private final SimpleStringProperty is_female = new SimpleStringProperty();
+    private final SimpleObjectProperty<LocalDate> dob = new SimpleObjectProperty<>();
     private final SimpleStringProperty address = new SimpleStringProperty();
+    private final SimpleStringProperty phone = new SimpleStringProperty();
     private final SimpleStringProperty email = new SimpleStringProperty();
 
     public SimpleLongProperty idProperty(){return id;}
@@ -48,6 +52,26 @@ public class Customer {
         phone.set(newPhone);
     }
 
+    public SimpleStringProperty isFemeleProperty(){return is_female;}
+
+    public String getIs_female() {
+        return is_female.get();
+    }
+
+    public void setIs_female(String newIsFemale){
+        is_female.set(newIsFemale);
+    }
+
+    public SimpleObjectProperty<LocalDate> dobProperty(){return dob;}
+
+    public LocalDate getDob() {
+        return dob.get();
+    }
+
+    public void setDob(LocalDate newDob){
+        dob.set(newDob);
+    }
+
     public SimpleStringProperty addressProperty() {return address;}
 
     public String getAddress() {
@@ -75,12 +99,14 @@ public class Customer {
             ResultSet resultSet = null;
             ObservableList<Customer> customers = FXCollections.observableArrayList();
             try {
-                statement = connection.prepareStatement("SELECT * from customer");
+                statement = connection.prepareStatement("SELECT * from customers");
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     Customer it = new Customer();
                     it.setId(Long.valueOf(resultSet.getString("id")));
-                    it.setFullName(resultSet.getString("name"));
+                    it.setFullName(resultSet.getString("fullname"));
+                    it.setIs_female(resultSet.getString("is_female"));
+                    it.setDob(LocalDate.parse(resultSet.getString("dob")));
                     it.setPhone(resultSet.getString("phone"));
                     it.setEmail(resultSet.getString("email"));
                     it.setAddress(resultSet.getString("address"));
@@ -97,7 +123,7 @@ public class Customer {
             }
         }
 
-    public static void addNewCustomer(String fullName , String phone , String email , String address) throws SQLException {
+    public static void addNewCustomer(String fullName , String phone , String email , String address , String is_female , LocalDate dob) throws SQLException {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
@@ -106,13 +132,15 @@ public class Customer {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
                     "INSERT into " +
-                            "customer(name, phone, address, email) " +
-                            "values (?,?,?,?)");
+                            "customers(fullname, phone, address, email,dob,is_female) " +
+                            "values (?,?,?,?,?,?)");
 
             statement.setString(1, fullName);
             statement.setString(2, phone);
             statement.setString(3, address);
             statement.setString(4, email);
+            statement.setString(5, String.valueOf(dob));
+            statement.setString(6,is_female);
 
             statement.executeUpdate();
 
@@ -131,7 +159,9 @@ public class Customer {
             String phone,
             String email,
             String address,
-            int id
+            int id,
+            String is_female,
+            LocalDate dob
     ) throws SQLException {
         DButil db = new DButil();
         Connection connection = db.connect();
@@ -140,14 +170,16 @@ public class Customer {
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
-                    "UPDATE customer SET name = ? , phone = ? , email = ? , address = ? where id = ?");
+                    "UPDATE customers SET fullname = ? , phone = ? , email = ? , address = ? , dob = ? , is_female = ? where id = ?");
 
 
             statement.setString(1, fullName);
             statement.setString(2, phone);
             statement.setString(3, email);
             statement.setString(4, address);
-            statement.setString(5, String.valueOf(id));
+            statement.setString(5, String.valueOf(dob));
+            statement.setString(6,is_female);
+            statement.setString(7, String.valueOf(id));
 
             statement.executeUpdate();
 
@@ -159,6 +191,28 @@ public class Customer {
 
         } finally {
             db.closeAll(connection, statement, null);
+        }
+    }
+
+    public static String queryId(String data){
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            statement = connection.prepareStatement("SELECT id from customers where fullname = ?");
+            statement.setString(1,data);
+            resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getString("id") ;
+            }else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            db.closeAll(connection,statement,resultSet);
         }
     }
 }
