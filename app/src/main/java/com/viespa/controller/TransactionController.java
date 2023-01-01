@@ -151,6 +151,12 @@ public class TransactionController implements Initializable {
     }
 
     public void button_update() throws SQLException {
+        if(User.getInstance().getId() != 1){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("You dont have author !");
+            alert.show();
+            return;
+        }
         String val_customer = Customer.queryId(input_customer.getValue());
         String val_course = Course.queryId(input_course.getValue());
         String val_staff = Staff.queryId(input_staff.getValue());

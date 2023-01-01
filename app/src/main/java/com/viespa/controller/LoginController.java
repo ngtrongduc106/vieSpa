@@ -34,7 +34,7 @@ public class LoginController {
 
     @FXML
     public void buttonLogin() throws IOException {
-        String val_account = input_account.getText().trim();
+        String val_account = input_account.getText().trim().toLowerCase();
         String val_password = input_password.getText().trim();
         int errors = 0 ;
 
