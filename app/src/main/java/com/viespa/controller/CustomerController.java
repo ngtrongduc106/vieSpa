@@ -4,12 +4,7 @@ import com.viespa.models.Customer;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -102,6 +97,10 @@ public class CustomerController implements Initializable {
                             .getItems()
                             .get(myIndex)
                             .getDob());
+                    input_female.setText(table_customer
+                            .getItems()
+                            .get(myIndex)
+                            .getIs_female());
 
                     button_add.setDisable(true);
                     button_update.setDisable(false);
@@ -123,13 +122,14 @@ public class CustomerController implements Initializable {
 
         if(val_fullname.isEmpty()){
             return;
-        }else {
+        } else {
             Customer.addNewCustomer(val_fullname,val_phone,val_email,val_address,val_isfemale,val_dob);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");
             input_address.setText("");
             input_dob.setValue(null);
+            input_female.setText("");
         }
         table();
     }
@@ -148,13 +148,14 @@ public class CustomerController implements Initializable {
 
         if(val_fullname.isEmpty()){
             return;
-        }else {
+        } else {
             Customer.updateCustomer(val_fullname,val_phone,val_email,val_address,id,val_isfemale,val_dob);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");
             input_address.setText("");
             input_dob.setValue(null);
+            input_female.setText("");
         }
 
         table();
