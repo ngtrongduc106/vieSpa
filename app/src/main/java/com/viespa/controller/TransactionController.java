@@ -82,6 +82,7 @@ public class TransactionController implements Initializable {
         column_pay.setCellValueFactory(f -> f.getValue().payProperty());
 
         button_update.setDisable(true);
+        button_add.setDisable(false);
         input_pay.setDisable(true);
 
         table_transaction.setRowFactory(it -> {
