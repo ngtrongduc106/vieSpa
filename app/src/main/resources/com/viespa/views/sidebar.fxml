@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #32cd32);" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.SideBarController">
     <children>
@@ -14,54 +15,77 @@
          <children>
             <VBox alignment="TOP_CENTER">
                <children>
-                    <Label text="${controller.userNameValue}">
+                    <Label text="${controller.userNameValue}" textFill="#eeeeee">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
                   </Label>
-                    <Button mnemonicParsing="false" onAction="#buttonLogout" text="Logout">
+                    <Button mnemonicParsing="false" onAction="#buttonLogout" style="-fx-background-color: #eeeeee; -fx-background-radius: 30 30 30 30;" text="Logout" textFill="RED">
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                      </padding>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font>
                   </Button>
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </VBox>
-            <Separator prefHeight="3.0" prefWidth="214.0" />
-              <VBox alignment="TOP_CENTER" prefHeight="610.0" prefWidth="214.0" spacing="1.0">
+              <VBox alignment="TOP_CENTER" prefHeight="610.0" prefWidth="214.0" spacing="5.0">
                   <children>
-                      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonHome" text="HOME" VBox.vgrow="ALWAYS">
+                      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonHome" style="-fx-background-color: #eeeeee; -fx-background-radius: 40 0 0 40;" text="HOME" textFill="RED" VBox.vgrow="ALWAYS">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
                   </Button>
-                      <Button fx:id="button_staff" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonStaff" text="STAFF">
+                      <Button fx:id="button_staff" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonStaff" style="-fx-background-color: #eeeeee; -fx-background-radius: 40 0 0 40;" text="STAFF" textFill="RED">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
                   </Button>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCustomer" text="CUSTOMER">
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCustomer" style="-fx-background-color: #eeeeee; -fx-background-radius: 40 0 0 40;" text="CUSTOMER" textFill="RED">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
                   </Button>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCourse" text="COURSE">
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCourse" style="-fx-background-color: #eeeeee; -fx-background-radius: 40 0 0 40;" text="COURSE" textFill="RED">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
                   </Button>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonTransaction" text="TRANSACTION">
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonTransaction" style="-fx-background-color: #eeeeee; -fx-background-radius: 40 0 0 40;" text="TRANSACTION" textFill="RED">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
                   </Button>
                   </children>
                <VBox.margin>
