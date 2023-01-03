@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(from 33.7121% 77.2727% to 71.2121% 100.0%, #c024d1 0.0%, #ff00aa 100.0%);" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.SideBarController">
+<AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/main.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.SideBarController">
     <children>
       <VBox layoutY="-1.0">
          <children>
             <VBox alignment="TOP_CENTER">
                <children>
-                    <Label text="${controller.userNameValue}" textFill="#eeeeee">
+                    <Label text="${controller.userNameValue}" textFill="#7f167f">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -29,166 +26,85 @@
                         <Font name="System Bold Italic" size="24.0" />
                      </font>
                   </Label>
-                    <Button mnemonicParsing="false" onAction="#buttonLogout" style="-fx-background-color: #7F167F; -fx-background-radius: 30 30 30 30;" text="Logout">
+                    <Button mnemonicParsing="false" onAction="#buttonLogout" styleClass="button-logout" text="Logout">
                      <padding>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                        <Insets bottom="8.0" left="18.0" right="18.0" top="8.0" />
                      </padding>
                      <VBox.margin>
-                        <Insets />
+                        <Insets bottom="8.0" />
                      </VBox.margin>
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="0.8333333161744205" startX="1.0" startY="0.212121226570823">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.9215686321258545" green="0.04313725605607033" blue="0.9372549057006836" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.9800000190734863" green="0.3822000026702881" blue="0.5596684813499451" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="8.0" left="8.0" right="8.0" />
                </VBox.margin>
             </VBox>
               <VBox alignment="TOP_CENTER" prefHeight="610.0" prefWidth="214.0" spacing="5.0">
                   <children>
-                      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonHome" prefHeight="41.0" prefWidth="214.0" style="-fx-background-color: #eeeeee; -fx-background-radius: 40 0 0 40;" text="HOME" VBox.vgrow="ALWAYS">
+                      <Button alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonHome" prefHeight="41.0" prefWidth="214.0" styleClass="button-sidebar" text="HOME" textAlignment="CENTER">
                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </padding>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="0.8333333161744205" startX="1.0" startY="0.212121226570823">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.9215686321258545" green="0.04313725605607033" blue="0.9372549057006836" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.9800000190734863" green="0.3822000026702881" blue="0.5596684813499451" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Button>
-                      <Button fx:id="button_staff" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonStaff" style="-fx-background-color: #eeeeee; -fx-background-radius: 40 0 0 40;" text="STAFF">
+                      <Button fx:id="button_staff" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonStaff" styleClass="button-sidebar" text="STAFF" textAlignment="CENTER">
                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </padding>
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="0.8333333161744205" startX="1.0" startY="0.212121226570823">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.9215686321258545" green="0.04313725605607033" blue="0.9372549057006836" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.9800000190734863" green="0.3822000026702881" blue="0.5596684813499451" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Button>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCustomer" style="-fx-background-color: #eeeeee; -fx-background-radius: 40 0 0 40;" text="CUSTOMER">
+                  <Button alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCustomer" styleClass="button-sidebar" text="CUSTOMER" textAlignment="CENTER">
                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </padding>
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="0.8333333161744205" startX="1.0" startY="0.212121226570823">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.9215686321258545" green="0.04313725605607033" blue="0.9372549057006836" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.9800000190734863" green="0.3822000026702881" blue="0.5596684813499451" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Button>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCourse" style="-fx-background-color: #eeeeee; -fx-background-radius: 40 0 0 40;" text="COURSE">
+                  <Button alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCourse" styleClass="button-sidebar" text="COURSE" textAlignment="CENTER">
                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </padding>
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="0.8333333161744205" startX="1.0" startY="0.212121226570823">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.9215686321258545" green="0.04313725605607033" blue="0.9372549057006836" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.9800000190734863" green="0.3822000026702881" blue="0.5596684813499451" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Button>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonTransaction" style="-fx-background-color: #eeeeee; -fx-background-radius: 40 0 0 40;" text="TRANSACTION">
+                  <Button alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonTransaction" styleClass="button-sidebar" text="TRANSACTION" textAlignment="CENTER">
                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </padding>
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="0.8333333161744205" startX="1.0" startY="0.212121226570823">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.9215686321258545" green="0.04313725605607033" blue="0.9372549057006836" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.9800000190734863" green="0.3822000026702881" blue="0.5596684813499451" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Button>
                   </children>
                <VBox.margin>
-                  <Insets left="50.0" top="20.0" />
+                  <Insets />
                </VBox.margin>
               </VBox>
          </children>

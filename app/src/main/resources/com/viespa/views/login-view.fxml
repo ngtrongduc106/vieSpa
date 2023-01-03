@@ -15,11 +15,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.LoginController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="680.0" prefWidth="1200.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.LoginController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #FDF6F0;" HBox.hgrow="ALWAYS">
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                <children>
                   <Text layoutX="71.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beauty" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="218.0">
                      <font>
@@ -70,7 +70,7 @@
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane maxWidth="500.0" prefWidth="500.0" style="-fx-background-color: #FCD8D4;">
+            <AnchorPane maxWidth="500.0" prefWidth="500.0" styleClass="container">
                <children>
                   <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -124,6 +124,9 @@
                      </children>
                   </VBox>
                </children>
+               <HBox.margin>
+                  <Insets bottom="30.0" right="30.0" top="30.0" />
+               </HBox.margin>
             </AnchorPane>
          </children>
       </HBox>

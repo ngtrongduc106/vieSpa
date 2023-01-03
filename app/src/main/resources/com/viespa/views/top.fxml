@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="116.0" prefWidth="1200.0" style="-fx-background-color: linear-gradient(from 33.7121% 77.2727% to 71.2121% 100.0%, #c024d1 0.0%, #ff00aa 100.0%);" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.TopController">
+<AnchorPane prefHeight="116.0" prefWidth="1200.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.TopController">
     <children>
-        <Label layoutX="549.0" layoutY="17.0" text="VieSpa" textFill="#fdf6f0">
+        <Label layoutX="549.0" layoutY="17.0" text="VieSpa" textFill="#ffc7c7">
             <font>
                 <Font name="System Bold Italic" size="55.0" />
             </font></Label>
