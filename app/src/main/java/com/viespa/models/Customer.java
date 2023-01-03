@@ -170,7 +170,9 @@ public class Customer {
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
-                    "UPDATE customers SET fullname = ? , phone = ? , email = ? , address = ? , dob = ? , is_female = ? where id = ?");
+                    "UPDATE customers" +
+                            " SET fullname = ? , phone = ? , email = ? , address = ? , dob = ? , is_female = ?" +
+                            " where id = ?");
 
 
             statement.setString(1, fullName);

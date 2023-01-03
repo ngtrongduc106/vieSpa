@@ -11,7 +11,7 @@
       <fx:include source="top.fxml" />
    </top>
    <left>
-      <fx:include source="sidebar.fxml" />
+      <fx:include maxWidth="200.0" prefWidth="200.0" source="sidebar.fxml" />
    </left>
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />

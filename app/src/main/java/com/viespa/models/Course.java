@@ -139,7 +139,9 @@ public class Course {
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
-                    "UPDATE course SET name = ? , price = ? , description = ? where id = ?");
+                    "UPDATE course" +
+                            " SET name = ? , price = ? , description = ?" +
+                            " where id = ?");
 
 
             statement.setString(1, name);
