@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="116.0" prefWidth="1200.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.TopController">
+<AnchorPane prefHeight="116.0" prefWidth="1200.0" stylesheets="@../css/main.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.TopController">
     <children>
-        <Label layoutX="549.0" layoutY="17.0" text="VieSpa" textFill="#ffc7c7">
-            <font>
-                <Font name="System Bold Italic" size="55.0" />
-            </font></Label>
+      <HBox layoutX="549.0" layoutY="17.0" styleClass="container" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="4.0">
+         <children>
+              <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" styleClass="text-title" text="VieSpa">
+                  <font>
+                      <Font name="System Bold Italic" size="36.0" />
+                  </font>
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>

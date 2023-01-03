@@ -1,6 +1,17 @@
-.background {
-    -fx-background-color: linear-gradient(from 50% 80% to 80% 100.0%, #F7DDDE 0.0%, #FFC4D0 100.0%);
+/* Global */
+* {
+    -fx-color-bc-1: #F7DDDE;
+    -fx-color-bc-2: #FFC4D0;
+    -fx-color-title-1: #C024D1;
+    -fx-color-title-2: #FF00AA;
+    -fx-color-button-1: #EB0BEF;
+    -fx-color-button-2: #FA618F;
+    -fx-color-table: linear-gradient(to right, #F7DBF0, #D2DAFF);
+}
 
+/* Common Layout */
+.background {
+    -fx-background-color: linear-gradient(from 50% 80% to 80% 100.0%, -fx-color-bc-1 0.0%, -fx-color-bc-2 100.0%);
 }
 
 .container {
@@ -8,23 +19,30 @@
     -fx-background-radius: 20;
 }
 
+.text-title {
+    -fx-fill: linear-gradient(from 35% 80% to 70% 100.0%, -fx-color-title-1 0.0%, -fx-color-title-2 100.0%);
+    -fx-text-fill: linear-gradient(from 35% 80% to 70% 100.0%, -fx-color-title-1 0.0%, -fx-color-title-2 100.0%);
+}
+
+
+/* Button */
 .button-sidebar {
     -fx-background-color: rgba(255, 255, 255, 0);
     -fx-opacity: 0.5;
-    -fx-text-fill: linear-gradient(from 100.0% 25% to 100.0% 85%, #eb0bef 0.0%, #fa618f 100.0%);
+    -fx-text-fill: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
 }
 
 .button-sidebar:hover {
     -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-opacity: 1;
     -fx-border-style: hidden hidden hidden solid;
-    -fx-border-color: linear-gradient(from 100.0% 20% to 100.0% 85%, #eb0bef 0.0%, #fa618f 100.0%);
+    -fx-border-color: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
     -fx-border-width: 0 0 0 4;
     -fx-cursor: HAND;
 }
 
 .button-logout {
-    -fx-text-fill: linear-gradient(from 100.0% 20% to 100.0% 85%, #eb0bef 0.0%, #fa618f 100.0%);
+    -fx-text-fill: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
     -fx-background-color: #7F167F;
     -fx-background-radius: 30;
     -fx-cursor: HAND;
@@ -34,3 +52,101 @@
     -fx-opacity: 0.8;
 }
 
+.button-login {
+    -fx-text-fill: #fdf6f0;
+    -fx-background-color: #F56EB3;
+    -fx-background-radius: 10;
+    -fx-cursor: HAND;
+}
+
+.button-login:hover {
+    -fx-opacity: 0.8;
+}
+
+/* Form Input
+ *
+ * Apply global on all input text field
+ *
+ */
+.text-field {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 0;
+    -fx-border-color: #000000;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 0.1;
+}
+
+.text-field:focused {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-border-width: 1;
+    -fx-border-color: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
+}
+
+/* Table View
+ *
+ * Apply global on all table view component
+ *
+ */
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -fx-color-table;
+    -fx-background-insets: 0 11px 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: #A555EC;
+    -fx-cursor: HAND;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #93f9b911;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
+.table-row-cell:even {
+    -fx-background-color: #1dbbdd11;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  -fx-color-table;
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  -fx-color-table;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #FFC7C7;
+    -fx-text-background-color: #A555EC;
+}
