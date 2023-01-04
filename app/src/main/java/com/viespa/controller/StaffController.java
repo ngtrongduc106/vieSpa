@@ -1,6 +1,7 @@
 package com.viespa.controller;
 
 import com.viespa.models.Staff;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,36 +15,40 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class StaffController implements Initializable {
     @FXML
-    TableView<Staff> table_staff ;
+    TableView<Staff> table_staff;
 
     @FXML
-    TableColumn<Staff , String> column_fullname;
+    TableColumn<Staff, String> column_fullname;
 
     @FXML
-    TableColumn<Staff , String> column_dob;
+    TableColumn<Staff, String> column_dob;
 
     @FXML
-    TableColumn<Staff , String> column_phone;
+    TableColumn<Staff, String> column_phone;
 
     @FXML
-    TableColumn<Staff , String> column_email;
+    TableColumn<Staff, String> column_email;
 
     @FXML
-    TableColumn<Staff , String> column_address;
+    TableColumn<Staff, String> column_address;
 
     @FXML
-    TableColumn<Staff , String> column_role;
+    TableColumn<Staff, String> column_role;
 
     @FXML
-    TableColumn<Staff , LocalDate> column_joindate;
+    TableColumn<Staff, LocalDate> column_joindate;
 
     @FXML
-    TableColumn<Staff , LocalDate> column_enddate;
+    TableColumn<Staff, LocalDate> column_enddate;
 
     @FXML
     TextField input_fullname;
@@ -77,6 +82,7 @@ public class StaffController implements Initializable {
 
     @FXML
     Button buttonAddNew;
+
     public void buttonAddNew() throws SQLException {
         String val_fullname = input_fullname.getText().trim();
         String val_phone = input_phone.getText().trim();
@@ -88,11 +94,11 @@ public class StaffController implements Initializable {
         String val_password = input_password.getText().trim();
         String val_role = input_role.getText().trim();
 
-        if(val_fullname.isEmpty()){
+        if (val_fullname.isEmpty()) {
             return;
         }
 
-        if(Integer.parseInt(val_role) == 1){
+        if (Integer.parseInt(val_role) == 1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setContentText("Staff cannot set role 1");
@@ -105,7 +111,7 @@ public class StaffController implements Initializable {
             alert.show();
             return;
         } else {
-            Staff.addStaff(val_account,val_password,val_fullname,val_address,val_email,val_phone, Integer.parseInt(val_role),val_dob,val_joindate);
+            Staff.addStaff(val_account, val_password, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");
@@ -122,6 +128,7 @@ public class StaffController implements Initializable {
 
     @FXML
     Button buttonUpdate;
+
     public void buttonUpdate() throws SQLException {
         myIndex = table_staff.getSelectionModel().getSelectedIndex();
         id = Integer.parseInt(String.valueOf(table_staff.getItems().get(myIndex).getId()));
@@ -137,18 +144,18 @@ public class StaffController implements Initializable {
         String val_role = input_role.getText().trim();
         LocalDate val_enddate = input_enddate.getValue();
 
-        if(val_fullname.isEmpty()){
+        if (val_fullname.isEmpty()) {
             return;
         }
 
-        if(Integer.parseInt(val_role) == 1){
+        if (Integer.parseInt(val_role) == 1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setContentText("Staff cannot set role 1");
             alert.show();
             return;
-        }else {
-            Staff.updateStaff(id,val_account,val_password,val_fullname,val_address,val_email,val_phone, Integer.parseInt(val_role),val_dob,val_joindate,val_enddate);
+        } else {
+            Staff.updateStaff(id, val_account, val_password, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate, val_enddate);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");
@@ -163,15 +170,31 @@ public class StaffController implements Initializable {
         table();
     }
 
-    int id ;
+    int id;
 
-    int myIndex ;
+    int myIndex;
 
-    public void table(){
+    public void table() {
         ObservableList<Staff> staffs = Staff.getAllStaffs();
         table_staff.setItems(staffs);
         column_fullname.setCellValueFactory(f -> f.getValue().fullNameProperty());
-        column_dob.setCellValueFactory(f -> f.getValue().dobProperty().asString());
+        column_dob.setCellValueFactory(f -> {
+            String strDate = String.valueOf(f.getValue().dobProperty().getValue());
+            System.out.println(strDate);
+
+            DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            Date date = null;
+            try {
+                date = inputFormat.parse(strDate);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+            String outputText = outputFormat.format(date);
+            System.out.println(outputText);
+            return new SimpleStringProperty(outputText);
+        });
         column_phone.setCellValueFactory(f -> f.getValue().phoneProperty());
         column_email.setCellValueFactory(f -> f.getValue().emailProperty());
         column_address.setCellValueFactory(f -> f.getValue().addressProperty());
