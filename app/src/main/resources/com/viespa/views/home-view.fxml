@@ -20,17 +20,6 @@
          </BorderPane.margin></AnchorPane>
    </center>
    <bottom>
-      <HBox alignment="CENTER_RIGHT" maxHeight="40.0" prefHeight="100.0" prefWidth="200.0" styleClass="container" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="vieSpa - Created by Nhóm 1 - APTECH @2022">
-               <padding>
-                  <Insets right="30.0" />
-               </padding>
-            </Label>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="8.0" left="4.0" right="16.0" />
-         </BorderPane.margin>
-      </HBox>
+      <fx:include source="bottom.fxml" />
    </bottom>
 </BorderPane>
