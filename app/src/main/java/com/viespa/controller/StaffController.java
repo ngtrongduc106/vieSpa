@@ -83,6 +83,26 @@ public class StaffController implements Initializable {
     @FXML
     Button buttonAddNew;
 
+    @FXML
+    private Button buttonCancel;
+
+    @FXML
+    private Button buttonChangeStatus;
+
+    @FXML
+    private Button buttonUpdate;
+
+    @FXML
+    void buttonCancel() {
+
+    }
+
+    @FXML
+    void buttonChangeStatus() {
+
+    }
+
+
     public void buttonAddNew() throws SQLException {
         String val_fullname = input_fullname.getText().trim();
         String val_phone = input_phone.getText().trim();
@@ -125,9 +145,6 @@ public class StaffController implements Initializable {
 
         table();
     }
-
-    @FXML
-    Button buttonUpdate;
 
     public void buttonUpdate() throws SQLException {
         myIndex = table_staff.getSelectionModel().getSelectedIndex();

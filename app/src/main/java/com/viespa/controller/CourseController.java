@@ -43,8 +43,25 @@ public class CourseController implements Initializable {
     @FXML
     TextArea input_description;
 
+    @FXML
+    private Button buttonCancel;
+
+    @FXML
+    private Button buttonChangeStatus;
+
     int id;
     int myIndex;
+
+
+    @FXML
+    void buttonCancel() {
+
+    }
+
+    @FXML
+    void buttonChangeStatus() {
+
+    }
 
     public void table(){
         ObservableList<Course> courses = Course.getAllCourses();

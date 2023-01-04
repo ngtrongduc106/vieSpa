@@ -10,6 +10,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" styleClass="background" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.TransactionController">
     <top>
@@ -21,26 +25,52 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="container" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="table_transaction" layoutY="2.0" prefHeight="299.0" prefWidth="984.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0">
-              <columns>
-                <TableColumn fx:id="column_number" prefWidth="65.46746826171875" text="Number" />
-                <TableColumn fx:id="column_customer" minWidth="0.0" prefWidth="129.67050170898438" text="Customer Name" />
-                  <TableColumn fx:id="column_course" prefWidth="103.29312133789062" text="Course Use" />
-                  <TableColumn fx:id="column_staff" prefWidth="108.417724609375" text="Staff Support" />
-                  <TableColumn fx:id="column_booking" prefWidth="122.2999267578125" text="Booking At" />
-                  <TableColumn fx:id="column_note" prefWidth="209.04412841796875" text="Note" />
-                  <TableColumn fx:id="column_createby" prefWidth="153.259521484375" text="Create by" />
-                  <TableColumn fx:id="column_pay" prefWidth="90.240478515625" text="Pay" />
-              </columns>
-            </TableView>
-            <ChoiceBox fx:id="input_customer" layoutX="67.0" layoutY="377.0" prefWidth="150.0" />
-            <ChoiceBox fx:id="input_course" layoutX="266.0" layoutY="378.0" prefWidth="150.0" />
-            <ChoiceBox fx:id="input_staff" layoutX="444.0" layoutY="377.0" prefWidth="150.0" />
-            <DatePicker fx:id="input_booking" layoutX="67.0" layoutY="448.0" />
-            <Button fx:id="button_add" layoutX="459.0" layoutY="449.0" mnemonicParsing="false" onAction="#button_add" text="Add new" />
-            <Button fx:id="button_update" layoutX="536.0" layoutY="449.0" mnemonicParsing="false" onAction="#button_update" text="Update" />
-            <TextArea fx:id="input_note" layoutX="67.0" layoutY="497.0" prefHeight="200.0" prefWidth="380.0" />
-            <TextField fx:id="input_pay" layoutX="287.0" layoutY="449.0" />
+            <VBox layoutX="16.0" layoutY="16.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
+               <children>
+                  <TableView fx:id="table_transaction" prefHeight="299.0" prefWidth="984.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="column_number" prefWidth="65.46746826171875" text="Number" />
+                      <TableColumn fx:id="column_customer" minWidth="0.0" prefWidth="129.67050170898438" text="Customer Name" />
+                        <TableColumn fx:id="column_course" prefWidth="103.29312133789062" text="Course Use" />
+                        <TableColumn fx:id="column_staff" prefWidth="108.417724609375" text="Staff Support" />
+                        <TableColumn fx:id="column_booking" prefWidth="122.2999267578125" text="Booking At" />
+                        <TableColumn fx:id="column_note" prefWidth="209.04412841796875" text="Note" />
+                        <TableColumn fx:id="column_createby" prefWidth="153.259521484375" text="Create by" />
+                        <TableColumn fx:id="column_pay" prefWidth="90.240478515625" text="Pay" />
+                    </columns>
+                  </TableView>
+                  <GridPane hgap="20.0" vgap="20.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ChoiceBox fx:id="input_customer" maxWidth="1.7976931348623157E308" prefWidth="150.0" />
+                        <ChoiceBox fx:id="input_course" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="input_staff" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <DatePicker fx:id="input_booking" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextArea fx:id="input_note" GridPane.rowIndex="3" />
+                        <TextField fx:id="input_pay" GridPane.rowIndex="2" />
+                        <VBox alignment="BOTTOM_CENTER" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <Button fx:id="button_update" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_update" text="Update" />
+                              <Button fx:id="button_add" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_add" text="Add new" />
+                              <Button fx:id="buttonCancel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCancel" styleClass="button-update" text="Cancel" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />
+                     </VBox.margin>
+                  </GridPane>
+               </children>
+            </VBox>
          </children>
          <BorderPane.margin>
             <Insets bottom="12.0" right="16.0" />

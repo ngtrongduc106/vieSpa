@@ -66,6 +66,16 @@ public class TransactionController implements Initializable {
     @FXML
     TextField input_pay;
 
+    @FXML
+    private Button buttonCancel;
+    
+    @FXML
+    void buttonCancel() {
+
+    }
+
+
+
     int id ;
     int myIndex;
 

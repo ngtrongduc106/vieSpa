@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="background" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.StaffController">
     <top>
@@ -23,63 +25,92 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="container" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="table_staff" layoutX="7.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="600.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0">
-              <columns>
-                <TableColumn fx:id="column_fullname" prefWidth="147.5" text="Full Name" />
-                <TableColumn fx:id="column_phone" prefWidth="102.0" text="Phone" />
-                  <TableColumn fx:id="column_email" prefWidth="115.0" text="Email" />
-                  <TableColumn fx:id="column_address" prefWidth="256.5" text="Address" />
-                  <TableColumn fx:id="column_dob" prefWidth="118.0" text="DOB" />
-                  <TableColumn fx:id="column_role" prefWidth="38.0" text="Role" />
-                  <TableColumn fx:id="column_joindate" prefWidth="114.0" text="Join Date" />
-                  <TableColumn fx:id="column_enddate" prefWidth="108.0" text="End Date" />
-              </columns>
-            </TableView>
-            <GridPane hgap="10.0" vgap="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <VBox layoutY="-13.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
                <children>
-                  <TextField fx:id="input_fullname" promptText="Full Name" />
-                  <DatePicker fx:id="input_dob" promptText="DOB" GridPane.columnIndex="1" />
-                  <TextField fx:id="input_account" promptText="Account" GridPane.columnIndex="2" />
-                  <TextField fx:id="input_phone" promptText="Phone" GridPane.rowIndex="1" />
-                  <TextField fx:id="input_email" promptText="Email" GridPane.rowIndex="2" />
-                  <DatePicker fx:id="input_joindate" promptText="Join Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <DatePicker fx:id="input_enddate" promptText="End Date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="input_role" promptText="Role" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField fx:id="input_password" promptText="Password" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <HBox GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                     <children>
-                        <Button fx:id="buttonAddNew" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonAddNew" styleClass="button-add-new" text="Add new" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button fx:id="buttonUpdate" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonUpdate" styleClass="button-update" text="Update" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
+                  <TableView fx:id="table_staff" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="600.0">
+                    <columns>
+                      <TableColumn fx:id="column_fullname" prefWidth="147.5" text="Full Name" />
+                      <TableColumn fx:id="column_phone" prefWidth="102.0" text="Phone" />
+                        <TableColumn fx:id="column_email" prefWidth="115.0" text="Email" />
+                        <TableColumn fx:id="column_address" prefWidth="256.5" text="Address" />
+                        <TableColumn fx:id="column_dob" prefWidth="118.0" text="DOB" />
+                        <TableColumn fx:id="column_role" prefWidth="38.0" text="Role" />
+                        <TableColumn fx:id="column_joindate" prefWidth="114.0" text="Join Date" />
+                        <TableColumn fx:id="column_enddate" prefWidth="108.0" text="End Date" />
+                    </columns>
+                  </TableView>
+                  <Separator prefWidth="200.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
-                  </HBox>
-                  <TextField fx:id="input_address" prefHeight="26.0" prefWidth="625.0" promptText="Address" GridPane.rowIndex="3" />
+                     <VBox.margin>
+                        <Insets left="100.0" right="100.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <GridPane hgap="20.0" vgap="20.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="input_fullname" promptText="Full Name" />
+                        <DatePicker fx:id="input_dob" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="DOB" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS" />
+                        <TextField fx:id="input_account" promptText="Account" GridPane.columnIndex="2" />
+                        <TextField fx:id="input_phone" promptText="Phone" GridPane.rowIndex="1" />
+                        <TextField fx:id="input_email" promptText="Email" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="input_joindate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Join Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <DatePicker fx:id="input_enddate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="End Date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="input_role" promptText="Role" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="input_password" promptText="Password" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <HBox GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                           <children>
+                              <Button fx:id="buttonChangeStatus" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonChangeStatus" styleClass="button-add-new" text="Change status" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="buttonCancel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCancel" styleClass="button-update" text="Cancel" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <TextField fx:id="input_address" prefHeight="26.0" prefWidth="625.0" promptText="Address" GridPane.rowIndex="3" />
+                        <HBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <Button fx:id="buttonAddNew" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonAddNew" styleClass="button-add-new" text="Add new" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="buttonUpdate" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonUpdate" styleClass="button-update" text="Update" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                     </padding>
+                  </GridPane>
                </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </GridPane>
+            </VBox>
          </children>
          <BorderPane.margin>
             <Insets bottom="12.0" right="16.0" />

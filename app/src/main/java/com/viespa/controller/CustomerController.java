@@ -55,6 +55,22 @@ public class CustomerController implements Initializable {
     @FXML
     TextField input_female;
 
+    @FXML
+    private Button buttonCancel;
+
+    @FXML
+    private Button buttonChangeStatus;
+
+    @FXML
+    void buttonCancel() {
+
+    }
+
+    @FXML
+    void buttonChangeStatus() {
+
+    }
+
     int id ;
     int myIndex;
 
