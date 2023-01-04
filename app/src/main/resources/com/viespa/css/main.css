@@ -52,17 +52,7 @@
     -fx-opacity: 0.8;
 }
 
-.button-login {
-    -fx-text-fill: #fdf6f0;
-    -fx-background-color: #F56EB3;
-    -fx-background-radius: 10;
-    -fx-cursor: HAND;
-}
-
-.button-login:hover {
-    -fx-opacity: 0.8;
-}
-
+.button-login,
 .button-add-new,
 .button-update {
     -fx-background-radius: 30;
@@ -73,8 +63,10 @@
     -fx-border-radius: 30;
     -fx-font-weight: bold;
     -fx-cursor: HAND;
+    -fx-font-size: 14;
 }
 
+.button-login:hover,
 .button-add-new:hover,
 .button-update:hover {
     -fx-background-color: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
@@ -118,7 +110,7 @@
 
 .table-view .column-header-background {
     -fx-background-color: -fx-color-table;
-    -fx-background-insets: 0 11px 0 0;
+    -fx-background-insets: 0 12px 0 0;
 }
 
 .table-view .column-header {
@@ -129,6 +121,7 @@
 
 .table-view .table-cell{
     -fx-border-color: transparent;
+    -fx-padding: 8;
 }
 
 .table-row-cell:hover {

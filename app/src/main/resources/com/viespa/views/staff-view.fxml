@@ -35,7 +35,7 @@
                         <TextField fx:id="input_password" layoutX="426.0" layoutY="64.0" promptText="Password" />
                         <TextField fx:id="input_role" layoutX="426.0" layoutY="125.0" promptText="Role" />
                         <Button fx:id="buttonAddNew" layoutX="426.0" layoutY="198.0" mnemonicParsing="false" onAction="#buttonAddNew" styleClass="button-add-new" text="Add new" />
-                        <Button fx:id="buttonUpdate" layoutX="506.0" layoutY="198.0" mnemonicParsing="false" onAction="#buttonUpdate" styleClass="button-update" text="Update" />
+                        <Button fx:id="buttonUpdate" layoutX="533.0" layoutY="198.0" mnemonicParsing="false" onAction="#buttonUpdate" styleClass="button-update" text="Update" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="48.0" left="80.0" top="60.0" />

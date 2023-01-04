@@ -80,7 +80,7 @@
                            </font>
                         </PasswordField>
                         <Label fx:id="error_password" textFill="#e80505" />
-                        <Button mnemonicParsing="false" onAction="#buttonLogin" styleClass="button-login" text="Login" textFill="#fdf6f0">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#buttonLogin" styleClass="button-login" text="Login" textFill="#fdf6f0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

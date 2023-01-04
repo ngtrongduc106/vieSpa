@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DButil {
-    private static final String DB_URL = "jdbc:mysql://localhost:3307/dbviespa";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/dbviespa";
     private static final String DB_USERNAME = "root" ;
     private static final String DB_PASSWORD = "" ;
 
