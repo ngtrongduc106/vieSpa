@@ -63,12 +63,32 @@
     -fx-opacity: 0.8;
 }
 
+.button-add-new,
+.button-update {
+    -fx-background-radius: 30;
+    -fx-background-color: tranparent;
+    -fx-text-fill: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
+    -fx-border-width: 2;
+    -fx-border-color: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
+    -fx-border-radius: 30;
+    -fx-font-weight: bold;
+    -fx-cursor: HAND;
+}
+
+.button-add-new:hover,
+.button-update:hover {
+    -fx-background-color: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
+    -fx-text-fill: #fdf6f0;
+}
+
 /* Form Input
  *
  * Apply global on all input text field
  *
  */
-.text-field {
+.text-field,
+.date-picker,
+.text-area {
     -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-background-radius: 0;
     -fx-border-color: #000000;
@@ -76,7 +96,8 @@
     -fx-border-width: 0.1;
 }
 
-.text-field:focused {
+.text-field:focused,
+.text-area:focused {
     -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-border-width: 1;
     -fx-border-color: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
@@ -102,6 +123,8 @@
 
 .table-view .column-header {
     -fx-background-color: transparent;
+    -fx-border-style: hidden solid hidden hidden;
+    -fx-border-color: rgba(255, 255, 255, 0.4);
 }
 
 .table-view .table-cell{
