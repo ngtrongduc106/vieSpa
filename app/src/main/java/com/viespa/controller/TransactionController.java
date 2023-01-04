@@ -68,7 +68,7 @@ public class TransactionController implements Initializable {
 
     @FXML
     private Button buttonCancel;
-    
+
     @FXML
     void buttonCancel() {
 
