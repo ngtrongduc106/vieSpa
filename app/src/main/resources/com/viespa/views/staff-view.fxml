@@ -59,17 +59,20 @@
                   <TextField fx:id="input_password" promptText="Password" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <HBox GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <children>
-                        <Button fx:id="buttonAddNew" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonAddNew" text="Add new" HBox.hgrow="ALWAYS">
+                        <Button fx:id="buttonAddNew" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonAddNew" styleClass="button-add-new" text="Add new" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="buttonUpdate" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonUpdate" text="Update" HBox.hgrow="ALWAYS">
+                        <Button fx:id="buttonUpdate" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonUpdate" styleClass="button-update" text="Update" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Button>
                      </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </HBox>
                   <TextField fx:id="input_address" prefHeight="26.0" prefWidth="625.0" promptText="Address" GridPane.rowIndex="3" />
                </children>
