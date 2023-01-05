@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" styleClass="background" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" styleClass="background" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.HomeController">
    <top>
       <fx:include source="top.fxml" />
    </top>
@@ -37,12 +37,12 @@
               </rowConstraints>
                <children>
                   <PieChart GridPane.columnIndex="1" />
-                  <BarChart>
+                  <BarChart fx:id="chart1">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" />
+                      <CategoryAxis side="BOTTOM" fx:id="xAxis" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" />
+                      <NumberAxis fx:id="yAxis" side="LEFT" />
                     </yAxis>
                   </BarChart>
                   <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
