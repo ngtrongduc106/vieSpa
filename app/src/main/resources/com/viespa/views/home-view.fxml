@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.TableColumn?>
@@ -36,7 +37,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <PieChart GridPane.columnIndex="1" />
+                  <PieChart fx:id="pieChart" title="Pie Chart" GridPane.columnIndex="1" />
                   <BarChart fx:id="chart1">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" fx:id="xAxis" />
@@ -45,18 +46,20 @@
                       <NumberAxis fx:id="yAxis" side="LEFT" />
                     </yAxis>
                   </BarChart>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
                   <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />
                     </columns>
                   </TableView>
+                  <LineChart fx:id="lineChart" GridPane.rowIndex="1">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" fx:id="xAxisLC" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="yAxisLC" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
                </children>
             </GridPane>
          </children></AnchorPane>
