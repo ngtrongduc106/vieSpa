@@ -1,9 +1,6 @@
 package com.viespa.controller;
 
-import com.viespa.App;
-import com.viespa.models.User;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import com.viespa.models.MyChart;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,10 +11,9 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 
-import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -44,19 +40,22 @@ public class HomeController implements Initializable {
     private NumberAxis yAxisLC;
 
     void setBarChart(){
-        chart1.setTitle("Country Summary");
-        xAxis.setLabel("Country");
-        yAxis.setLabel("Value");
+        chart1.setTitle("Revenue");
+        xAxis.setLabel("Name of Month");
+        yAxis.setLabel("USD");
 
-        XYChart.Series series1 = new XYChart.Series();
-        series1.setName("2003");
-        series1.getData().add(new XYChart.Data("austria", 25601.34));
-        series1.getData().add(new XYChart.Data("brazil", 20148.82));
-        series1.getData().add(new XYChart.Data("france", 10000));
-        series1.getData().add(new XYChart.Data("italy", 35407.15));
-        series1.getData().add(new XYChart.Data("usa", 12000));
+        List<MyChart> barCharts = MyChart.getMonthlyRevenue();
+        XYChart.Series monthly = new XYChart.Series();
+        monthly.setName("Monthly revenue");
 
-        chart1.getData().addAll(series1);
+        barCharts.forEach(it -> {
+            monthly.getData().add(new XYChart.Data(it.getMonth(),it.getRevenue()));
+        });
+        XYChart.Series avgMonthly = new XYChart.Series();
+        avgMonthly.setName("Monthly average");
+        barCharts.forEach(it-> avgMonthly.getData().add(new XYChart.Data(it.getMonth(),it.getAvgRevenue())));
+
+        chart1.getData().addAll(monthly, avgMonthly);
     }
 
     void setPieChart(){
