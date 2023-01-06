@@ -8,6 +8,16 @@ public class User {
     private String fullname ;
     private int role ;
 
+    private int page = 0;
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
     private User(){}
 
     public static User getInstance(){

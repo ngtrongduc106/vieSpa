@@ -44,7 +44,7 @@
             </VBox>
               <VBox alignment="TOP_CENTER" prefHeight="610.0" prefWidth="214.0" spacing="5.0">
                   <children>
-                      <Button alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonHome" prefHeight="41.0" prefWidth="214.0" styleClass="button-sidebar" text="HOME" textAlignment="CENTER">
+                      <Button fx:id="home" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonHome" prefHeight="41.0" prefWidth="214.0" styleClass="button-sidebar" text="HOME" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </padding>
@@ -69,7 +69,7 @@
                         <Point3D />
                      </rotationAxis>
                   </Button>
-                  <Button alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCustomer" styleClass="button-sidebar" text="CUSTOMER" textAlignment="CENTER">
+                  <Button fx:id="customer" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCustomer" styleClass="button-sidebar" text="CUSTOMER" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </padding>
@@ -80,7 +80,7 @@
                         <Point3D />
                      </rotationAxis>
                   </Button>
-                  <Button alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCourse" styleClass="button-sidebar" text="COURSE" textAlignment="CENTER">
+                  <Button fx:id="course" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCourse" styleClass="button-sidebar" text="COURSE" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </padding>
@@ -91,7 +91,7 @@
                         <Point3D />
                      </rotationAxis>
                   </Button>
-                  <Button alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonTransaction" styleClass="button-sidebar" text="TRANSACTION" textAlignment="CENTER">
+                  <Button fx:id="transaction" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonTransaction" styleClass="button-sidebar" text="TRANSACTION" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </padding>
