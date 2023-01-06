@@ -91,9 +91,9 @@
 .text-area {
     -fx-background-color: rgba(255, 255, 255, 0.3);
     -fx-background-radius: 0;
-    -fx-border-color: #000000;
+    -fx-border-color: rgba(1, 1, 1, 0.2);
     -fx-border-style: hidden hidden solid hidden;
-    -fx-border-width: 0.1;
+    -fx-border-width: 1;
 }
 
 .text-field:focused,

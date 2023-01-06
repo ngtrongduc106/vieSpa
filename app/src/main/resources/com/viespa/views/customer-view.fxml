@@ -52,14 +52,14 @@
                         <TextField fx:id="input_address" prefHeight="26.0" prefWidth="387.0" promptText="Address" GridPane.rowIndex="2" />
                         <DatePicker fx:id="input_dob" promptText="DOB" GridPane.columnIndex="1" />
                         <TextField fx:id="input_female" promptText="Is_female" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <HBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
-                              <Button fx:id="buttonChangeStatus" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonChangeStatus" styleClass="button-add-new" text="Change status" HBox.hgrow="ALWAYS">
+                              <Button fx:id="buttonChangeStatus" maxWidth="160.0" mnemonicParsing="false" onAction="#buttonChangeStatus" prefWidth="160.0" styleClass="button-add-new" text="Change status" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="buttonCancel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCancel" styleClass="button-update" text="Cancel" HBox.hgrow="ALWAYS">
+                              <Button fx:id="buttonCancel" maxWidth="160.0" mnemonicParsing="false" onAction="#buttonCancel" prefWidth="160.0" styleClass="button-update" text="Cancel" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -72,12 +72,12 @@
                         <TextField fx:id="input_phone" prefHeight="26.0" prefWidth="186.0" promptText="Phone" GridPane.rowIndex="3" />
                         <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                            <children>
-                              <Button fx:id="button_add" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_add" text="Add New" HBox.hgrow="ALWAYS">
+                              <Button fx:id="button_add" maxWidth="160.0" mnemonicParsing="false" onAction="#button_add" prefWidth="160.0" styleClass="button-add-new" text="Add New" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="button_update" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_update" text="Update" HBox.hgrow="ALWAYS">
+                              <Button fx:id="button_update" maxWidth="160.0" mnemonicParsing="false" onAction="#button_update" prefWidth="160.0" styleClass="button-update" text="Update" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>

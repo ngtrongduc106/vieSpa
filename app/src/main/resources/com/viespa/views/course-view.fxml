@@ -52,8 +52,8 @@
                      <children>
                         <TextField fx:id="input_name" promptText="Name" />
                         <TextField fx:id="input_price" promptText="Price" GridPane.rowIndex="1" />
-                        <Button fx:id="button_add" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_add" text="Add new" GridPane.columnIndex="1" />
-                        <Button fx:id="button_update" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_update" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="button_add" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_add" styleClass="button-add-new" text="Add new" GridPane.columnIndex="1" />
+                        <Button fx:id="button_update" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_update" styleClass="button-update" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextArea fx:id="input_description" prefHeight="147.0" prefWidth="370.0" promptText="Description" GridPane.rowIndex="2" />
                         <VBox spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
