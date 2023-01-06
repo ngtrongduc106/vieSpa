@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyChart {
@@ -40,12 +41,33 @@ public class MyChart {
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
-        List<MyChart> myCharts = FXCollections.observableArrayList();
+        List<MyChart> myCharts = new ArrayList<>();
         try {
             pst = connection.prepareStatement("SELECT month(booking) AS month_name, SUM(pay) AS sum_of_month, AVG(pay) AS AVG_of_month FROM transactions GROUP BY month(booking) ORDER BY month_name DESC LIMIT 12;");
             rs = pst.executeQuery();
             while (rs.next()) {
                 myCharts.add(new MyChart(rs.getString("month_name"), rs.getString("sum_of_month"), rs.getString("AVG_of_month")) );
+            }
+            return myCharts;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        } finally {
+            db.closeAll(connection, pst, rs);
+        }
+    }
+    public static List<MyChart> customerPerStaff (){
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        List<MyChart> myCharts = new ArrayList<>();
+        try {
+            pst = connection.prepareStatement("SELECT users.fullname as name, COUNT(transactions.id) as count FROM transactions join users on transactions.staff_id = users.id GROUP BY users.id;");
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                myCharts.add(new MyChart(rs.getString("name"), rs.getString("count"), "0" ));
             }
             return myCharts;
 

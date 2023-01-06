@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.TableColumn?>
@@ -46,20 +45,20 @@
                       <NumberAxis fx:id="yAxis" side="LEFT" />
                     </yAxis>
                   </BarChart>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />
                     </columns>
                   </TableView>
-                  <LineChart fx:id="lineChart" GridPane.rowIndex="1">
+                  <BarChart fx:id="barChart2" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" fx:id="xAxisLC" />
+                      <CategoryAxis side="BOTTOM" fx:id="xChart2" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis fx:id="yAxisLC" side="LEFT" />
+                      <NumberAxis fx:id="yChart2" side="LEFT" />
                     </yAxis>
-                  </LineChart>
+                  </BarChart>
                </children>
             </GridPane>
          </children></AnchorPane>

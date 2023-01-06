@@ -1,6 +1,7 @@
 package com.viespa.controller;
 
 import com.viespa.models.MyChart;
+import com.viespa.models.MyPie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,13 +32,13 @@ public class HomeController implements Initializable {
     private PieChart pieChart;
 
     @FXML
-    private LineChart<Number, Number> lineChart;
+    private BarChart<Number, Number> barChart2;
 
     @FXML
-    private CategoryAxis xAxisLC;
+    private CategoryAxis xChart2;
 
     @FXML
-    private NumberAxis yAxisLC;
+    private NumberAxis yChart2;
 
     void setBarChart(){
         chart1.setTitle("Revenue");
@@ -60,46 +61,30 @@ public class HomeController implements Initializable {
 
     void setPieChart(){
         // Pie Chart
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("Grapefruit", 13),
-                        new PieChart.Data("Oranges", 25),
-                        new PieChart.Data("Plums", 10),
-                        new PieChart.Data("Pears", 22),
-                        new PieChart.Data("Apples", 30));
-        pieChart.setData(pieChartData);
+        pieChart.setData(MyPie.countCourse());
         pieChart.setTitle("Imported Fruits");
     }
 
-//    private void setLineChart() {
-//        xAxisLC.setLabel("Number of Month");
-//        yAxisLC.setLabel("Value");
-//        lineChart.setTitle("Stock Monitoring, 2010");
-//        //defining a series
-//        XYChart.Series series = new XYChart.Series();
-//        series.setName("My portfolio");
-//        //populating the series with data
-//        series.getData().add(new XYChart.Data(1, 23));
-//        series.getData().add(new XYChart.Data(2, 14));
-//        series.getData().add(new XYChart.Data(3, 15));
-//        series.getData().add(new XYChart.Data(4, 24));
-//        series.getData().add(new XYChart.Data(5, 34));
-//        series.getData().add(new XYChart.Data(6, 36));
-//        series.getData().add(new XYChart.Data(7, 22));
-//        series.getData().add(new XYChart.Data(8, 45));
-//        series.getData().add(new XYChart.Data(9, 43));
-//        series.getData().add(new XYChart.Data(10, 17));
-//        series.getData().add(new XYChart.Data(11, 29));
-//        series.getData().add(new XYChart.Data(12, 25));
-//
-//        lineChart.getData().add(series);
-//    }
+    void setBarChart2(){
+        barChart2.setTitle("Customer per staff");
+        xChart2.setLabel("Name of the staff");
+        yChart2.setLabel("Count of customer");
+
+        List<MyChart> barCharts = MyChart.customerPerStaff();
+        XYChart.Series item = new XYChart.Series();
+        item.setName("Staff");
+
+        barCharts.forEach(it -> {
+            item.getData().add(new XYChart.Data(it.getMonth(),it.getRevenue()));
+        });
+        barChart2.getData().addAll(item);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setBarChart();
         setPieChart();
-//        setLineChart();
+        setBarChart2();
     }
 
 }
