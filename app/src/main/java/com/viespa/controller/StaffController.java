@@ -1,6 +1,7 @@
 package com.viespa.controller;
 
 import com.viespa.models.Staff;
+import com.viespa.utils.DateForm;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -45,10 +46,10 @@ public class StaffController implements Initializable {
     TableColumn<Staff, String> column_role;
 
     @FXML
-    TableColumn<Staff, LocalDate> column_joindate;
+    TableColumn<Staff, String> column_joindate;
 
     @FXML
-    TableColumn<Staff, LocalDate> column_enddate;
+    TableColumn<Staff, String> column_enddate;
 
     @FXML
     TextField input_fullname;
@@ -195,29 +196,13 @@ public class StaffController implements Initializable {
         ObservableList<Staff> staffs = Staff.getAllStaffs();
         table_staff.setItems(staffs);
         column_fullname.setCellValueFactory(f -> f.getValue().fullNameProperty());
-        column_dob.setCellValueFactory(f -> {
-            String strDate = String.valueOf(f.getValue().dobProperty().getValue());
-            System.out.println(strDate);
-
-            DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
-            DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-            Date date = null;
-            try {
-                date = inputFormat.parse(strDate);
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-            String outputText = outputFormat.format(date);
-            System.out.println(outputText);
-            return new SimpleStringProperty(outputText);
-        });
+        column_dob.setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().dobProperty().getValue())));
         column_phone.setCellValueFactory(f -> f.getValue().phoneProperty());
         column_email.setCellValueFactory(f -> f.getValue().emailProperty());
         column_address.setCellValueFactory(f -> f.getValue().addressProperty());
         column_role.setCellValueFactory(f -> f.getValue().roleProperty());
-        column_joindate.setCellValueFactory(f -> f.getValue().joinDateProperty());
-        column_enddate.setCellValueFactory(f -> f.getValue().endDateProperty());
+        column_joindate.setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().joinDateProperty().getValue())));
+        column_enddate.setCellValueFactory(f -> f.getValue().endDateProperty().getValue() != null ? DateForm.convert(String.valueOf(f.getValue().endDateProperty().getValue())): new SimpleStringProperty(""));
 
         input_enddate.setDisable(true);
         buttonUpdate.setDisable(true);

@@ -1,6 +1,7 @@
 package com.viespa.controller;
 
 import com.viespa.models.*;
+import com.viespa.utils.DateForm;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,7 +32,7 @@ public class TransactionController implements Initializable {
     TableColumn<Transaction , String> column_staff;
 
     @FXML
-    TableColumn<Transaction , LocalDate> column_booking;
+    TableColumn<Transaction , String> column_booking;
 
     @FXML
     TableColumn<Transaction , String> column_note;
@@ -86,7 +87,7 @@ public class TransactionController implements Initializable {
         column_customer.setCellValueFactory(f -> f.getValue().customerProperty());
         column_course.setCellValueFactory(f -> f.getValue().courseProperty());
         column_staff.setCellValueFactory(f -> f.getValue().staffProperty());
-        column_booking.setCellValueFactory(f -> f.getValue().bookingProperty());
+        column_booking.setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().bookingProperty().getValue())));
         column_note.setCellValueFactory(f -> f.getValue().noteProperty());
         column_createby.setCellValueFactory(f -> f.getValue().createByProperty());
         column_pay.setCellValueFactory(f -> f.getValue().payProperty());

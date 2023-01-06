@@ -40,6 +40,9 @@ public class HomeController implements Initializable {
     @FXML
     private NumberAxis yChart2;
 
+    @FXML
+    private BarChart<Number, Number> barChart3;
+
     void setBarChart(){
         chart1.setTitle("Revenue");
         xAxis.setLabel("Name of Month");
@@ -80,11 +83,25 @@ public class HomeController implements Initializable {
         barChart2.getData().addAll(item);
     }
 
+    void setBarChart3(){
+        barChart3.setTitle("Sale this month group by weekday");
+
+        List<MyChart> barCharts = MyChart.monthReport();
+        XYChart.Series item = new XYChart.Series();
+        item.setName("Staff");
+
+        barCharts.forEach(it -> {
+            item.getData().add(new XYChart.Data(it.getMonth(),it.getRevenue()));
+        });
+        barChart3.getData().addAll(item);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setBarChart();
         setPieChart();
         setBarChart2();
+        setBarChart3();
     }
 
 }

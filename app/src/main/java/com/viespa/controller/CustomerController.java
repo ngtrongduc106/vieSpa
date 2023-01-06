@@ -1,6 +1,7 @@
 package com.viespa.controller;
 
 import com.viespa.models.Customer;
+import com.viespa.utils.DateForm;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,7 +30,7 @@ public class CustomerController implements Initializable {
     TableColumn<Customer , String> column_email;
 
     @FXML
-    TableColumn<Customer , LocalDate> column_dob;
+    TableColumn<Customer , String> column_dob;
 
     @FXML
     Button button_add;
@@ -81,8 +82,7 @@ public class CustomerController implements Initializable {
         column_phone.setCellValueFactory(f -> f.getValue().phoneProperty());
         column_address.setCellValueFactory(f -> f.getValue().addressProperty());
         column_email.setCellValueFactory(f -> f.getValue().emailProperty());
-        column_dob.setCellValueFactory(f -> f.getValue().dobProperty());
-
+        column_dob.setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().dobProperty().getValue())));
         button_update.setDisable(true);
         button_add.setDisable(false);
 
