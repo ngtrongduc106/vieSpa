@@ -202,7 +202,9 @@ public class StaffController implements Initializable {
         column_address.setCellValueFactory(f -> f.getValue().addressProperty());
         column_role.setCellValueFactory(f -> f.getValue().roleProperty());
         column_joindate.setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().joinDateProperty().getValue())));
-        column_enddate.setCellValueFactory(f -> f.getValue().endDateProperty().getValue() != null ? DateForm.convert(String.valueOf(f.getValue().endDateProperty().getValue())): new SimpleStringProperty(""));
+        column_enddate.setCellValueFactory(f -> f.getValue().endDateProperty().getValue() != null
+                ? DateForm.convert(String.valueOf(f.getValue().endDateProperty().getValue()))
+                : new SimpleStringProperty(""));
 
         input_enddate.setDisable(true);
         buttonUpdate.setDisable(true);

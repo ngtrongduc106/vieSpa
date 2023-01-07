@@ -88,22 +88,28 @@ public class SideBarController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         author_active();
         switch (user.getPage()){
-            case 0: home.setDisable(true);
-                    home.setStyle("-fx-background-color: pink");
+            case 0:
+                home.setDisable(true);
+                home.getStyleClass().add("active");
                 break;
-            case 1: button_staff.setDisable(true);
-                    button_staff.setStyle("-fx-background-color: pink");
+            case 1:
+                button_staff.setDisable(true);
+                button_staff.getStyleClass().add("active");
                 break;
-            case 2: customer.setDisable(true);
-                    customer.setStyle("-fx-background-color: pink");
-            break;
-            case 3: course.setDisable(true);
-                    course.setStyle("-fx-background-color: pink");
-            break;
-            case 4: transaction.setDisable(true);
-                    transaction.setStyle("-fx-background-color: pink");
-            break;
-            default: break;
+            case 2:
+                customer.setDisable(true);
+                customer.getStyleClass().add("active");
+                break;
+            case 3:
+                course.setDisable(true);
+                course.getStyleClass().add("active");
+                break;
+            case 4:
+                transaction.setDisable(true);
+                transaction.getStyleClass().add("active");
+                break;
+            default:
+                break;
         }
     }
 
