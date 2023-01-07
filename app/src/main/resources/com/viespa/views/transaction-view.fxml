@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -39,34 +40,59 @@
                         <TableColumn fx:id="column_pay" prefWidth="90.240478515625" text="Pay" />
                     </columns>
                   </TableView>
-                  <GridPane hgap="20.0" vgap="20.0">
+                  <GridPane hgap="20.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                      </columnConstraints>
                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ChoiceBox fx:id="input_customer" maxWidth="1.7976931348623157E308" prefWidth="150.0" />
-                        <ChoiceBox fx:id="input_course" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.rowIndex="1" />
-                        <ChoiceBox fx:id="input_staff" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" />
-                        <DatePicker fx:id="input_booking" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextArea fx:id="input_note" GridPane.rowIndex="3" />
-                        <TextField fx:id="input_pay" GridPane.rowIndex="2" />
-                        <VBox alignment="CENTER" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <ChoiceBox fx:id="input_customer" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="12.0" />
+                           </GridPane.margin></ChoiceBox>
+                        <ChoiceBox fx:id="input_course" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets bottom="12.0" />
+                           </GridPane.margin></ChoiceBox>
+                        <ChoiceBox fx:id="input_staff" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="12.0" />
+                           </GridPane.margin></ChoiceBox>
+                        <DatePicker fx:id="input_booking" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets bottom="12.0" />
+                           </GridPane.margin></DatePicker>
+                        <TextArea fx:id="input_note" GridPane.rowIndex="7" />
+                        <TextField fx:id="input_pay" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets bottom="12.0" />
+                           </GridPane.margin></TextField>
+                        <VBox alignment="CENTER" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <children>
                               <Button fx:id="button_add" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_add" styleClass="button-add-new" text="Add new" />
                               <Button fx:id="button_update" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_update" styleClass="button-update" text="Update" />
                               <Button fx:id="buttonCancel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCancel" styleClass="button-update" text="Cancel" />
                            </children>
                         </VBox>
+                        <Label text="Customer:" />
+                        <Label text="Staff:" GridPane.columnIndex="1" />
+                        <Label text="Price:" GridPane.rowIndex="4" />
+                        <Label text="Course:" GridPane.rowIndex="2" />
+                        <Label text="Date:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="Note:" GridPane.rowIndex="6" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />
+                        <Insets bottom="60.0" left="60.0" right="60.0" top="20.0" />
                      </VBox.margin>
                   </GridPane>
                </children>
