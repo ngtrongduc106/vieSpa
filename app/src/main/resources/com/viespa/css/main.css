@@ -115,7 +115,6 @@
 .text-area:focused,
 .choice-box:focused {
     -fx-background-color: rgba(255, 255, 255, 0);
-    -fx-opacity: 1;
     -fx-border-width: 1;
     -fx-border-color: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
 }
@@ -182,12 +181,13 @@
 }
 
 .text-area .content {
-    -fx-background-color: #EDDEDF;
+    -fx-background-color: #EEE4E5;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
 }
+
 .text-area:focused .content {
-    -fx-background-color: #F0DCDD;
+    -fx-background-color: #EDDEDF;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
 }
