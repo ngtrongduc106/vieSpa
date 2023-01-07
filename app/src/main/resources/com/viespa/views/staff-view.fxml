@@ -69,7 +69,7 @@
                         <DatePicker fx:id="input_enddate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="End Date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="input_role" promptText="Role" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <TextField fx:id="input_password" promptText="Password" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <HBox GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                        <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <children>
                               <Button fx:id="buttonChangeStatus" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonChangeStatus" styleClass="button-add-new" text="Change status" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
@@ -87,7 +87,7 @@
                            </opaqueInsets>
                         </HBox>
                         <TextField fx:id="input_address" prefHeight="26.0" prefWidth="625.0" promptText="Address" GridPane.rowIndex="3" />
-                        <HBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
                               <Button fx:id="buttonAddNew" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonAddNew" styleClass="button-add-new" text="Add new" HBox.hgrow="ALWAYS">
                                  <HBox.margin>

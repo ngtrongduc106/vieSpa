@@ -83,6 +83,7 @@
     -fx-font-weight: bold;
     -fx-cursor: HAND;
     -fx-font-size: 14;
+    -fx-max-width: 160;
 }
 
 .button-login:hover,
@@ -90,6 +91,11 @@
 .button-update:hover {
     -fx-background-color: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
     -fx-text-fill: #fdf6f0;
+}
+
+.button-add-new:disabled,
+.button-update:disabled {
+    -fx-opacity: 0.1;
 }
 
 /* Form Input

@@ -57,7 +57,7 @@
                         <DatePicker fx:id="input_booking" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextArea fx:id="input_note" GridPane.rowIndex="3" />
                         <TextField fx:id="input_pay" GridPane.rowIndex="2" />
-                        <VBox alignment="BOTTOM_CENTER" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <VBox alignment="CENTER" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
                               <Button fx:id="button_add" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_add" styleClass="button-add-new" text="Add new" />
                               <Button fx:id="button_update" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#button_update" styleClass="button-update" text="Update" />
