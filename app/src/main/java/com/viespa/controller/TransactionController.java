@@ -164,7 +164,7 @@ public class TransactionController implements Initializable {
     public void button_update() throws SQLException {
         if(User.getInstance().getId() != 1){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("You dont have author !");
+            alert.setContentText("You don't have author !");
             alert.show();
             return;
         }
@@ -178,6 +178,7 @@ public class TransactionController implements Initializable {
 
         if(val_customer == null || val_course == null || val_staff == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Admin can't be a staff");
             alert.show();
         }else {
             Transaction.update(val_customer,val_course,val_staff,val_pay,val_note,val_booking, String.valueOf(id));
