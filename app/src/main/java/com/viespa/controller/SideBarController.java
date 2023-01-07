@@ -89,14 +89,19 @@ public class SideBarController implements Initializable {
         author_active();
         switch (user.getPage()){
             case 0: home.setDisable(true);
+                    home.setStyle("-fx-background-color: pink");
                 break;
             case 1: button_staff.setDisable(true);
+                    button_staff.setStyle("-fx-background-color: pink");
                 break;
             case 2: customer.setDisable(true);
+                    customer.setStyle("-fx-background-color: pink");
             break;
             case 3: course.setDisable(true);
+                    course.setStyle("-fx-background-color: pink");
             break;
             case 4: transaction.setDisable(true);
+                    transaction.setStyle("-fx-background-color: pink");
             break;
             default: break;
         }
