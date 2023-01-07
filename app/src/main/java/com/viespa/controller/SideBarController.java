@@ -41,6 +41,7 @@ public class SideBarController implements Initializable {
 
     @FXML
     public void buttonLogout() throws IOException {
+        user.setPage(0);
         App.setRoot("views/login-view");
     }
 
