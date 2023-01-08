@@ -94,6 +94,10 @@ public class LoginController {
 
     }
 
+    public void resetPassword() throws IOException {
+        App.setRoot("views/reset-view");
+    }
+
     public boolean checkWhiteSpace(String data){
         Pattern pattern = Pattern.compile("\\s");
         Matcher matcher = pattern.matcher(data);
