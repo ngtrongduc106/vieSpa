@@ -1,5 +1,6 @@
 package com.viespa.controller;
 
+import com.viespa.App;
 import com.viespa.models.*;
 import com.viespa.utils.DateForm;
 import com.viespa.utils.Invoice;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -76,6 +78,11 @@ public class TransactionController implements Initializable {
 
     }
 
+    @FXML
+    void addCustomer() throws IOException {
+        User.getInstance().setPage(2);
+        App.setRoot("views/customer-view");
+    }
 
 
     int id ;

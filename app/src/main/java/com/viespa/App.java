@@ -19,8 +19,9 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("views/login-view"));
         stage.setScene(scene);
+        stage.setMinHeight(1024);
+        stage.setMinWidth(1366);
         stage.setResizable(false);
-        stage.setMaximized(true);
         stage.show();
     }
 
