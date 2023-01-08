@@ -2,6 +2,7 @@ package com.viespa.controller;
 
 import com.viespa.models.*;
 import com.viespa.utils.DateForm;
+import com.viespa.utils.Invoice;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -137,7 +138,7 @@ public class TransactionController implements Initializable {
         });
     }
 
-    public void button_add() throws SQLException {
+    public void button_add() throws Exception {
         String val_customer = Customer.queryId(input_customer.getValue());
         String val_course = Course.queryId(input_course.getValue());
         String val_staff = Staff.queryId(input_staff.getValue());
@@ -159,9 +160,15 @@ public class TransactionController implements Initializable {
             input_note.setText("");
             table();
         }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to create invoice?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            Invoice.print(Transaction.getLastInput());
+        }
     }
 
-    public void button_update() throws SQLException {
+    public void button_update() throws Exception {
         if(User.getInstance().getId() != 1){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("You don't have author !");
@@ -190,6 +197,13 @@ public class TransactionController implements Initializable {
             input_note.setText("");
             input_pay.setText("");
             table();
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to update invoice?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            Invoice.print(Transaction.getById(id));
         }
     }
 

@@ -205,4 +205,29 @@ public class Course {
             db.closeAll(connection,statement,resultSet);
         }
     }
+
+    public static Course getByName(String data){
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            statement = connection.prepareStatement("SELECT * from course where name = ?");
+            statement.setString(1,data);
+            resultSet = statement.executeQuery();
+            Course it = new Course();
+            if(resultSet.next()){
+                it.setId(Long.parseLong(resultSet.getString("id")));
+                it.setName(resultSet.getString("name"));
+                it.setPrice(resultSet.getString("price"));
+                it.setDescription(resultSet.getString("description"));
+            }
+            return it;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            db.closeAll(connection,statement,resultSet);
+        }
+    }
 }

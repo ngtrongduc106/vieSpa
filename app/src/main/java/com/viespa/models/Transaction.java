@@ -19,6 +19,8 @@ public class Transaction {
     private final SimpleObjectProperty<LocalDate> booking = new SimpleObjectProperty<>();
     private final SimpleStringProperty createBy = new SimpleStringProperty();
 
+    public Transaction() {}
+
     public SimpleStringProperty idProperty() {
         return id;
     }
@@ -145,6 +147,77 @@ public class Transaction {
            db.closeAll(connection, pst, rs);
        }
    }
+
+   // ORDER BY id DESC LIMIT 1;
+
+    public static Transaction getLastInput (){
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        Transaction transaction = new Transaction();
+        try {
+            pst = connection.prepareStatement("SELECT transactions.id, customers.fullname as customer , course.name as course , u1.fullname as staff_sup , transactions.pay , transactions.note , transactions.booking , u2.fullname as create_by\n" +
+                    "FROM `transactions` \n" +
+                    "JOIN customers on customers.id = transactions.customer_id\n" +
+                    "JOIN course on course.id = transactions.course_id\n" +
+                    "JOIN users u1 on u1.id = transactions.staff_id\n" +
+                    "JOIN users u2 on u2.id = transactions.created_by order by transactions.id desc limit 1");
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                transaction.setId(rs.getString("id"));
+                transaction.setCustomer(rs.getString("customer"));
+                transaction.setCourse(rs.getString("course"));
+                transaction.setStaff(rs.getString("staff_sup"));
+                transaction.setPay(rs.getString("pay"));
+                transaction.setNote(rs.getString("note"));
+                transaction.setBooking(LocalDate.parse(rs.getString("booking")));
+                transaction.setCreateBy(rs.getString("create_by"));
+            }
+            return transaction;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        } finally {
+            db.closeAll(connection, pst, rs);
+        }
+    }
+
+    // get Transaction by id
+    public static Transaction getById (int id){
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        Transaction transaction = new Transaction();
+        try {
+            pst = connection.prepareStatement("SELECT transactions.id, customers.fullname as customer , course.name as course , u1.fullname as staff_sup , transactions.pay , transactions.note , transactions.booking , u2.fullname as create_by\n" +
+                    "FROM `transactions` \n" +
+                    "JOIN customers on customers.id = transactions.customer_id\n" +
+                    "JOIN course on course.id = transactions.course_id\n" +
+                    "JOIN users u1 on u1.id = transactions.staff_id\n" +
+                    "JOIN users u2 on u2.id = transactions.created_by WHERE transactions.id ="+ id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                transaction.setId(rs.getString("id"));
+                transaction.setCustomer(rs.getString("customer"));
+                transaction.setCourse(rs.getString("course"));
+                transaction.setStaff(rs.getString("staff_sup"));
+                transaction.setPay(rs.getString("pay"));
+                transaction.setNote(rs.getString("note"));
+                transaction.setBooking(LocalDate.parse(rs.getString("booking")));
+                transaction.setCreateBy(rs.getString("create_by"));
+            }
+            return transaction;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        } finally {
+            db.closeAll(connection, pst, rs);
+        }
+    }
 
     public static void addNew(
             String customer_id,

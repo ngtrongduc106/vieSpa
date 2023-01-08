@@ -2,6 +2,7 @@ package com.viespa.controller;
 
 import com.viespa.models.MyChart;
 import com.viespa.models.MyPie;
+import com.viespa.utils.Invoice;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -102,6 +103,7 @@ public class HomeController implements Initializable {
         setPieChart();
         setBarChart2();
         setBarChart3();
+
     }
 
 }

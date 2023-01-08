@@ -217,4 +217,33 @@ public class Customer {
             db.closeAll(connection,statement,resultSet);
         }
     }
+
+    //by Name
+    public static Customer getByName(String data){
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            statement = connection.prepareStatement("SELECT * from customers where fullname = ?");
+            statement.setString(1,data);
+            resultSet = statement.executeQuery();
+            Customer it = new Customer();
+            if(resultSet.next()) {
+                it.setId(Long.valueOf(resultSet.getString("id")));
+                it.setFullName(resultSet.getString("fullname"));
+                it.setIs_female(resultSet.getString("is_female"));
+                it.setDob(LocalDate.parse(resultSet.getString("dob")));
+                it.setPhone(resultSet.getString("phone"));
+                it.setEmail(resultSet.getString("email"));
+                it.setAddress(resultSet.getString("address"));
+            }
+            return it;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            db.closeAll(connection,statement,resultSet);
+        }
+    }
 }
