@@ -2,8 +2,10 @@ package com.viespa.controller;
 
 import com.viespa.App;
 import com.viespa.models.*;
+import com.viespa.utils.Contract;
 import com.viespa.utils.DateForm;
 import com.viespa.utils.Invoice;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -94,7 +96,7 @@ public class TransactionController implements Initializable {
         column_number.setCellValueFactory(f -> f.getValue().idProperty());
         column_customer.setCellValueFactory(f -> f.getValue().customerProperty());
         column_course.setCellValueFactory(f -> f.getValue().courseProperty());
-        column_staff.setCellValueFactory(f -> f.getValue().staffProperty());
+        column_staff.setCellValueFactory(f -> new ReadOnlyStringWrapper(f.getValue().getId().toString()));
         column_booking.setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().bookingProperty().getValue())));
         column_note.setCellValueFactory(f -> f.getValue().noteProperty());
         column_createby.setCellValueFactory(f -> f.getValue().createByProperty());
@@ -119,10 +121,10 @@ public class TransactionController implements Initializable {
                             .getItems()
                             .get(myIndex)
                             .getCourse());
-                    input_staff.setValue(table_transaction
+                    input_staff.setValue(String.valueOf(table_transaction
                             .getItems()
                             .get(myIndex)
-                            .getStaff());
+                            .getStaff()));
                     input_booking.setValue(table_transaction
                             .getItems()
                             .get(myIndex)
@@ -167,11 +169,21 @@ public class TransactionController implements Initializable {
             input_note.setText("");
             table();
         }
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to create invoice?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction created successfully! Do you want to create invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"),new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
 
-        if (alert.getResult() == ButtonType.YES) {
-            Invoice.print(Transaction.getLastInput());
+        switch (alert.getResult().getText()){
+            case "Contract":
+                Contract.print(Transaction.getLastInput());
+                break;
+            case "Invoice":
+                Invoice.print(Transaction.getLastInput());
+                break;
+            case "Both":
+                Contract.print(Transaction.getLastInput());
+                Invoice.print(Transaction.getLastInput());
+            default:
+                break;
         }
     }
 
@@ -194,7 +206,8 @@ public class TransactionController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Admin can't be a staff");
             alert.show();
-        }else {
+            return;
+        }
             Transaction.update(val_customer,val_course,val_staff,val_pay,val_note,val_booking, String.valueOf(id));
 
             input_customer.setValue("");
@@ -204,13 +217,22 @@ public class TransactionController implements Initializable {
             input_note.setText("");
             input_pay.setText("");
             table();
-        }
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to update invoice?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction updated successfully! Do you want to modify invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"),new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
 
-        if (alert.getResult() == ButtonType.YES) {
-            Invoice.print(Transaction.getById(id));
+        switch (alert.getResult().getText()){
+            case "Contract":
+                Contract.print(Transaction.getById(id));
+                break;
+            case "Invoice":
+                Invoice.print(Transaction.getById(id));
+                break;
+            case "Both":
+                Contract.print(Transaction.getById(id));
+                Invoice.print(Transaction.getById(id));
+            default:
+                break;
         }
     }
 

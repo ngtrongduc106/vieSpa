@@ -35,7 +35,7 @@ public class Invoice {
             "\t\tc-2.601,7.898,1.7,16.299,9.5,18.898c12.1,4,25.1,6,38.7,6c12,0,23.5-1.6,34.399-4.699c8-2.301,12.601-10.6,10.3-18.5\n" +
             "\t\tC641.943,646.1,633.643,641.5,625.643,643.801z\"/></g></svg><p style=\"color:#a31acb;text-align:center\">VieSpa</p>";
 
-    private static final String stamp = "<svg fill=\"red\" version=\"1.1\" id=\"Capa_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" \n" +
+    static final String stamp = "<svg fill=\"red\" version=\"1.1\" id=\"Capa_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" \n" +
             "\t width=\"100px\" height=\"100px\" viewBox=\"0 0 959.199 959.199\"\n" +
             "\t xml:space=\"preserve\">\n" +
             "<g>\n" +
@@ -76,7 +76,7 @@ public class Invoice {
         Course course = Course.getByName(transaction.getCourse());
 
         try {
-            writer = new BufferedWriter(new FileWriter("invoice"+transaction.getId().toString()+".html"));
+            writer = new BufferedWriter(new FileWriter("..\\invoices\\invoice"+transaction.getId().toString()+".html"));
 
             String head = String.format("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Invoice - %s </title>",
                     transaction.getId());
@@ -85,7 +85,7 @@ public class Invoice {
             writer.write(style);
             String header = String.format("<body><div class=\"container\"><header><div> %s </div><div><h1>Hóa đơn dịch vụ</h1><p>Ngày: %s </p></div><div><p>Mẫu số: VIESPA01</p><p style=\"\">Ký hiệu: HD01/23A</p><p>Số: %s </p></div></header>",
                     logo,
-                    transaction.getBooking(),
+                    DateForm.convert(String.valueOf(transaction.bookingProperty().getValue())),
                     transaction.getId());
             writer.write(header);
             String saler = "<section class=\"seller\"><p>Đơn vị bán hàng: Công ty TNHH nhiều thành viên VieSpa</p><p>Mã số thuế: 00000000000000</p><p>Địa chỉ: Số 265 Đội Cấn - Ba Đình - Hà Nội - Việt Nam</p><div><p>Số điện thoại: 0900000000000</p><p>Số tài khoản: 1234-1234-1234-1234-1234</p></div></section>";

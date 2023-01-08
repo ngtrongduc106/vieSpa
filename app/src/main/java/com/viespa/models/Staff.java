@@ -310,4 +310,42 @@ public class Staff {
         }
     }
 
+    //get by ID
+
+    public static Staff getById(String id) {
+        {
+            DButil db = new DButil();
+            Connection connection = db.connect();
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+            try {
+                pst = connection.prepareStatement("select * from users where id = ?");
+                pst.setString(1,id);
+                rs = pst.executeQuery();
+                Staff it = new Staff();
+                if (rs.next()) {
+                    it.setId(Long.valueOf(rs.getString("id")));
+                    it.setAccount(rs.getString("account"));
+                    it.setPassword(rs.getString("password"));
+                    it.setFullName(rs.getString("fullname"));
+                    it.setDob((rs.getObject("dob", LocalDate.class)));
+                    it.setPhone(rs.getString("phone"));
+                    it.setEmail(rs.getString("email"));
+                    it.setAddress(rs.getString("address"));
+                    it.setRole((rs.getString("role")));
+                    it.setJoinDate((rs.getObject("joindate", LocalDate.class)));
+                    it.setEndDate((rs.getObject("enddate", LocalDate.class)));
+                }
+
+                return it;
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                return null;
+            } finally {
+                db.closeAll(connection, pst, rs);
+            }
+        }
+    }
+
 }

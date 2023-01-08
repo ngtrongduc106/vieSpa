@@ -1,6 +1,7 @@
 package com.viespa.models;
 
 import com.viespa.utils.DButil;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
