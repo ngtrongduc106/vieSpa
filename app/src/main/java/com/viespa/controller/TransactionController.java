@@ -88,6 +88,7 @@ public class TransactionController implements Initializable {
         input_pay.setText("");
         button_update.setDisable(true);
         button_add.setDisable(false);
+        button_print.setDisable(true);
         table_transaction.getSelectionModel().select(null);
     }
 
