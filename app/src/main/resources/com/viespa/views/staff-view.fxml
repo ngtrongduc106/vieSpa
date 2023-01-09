@@ -104,11 +104,6 @@
                            </GridPane.margin></TextField>
                         <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                            <children>
-                              <Button fx:id="buttonChangeStatus" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonChangeStatus" styleClass="button-add-new" text="Change status" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Button>
                               <Button fx:id="buttonCancel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCancel" styleClass="button-update" text="Cancel" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets left="10.0" />

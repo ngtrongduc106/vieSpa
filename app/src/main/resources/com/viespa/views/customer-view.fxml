@@ -74,11 +74,6 @@
                            </GridPane.margin></TextField>
                         <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <children>
-                              <Button fx:id="buttonChangeStatus" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonChangeStatus" prefWidth="160.0" styleClass="button-add-new" text="Change status" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Button>
                               <Button fx:id="buttonCancel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCancel" prefWidth="160.0" styleClass="button-update" text="Cancel" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets left="10.0" />
