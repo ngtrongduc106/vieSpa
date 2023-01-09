@@ -14,6 +14,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -103,7 +104,6 @@ public class HomeController implements Initializable {
         setPieChart();
         setBarChart2();
         setBarChart3();
-
     }
 
 }

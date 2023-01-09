@@ -76,6 +76,9 @@ public class TransactionController implements Initializable {
     private Button buttonCancel;
 
     @FXML
+    private Button button_print;
+
+    @FXML
     void buttonCancel() {
         input_customer.setValue("");
         input_course.setValue("");
@@ -149,6 +152,7 @@ public class TransactionController implements Initializable {
                     button_add.setDisable(true);
                     button_update.setDisable(false);
                     input_pay.setDisable(false);
+                    button_print.setDisable(false);
                 }
             });
             return myRow;
@@ -165,18 +169,19 @@ public class TransactionController implements Initializable {
         LocalDate val_booking = input_booking.getValue();
 
         if (val_customer == null || val_course == null || val_staff == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Admin cannot do label work!");
             alert.show();
-        } else {
-            Transaction.addNew(val_customer, val_course, val_staff, val_price, val_note, val_booking, val_createby);
-
-            input_customer.setValue("");
-            input_course.setValue("");
-            input_staff.setValue("");
-            input_booking.setValue(null);
-            input_note.setText("");
-            table();
+            return;
         }
+        Transaction.addNew(val_customer, val_course, val_staff, val_price, val_note, val_booking, val_createby);
+
+        input_customer.setValue("");
+        input_course.setValue("");
+        input_staff.setValue("");
+        input_booking.setValue(null);
+        input_note.setText("");
+        table();
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction created successfully! Do you want to create invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
 
@@ -193,6 +198,24 @@ public class TransactionController implements Initializable {
             default:
                 break;
         }
+
+        alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to print?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
+        alert.showAndWait();
+
+        switch (alert.getResult().getText()) {
+            case "Contract":
+                Runtime.getRuntime().exec("cmd /c ..\\contracts\\contract_" + Transaction.getLastInput().getId() + ".html");
+                break;
+            case "Invoice":
+                Runtime.getRuntime().exec("cmd /c ..\\invoices\\invoice_" + Transaction.getLastInput().getId() + ".html");
+                break;
+            case "Both":
+                Runtime.getRuntime().exec("cmd /c ..\\contracts\\contract_" + Transaction.getLastInput().getId() + ".html");
+                Runtime.getRuntime().exec("cmd /c ..\\invoices\\invoice_" + Transaction.getLastInput().getId() + ".html");
+            default:
+                break;
+        }
+
     }
 
     public void button_update() throws Exception {
@@ -224,6 +247,8 @@ public class TransactionController implements Initializable {
         input_booking.setValue(null);
         input_note.setText("");
         input_pay.setText("");
+        button_print.setDisable(true);
+        ;
         table();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction updated successfully! Do you want to modify invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
@@ -244,6 +269,30 @@ public class TransactionController implements Initializable {
         }
     }
 
+    @FXML
+    void onPrint() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to print?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
+        alert.showAndWait();
+        try {
+            switch (alert.getResult().getText()) {
+                case "Contract":
+                    Runtime.getRuntime().exec("cmd /c ..\\contracts\\contract_" + id + ".html");
+                    break;
+                case "Invoice":
+                    Runtime.getRuntime().exec("cmd /c ..\\invoices\\invoice_" + id + ".html");
+                    break;
+                case "Both":
+                    Runtime.getRuntime().exec("cmd /c ..\\contracts\\contract_" + id + ".html");
+                    Runtime.getRuntime().exec("cmd /c ..\\invoices\\invoice_" + id + ".html");
+                default:
+                    break;
+            }
+        }catch (Exception ex){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("File does not exist");
+            alert.showAndWait();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
