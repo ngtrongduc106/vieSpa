@@ -55,6 +55,12 @@ public class CourseController implements Initializable {
 
     @FXML
     void buttonCancel() {
+        input_name.setText("");
+        input_price.setText("");
+        input_description.setText("");
+        button_update.setDisable(true);
+        button_add.setDisable(false);
+        table_course.getSelectionModel().select(null);
 
     }
 
@@ -133,7 +139,6 @@ public class CourseController implements Initializable {
             input_name.setText("");
             input_price.setText("");
             input_description.setText("");
-
             button_update.setDisable(true);
         }
 

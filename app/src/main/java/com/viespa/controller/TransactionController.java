@@ -25,28 +25,28 @@ public class TransactionController implements Initializable {
     TableView<Transaction> table_transaction;
 
     @FXML
-    TableColumn<Transaction , String> column_number;
+    TableColumn<Transaction, String> column_number;
 
     @FXML
-    TableColumn<Transaction , String> column_customer;
+    TableColumn<Transaction, String> column_customer;
 
     @FXML
-    TableColumn<Transaction , String> column_course;
+    TableColumn<Transaction, String> column_course;
 
     @FXML
-    TableColumn<Transaction , String> column_staff;
+    TableColumn<Transaction, String> column_staff;
 
     @FXML
-    TableColumn<Transaction , String> column_booking;
+    TableColumn<Transaction, String> column_booking;
 
     @FXML
-    TableColumn<Transaction , String> column_note;
+    TableColumn<Transaction, String> column_note;
 
     @FXML
-    TableColumn<Transaction , String> column_createby;
+    TableColumn<Transaction, String> column_createby;
 
     @FXML
-    TableColumn<Transaction , String> column_pay;
+    TableColumn<Transaction, String> column_pay;
 
     @FXML
     Button button_add;
@@ -77,7 +77,15 @@ public class TransactionController implements Initializable {
 
     @FXML
     void buttonCancel() {
-
+        input_customer.setValue("");
+        input_course.setValue("");
+        input_staff.setValue("");
+        input_booking.setValue(null);
+        input_note.setText("");
+        input_pay.setText("");
+        button_update.setDisable(true);
+        button_add.setDisable(false);
+        table_transaction.getSelectionModel().select(null);
     }
 
     @FXML
@@ -87,10 +95,10 @@ public class TransactionController implements Initializable {
     }
 
 
-    int id ;
+    int id;
     int myIndex;
 
-    public void table(){
+    public void table() {
         ObservableList<Transaction> transactions = Transaction.getAllTransaction();
         table_transaction.setItems(transactions);
         column_number.setCellValueFactory(f -> f.getValue().idProperty());
@@ -156,11 +164,11 @@ public class TransactionController implements Initializable {
         String val_note = input_note.getText().trim();
         LocalDate val_booking = input_booking.getValue();
 
-        if(val_customer == null || val_course == null || val_staff == null){
+        if (val_customer == null || val_course == null || val_staff == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.show();
-        }else {
-            Transaction.addNew(val_customer,val_course,val_staff,val_price,val_note,val_booking,val_createby);
+        } else {
+            Transaction.addNew(val_customer, val_course, val_staff, val_price, val_note, val_booking, val_createby);
 
             input_customer.setValue("");
             input_course.setValue("");
@@ -169,10 +177,10 @@ public class TransactionController implements Initializable {
             input_note.setText("");
             table();
         }
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction created successfully! Do you want to create invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"),new ButtonType("Both"), ButtonType.CANCEL);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction created successfully! Do you want to create invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
 
-        switch (alert.getResult().getText()){
+        switch (alert.getResult().getText()) {
             case "Contract":
                 Contract.print(Transaction.getLastInput());
                 break;
@@ -188,7 +196,7 @@ public class TransactionController implements Initializable {
     }
 
     public void button_update() throws Exception {
-        if(User.getInstance().getId() != 1){
+        if (User.getInstance().getId() != 1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("You don't have author !");
             alert.show();
@@ -202,26 +210,26 @@ public class TransactionController implements Initializable {
         String val_note = input_note.getText();
         LocalDate val_booking = input_booking.getValue();
 
-        if(val_customer == null || val_course == null || val_staff == null){
+        if (val_customer == null || val_course == null || val_staff == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Admin can't be a staff");
             alert.show();
             return;
         }
-            Transaction.update(val_customer,val_course,val_staff,val_pay,val_note,val_booking, String.valueOf(id));
+        Transaction.update(val_customer, val_course, val_staff, val_pay, val_note, val_booking, String.valueOf(id));
 
-            input_customer.setValue("");
-            input_course.setValue("");
-            input_staff.setValue("");
-            input_booking.setValue(null);
-            input_note.setText("");
-            input_pay.setText("");
-            table();
+        input_customer.setValue("");
+        input_course.setValue("");
+        input_staff.setValue("");
+        input_booking.setValue(null);
+        input_note.setText("");
+        input_pay.setText("");
+        table();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction updated successfully! Do you want to modify invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"),new ButtonType("Both"), ButtonType.CANCEL);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction updated successfully! Do you want to modify invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
 
-        switch (alert.getResult().getText()){
+        switch (alert.getResult().getText()) {
             case "Contract":
                 Contract.print(Transaction.getById(id));
                 break;

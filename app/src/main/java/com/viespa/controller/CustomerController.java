@@ -64,7 +64,15 @@ public class CustomerController implements Initializable {
 
     @FXML
     void buttonCancel() {
-
+        input_fullname.setText("");
+        input_phone.setText("");
+        input_email.setText("");
+        input_address.setText("");
+        input_dob.setValue(null);
+        input_female.setText("");
+        button_update.setDisable(true);
+        button_add.setDisable(false);
+        table_customer.getSelectionModel().select(null);
     }
 
     @FXML

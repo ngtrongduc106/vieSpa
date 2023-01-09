@@ -95,7 +95,18 @@ public class StaffController implements Initializable {
 
     @FXML
     void buttonCancel() {
-
+        input_fullname.setText("");
+        input_phone.setText("");
+        input_email.setText("");
+        input_address.setText("");
+        input_dob.setValue(null);
+        input_joindate.setValue(null);
+        input_account.setText("");
+        input_password.setText("");
+        input_role.setText("");
+        buttonUpdate.setDisable(true);
+        buttonAddNew.setDisable(false);
+        table_staff.getSelectionModel().select(null);
     }
 
     @FXML
