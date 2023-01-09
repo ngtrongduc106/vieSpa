@@ -63,10 +63,12 @@ public class Contract {
             String data2 = "<h4>Điều 7. Đơn phương chấm dứt thực hiện hợp đồng dịch vụ</h4><p>1. Trường hợp việc tiếp tục thực hiện công việc không có lợi cho bên A thì bên A có quyền đơn phương chấm dứt thực hiện hợp đồng, nhưng phải báo cho bên B biết trước 14 ngày. Bên A phải trả tiền dịch vụ theo phần dịch vụ mà bên B đã thực hiện và bồi thường thiệt hại.</p><p>2. Trường hợp bên A vi phạm nghiêm trọng nghĩa vụ thì bên B có quyền đơn phương chấm dứt thực hiện hợp đồng và yêu cầu bồi thường thiệt hại.</p><h4>Điều 8. Phương thực giải quyết tranh chấp</h4><p>Trong quá trình thực hiện hợp đồng, nếu có vấn đề phát sinh cần giải quyết, thì hai bên tiến hành thỏa thuận và thống nhất giải quyết kịp thời, hợp tình và hợp lý. Trường hợp không thỏa thuận được thì một trong các bên có quyền khởi kiện tại tòa án có thẩm quyền theo quy định của pháp luật.</p><h4>Điều 9. Các thoả thuận khác</h4><p>Bên A và bên B đồng ý đã hiểu rõ quyền, nghĩa vụ, lợi ích hợp pháp của mình và hậu quả pháp lý của việc giao kết hợp đồng này.</p><p>Bên A và bên B đồng ý thực hiện theo đúng các điều khoản trong hợp đồng này và không nêu thêm điều kiện gì khác.</p><p>Hợp đồng này được lập thành 02 bản, có giá trị pháp lý như nhau và được giao cho bên A 01 bản, bên B 01 bản./.</p>";
             writer.write(data2);
 
-            String sign = String.format("<div class=\"sign\"><div><h4>BÊN B</h4><div>LOGO_SPA</div></div><div><h5>Hà Nội, ngày %s </h5><h4 class=\"center\">BÊN A</h4><p class=\"center\">%s</p></div></div></div></body></html>",
+            String sign = String.format("<div class=\"sign\"><div><h4>BÊN B</h4><div>LOGO_SPA</div></div><div><h5>Hà Nội, ngày %s </h5><h4 class=\"center\">BÊN A</h4><p class=\"center\">%s</p></div></div></div></body><script>window.print()</script></html>",
                     DateForm.convert(String.valueOf(transaction.bookingProperty().getValue())),
                     customer.getFullName());
             writer.write(sign);
+
+            String print =""
 
         } catch (Exception e) {
             throw new Exception("FILE NOT FOUND");

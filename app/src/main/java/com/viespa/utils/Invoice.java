@@ -108,7 +108,7 @@ public class Invoice {
                     transaction.getCustomer(),
                     stamp);
             writer.write(sign);
-            String footer = String.format("</section><footer><p>Hóa đơn cung cấp bởi công ty TNHH nhiều thành viên VieSpa - https://VieSpa.com - Đẹp là tất cả</p><p>Tra cứu hóa đơn điện tử tại https://viespa.com/invoice/%s. Mã số bí mật: xxxxxxxxxxx</p></footer></div></body></html>",
+            String footer = String.format("</section><footer><p>Hóa đơn cung cấp bởi công ty TNHH nhiều thành viên VieSpa - https://VieSpa.com - Đẹp là tất cả</p><p>Tra cứu hóa đơn điện tử tại https://viespa.com/invoice/%s. Mã số bí mật: xxxxxxxxxxx</p></footer></div></body><script>window.print()</script></html>",
                     transaction.getId());
             writer.write(footer);
 
