@@ -68,8 +68,6 @@ public class Contract {
                     customer.getFullName());
             writer.write(sign);
 
-            String print =""
-
         } catch (Exception e) {
             throw new Exception("FILE NOT FOUND");
         } finally {
