@@ -35,6 +35,9 @@
                         <TableColumn fx:id="column_address" prefWidth="294.22393798828125" text="Address" />
                         <TableColumn fx:id="column_email" prefWidth="183.1839599609375" text="Email" />
                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                   <GridPane hgap="20.0">
                      <columnConstraints>

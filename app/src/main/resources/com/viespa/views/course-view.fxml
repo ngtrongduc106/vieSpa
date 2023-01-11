@@ -34,6 +34,9 @@
                         <TableColumn fx:id="column_description" prefWidth="404.51177978515625" text="Description" />
                         <TableColumn fx:id="column_createby" prefWidth="174.98822021484375" text="Create by" />
                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                   <Separator prefWidth="200.0">
                      <VBox.margin>

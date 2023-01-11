@@ -40,6 +40,9 @@
                         <TableColumn fx:id="column_createby" prefWidth="153.259521484375" text="Create by" />
                         <TableColumn fx:id="column_pay" prefWidth="90.240478515625" text="Pay" />
                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                   <GridPane hgap="20.0">
                      <columnConstraints>
