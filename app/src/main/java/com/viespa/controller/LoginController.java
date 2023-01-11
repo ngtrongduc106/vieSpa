@@ -73,11 +73,16 @@ public class LoginController {
                 resultSet = statement.executeQuery();
 
                 if (resultSet.next()) {
-                    user.setId(Integer.parseInt(resultSet.getString("id")));
-                    user.setAccount(resultSet.getString("account"));
-                    user.setFullname(resultSet.getString("fullname"));
-                    user.setRole(Integer.parseInt(resultSet.getString("role")));
-                    App.setRoot("views/home-view");
+                    if(!resultSet.getString("status").equals("1")){
+                        user.setId(Integer.parseInt(resultSet.getString("id")));
+                        user.setAccount(resultSet.getString("account"));
+                        user.setFullname(resultSet.getString("fullname"));
+                        user.setRole(Integer.parseInt(resultSet.getString("role")));
+                        App.setRoot("views/home-view");
+                    }else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.show();
+                    }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("ERROR");
