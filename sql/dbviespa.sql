@@ -1,14 +1,31 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:8889
+-- Generation Time: Jan 11, 2023 at 01:01 PM
+-- Server version: 5.7.34
+-- PHP Version: 8.0.8
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-CREATE DATABASE IF NOT EXISTS `dbviespa` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `dbviespa`;
+--
+-- Database: `dbviespa`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course`
+--
 
 CREATE TABLE `course` (
   `id` bigint(20) NOT NULL,
@@ -18,7 +35,11 @@ CREATE TABLE `course` (
   `name` varchar(255) NOT NULL,
   `price` double NOT NULL,
   `update_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `course`
+--
 
 INSERT INTO `course` (`id`, `active`, `create_at`, `description`, `name`, `price`, `update_at`) VALUES
 (1, b'1', '2022-08-11 17:18:40', 'Distributed even-keeled architecture', 'unavailable', 4181, NULL),
@@ -63,17 +84,27 @@ INSERT INTO `course` (`id`, `active`, `create_at`, `description`, `name`, `price
 (40, b'0', '2022-09-28 05:38:35', 'Progressive zero administration monitoring', 'Connochaetus taurinus', 7653, '2021-12-02 03:59:14'),
 (41, b'0', '2022-03-16 02:28:39', 'Re-contextualized secondary interface', 'Ardea cinerea', 7156, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
 CREATE TABLE `customers` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) NOT NULL,
-  `is_female` tinyint(1) NOT NULL DEFAULT 1,
+  `is_female` tinyint(1) NOT NULL DEFAULT '1',
   `dob` date DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `create_at` datetime DEFAULT current_timestamp(),
-  `update_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `create_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `update_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `customers`
+--
 
 INSERT INTO `customers` (`id`, `fullname`, `is_female`, `dob`, `address`, `phone`, `email`, `create_at`, `update_at`) VALUES
 (1, 'Evelin Yanson', 1, '1981-01-06', NULL, '885-433-0620', 'eyanson0@yale.edu', '2022-08-31 14:10:20', '2022-07-27 05:24:11'),
@@ -1116,6 +1147,32 @@ INSERT INTO `customers` (`id`, `fullname`, `is_female`, `dob`, `address`, `phone
 (1036, 'Lindsey Bootton', 1, '1996-11-05', '1st Floor', '397-666-2137', 'lboottonrq@godaddy.com', '2021-09-11 22:53:19', NULL),
 (1037, 'Pattie Benterman', 0, '1982-02-12', 'Apt 1881', '365-553-2574', 'pbentermanrr@blogger.com', '2021-06-01 03:53:12', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `role_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `role_name`) VALUES
+(1, 'admin'),
+(2, 'manager'),
+(3, 'user');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
 CREATE TABLE `transactions` (
   `id` bigint(20) NOT NULL,
   `customer_id` bigint(20) NOT NULL,
@@ -1127,7 +1184,11 @@ CREATE TABLE `transactions` (
   `created_by` bigint(20) NOT NULL,
   `create_at` datetime DEFAULT NULL,
   `update_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `transactions`
+--
 
 INSERT INTO `transactions` (`id`, `customer_id`, `course_id`, `staff_id`, `pay`, `note`, `booking`, `created_by`, `create_at`, `update_at`) VALUES
 (1, 675, 23, 4, 7968, NULL, '2022-07-30', 2, '2021-07-08 00:00:00', NULL),
@@ -2182,6 +2243,12 @@ INSERT INTO `transactions` (`id`, `customer_id`, `course_id`, `staff_id`, `pay`,
 (1049, 74, 16, 6, 4328, NULL, '2021-08-08', 3, '2021-11-18 00:00:00', NULL),
 (1050, 286, 11, 3, 2456, NULL, '2022-09-26', 2, '2022-10-23 00:00:00', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
 CREATE TABLE `users` (
   `id` bigint(20) NOT NULL,
   `account` varchar(255) NOT NULL,
@@ -2191,27 +2258,50 @@ CREATE TABLE `users` (
   `phone` varchar(15) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `role` smallint(6) DEFAULT NULL,
+  `role` int(11) DEFAULT NULL,
   `joindate` date DEFAULT NULL,
-  `enddate` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `enddate` date DEFAULT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `users` (`id`, `account`, `password`, `fullname`, `dob`, `phone`, `email`, `address`, `role`, `joindate`, `enddate`) VALUES
-(1, 'admin', '123123', 'Admin', '2000-06-10', '927023333', 'admin@gmail.com', '905 Đê La Thành', 1, '2022-12-30', NULL),
-(2, 'user', '123123', 'User', '2000-06-10', '927023333', 'user@gmail.com', '905 Đê La Thành', 2, '2022-12-30', NULL),
-(3, 'accountant', '123123', 'Accountant', '2000-06-10', '927023333', 'accountant@gmail.com', '905 Đê La Thành', 3, '2022-12-30', NULL),
-(4, 'test1', '123123', 'test1', '2022-12-30', '123123', '123123', '123123', 2, '2022-12-30', NULL),
-(5, 'test2', '123123', 'test2', '2022-12-30', '123123', '123123', '905 dd', 2, '2022-12-30', NULL),
-(6, 'test3', '123123', 'test3', '2022-12-31', '123123', '123123', '123123', 2, '2022-12-30', NULL),
-(7, 'test4', '123123', 'test4', '2022-12-29', '123123', '123123', '123123', 2, '2022-12-29', NULL);
+--
+-- Dumping data for table `users`
+--
 
+INSERT INTO `users` (`id`, `account`, `password`, `fullname`, `dob`, `phone`, `email`, `address`, `role`, `joindate`, `enddate`, `status`) VALUES
+(1, 'admin', '123123', 'Admin', '2000-06-10', '927023333', 'admin@gmail.com', '905 Đê La Thành', 1, '2022-12-30', NULL, 0),
+(2, 'user', '123123', 'User', '2000-06-10', '927023333', 'user@gmail.com', '905 Đê La Thành', 2, '2022-12-30', NULL, 0),
+(3, 'accountant', '123123', 'Accountant', '2000-06-10', '927023333', 'accountant@gmail.com', '905 Đê La Thành', 2, '2022-12-30', NULL, 0),
+(4, 'test1', '123123', 'test1', '2022-12-30', '123123', '123123', '123123', 3, '2022-12-30', NULL, 0),
+(5, 'test2', '123123', 'test2', '2022-12-30', '123123', '123123', '905 dd', 3, '2022-12-30', NULL, 0),
+(6, 'test3', '123123', 'test3', '2022-12-31', '123123', '123123', '123123', 3, '2022-12-30', NULL, 0),
+(7, 'test4', '123123', 'test4', '2022-12-29', '123123', '123123', '123123', 3, '2022-12-29', NULL, 0);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `course`
+--
 ALTER TABLE `course`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `customers`
+--
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transactions`
+--
 ALTER TABLE `transactions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `customer_id` (`customer_id`),
@@ -2219,28 +2309,65 @@ ALTER TABLE `transactions`
   ADD KEY `staff_id` (`staff_id`),
   ADD KEY `created_by` (`created_by`);
 
+--
+-- Indexes for table `users`
+--
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role` (`role`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
+--
+-- AUTO_INCREMENT for table `course`
+--
 ALTER TABLE `course`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
+--
+-- AUTO_INCREMENT for table `customers`
+--
 ALTER TABLE `customers`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1038;
 
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
 ALTER TABLE `transactions`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1051;
 
+--
+-- AUTO_INCREMENT for table `users`
+--
 ALTER TABLE `users`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
+--
+-- Constraints for dumped tables
+--
 
+--
+-- Constraints for table `transactions`
+--
 ALTER TABLE `transactions`
   ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
   ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
   ADD CONSTRAINT `transactions_ibfk_3` FOREIGN KEY (`staff_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `transactions_ibfk_4` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
