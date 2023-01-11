@@ -40,6 +40,9 @@
                         <TableColumn fx:id="column_joindate" prefWidth="114.0" text="Join Date" />
                         <TableColumn fx:id="column_enddate" prefWidth="108.0" text="End Date" />
                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                   <Separator prefWidth="200.0">
                      <opaqueInsets>
