@@ -146,7 +146,9 @@ public class Staff {
             ResultSet rs = null;
             ObservableList<Staff> staffs = FXCollections.observableArrayList();
             try {
-                pst = connection.prepareStatement("select * from users where role != ? ");
+                pst = connection.prepareStatement("SELECT users.id, users.account, users.password, users.fullname, users.dob, users.phone, users.email, users.address, roles.role_name , users.joindate, users.enddate, users.status \n" +
+                        "FROM `users` JOIN roles ON roles.id = users.role\n" +
+                        "WHERE role != ?");
                 pst.setString(1,"1");
                 rs = pst.executeQuery();
                 while (rs.next()) {
@@ -159,7 +161,7 @@ public class Staff {
                     it.setPhone(rs.getString("phone"));
                     it.setEmail(rs.getString("email"));
                     it.setAddress(rs.getString("address"));
-                    it.setRole((rs.getString("role")));
+                    it.setRole((rs.getString("role_name")));
                     it.setJoinDate((rs.getObject("joindate", LocalDate.class)));
                     it.setEndDate((rs.getObject("enddate", LocalDate.class)));
                     staffs.add(it);
@@ -347,5 +349,4 @@ public class Staff {
             }
         }
     }
-
 }

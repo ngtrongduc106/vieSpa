@@ -1,18 +1,14 @@
 package com.viespa.controller;
 
+import com.viespa.models.Customer;
+import com.viespa.models.Role;
 import com.viespa.models.Staff;
 import com.viespa.utils.DateForm;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -79,7 +75,7 @@ public class StaffController implements Initializable {
     TextField input_password;
 
     @FXML
-    TextField input_role;
+    ChoiceBox<String> input_role;
 
     @FXML
     Button buttonAddNew;
@@ -103,7 +99,7 @@ public class StaffController implements Initializable {
         input_joindate.setValue(null);
         input_account.setText("");
         input_password.setText("");
-        input_role.setText("");
+        input_role.setValue("");
         buttonUpdate.setDisable(true);
         buttonAddNew.setDisable(false);
         table_staff.getSelectionModel().select(null);
@@ -124,7 +120,7 @@ public class StaffController implements Initializable {
         LocalDate val_joindate = input_joindate.getValue();
         String val_account = input_account.getText().trim().toLowerCase();
         String val_password = input_password.getText().trim();
-        String val_role = input_role.getText().trim();
+        String val_role = Role.queryRoleId(input_role.getValue());
 
         if (val_fullname.isEmpty()) {
             return;
@@ -152,7 +148,7 @@ public class StaffController implements Initializable {
             input_joindate.setValue(null);
             input_account.setText("");
             input_password.setText("");
-            input_role.setText("");
+            input_role.setValue("");
         }
 
         table();
@@ -170,7 +166,7 @@ public class StaffController implements Initializable {
         LocalDate val_joindate = input_joindate.getValue();
         String val_account = input_account.getText().trim().toLowerCase();
         String val_password = input_password.getText().trim();
-        String val_role = input_role.getText().trim();
+        String val_role = Role.queryRoleId(input_role.getValue());
         LocalDate val_enddate = input_enddate.getValue();
 
         if (val_fullname.isEmpty()) {
@@ -193,7 +189,7 @@ public class StaffController implements Initializable {
             input_joindate.setValue(null);
             input_account.setText("");
             input_password.setText("");
-            input_role.setText("");
+            input_role.setValue("");
         }
 
         table();
@@ -264,7 +260,7 @@ public class StaffController implements Initializable {
                             .getItems()
                             .get(myIndex)
                             .getPassword());
-                    input_role.setText(table_staff
+                    input_role.setValue(table_staff
                             .getItems()
                             .get(myIndex)
                             .getRole());
@@ -283,5 +279,8 @@ public class StaffController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         table();
+        ObservableList<Role> roles = Role.getAllRole();
+        assert roles != null;
+        roles.stream().map(Role::getRole).forEach(t -> input_role.getItems().add(t));
     }
 }
