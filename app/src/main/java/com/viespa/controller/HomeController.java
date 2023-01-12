@@ -40,7 +40,7 @@ public class HomeController implements Initializable {
     @FXML
     private BarChart<Number, Number> barChart3;
 
-    void setBarChart(){
+    void setBarChart() {
         chart1.setTitle("Revenue");
         xAxis.setLabel("Name of Month");
         yAxis.setLabel("USD");
@@ -50,7 +50,7 @@ public class HomeController implements Initializable {
         monthly.setName("Monthly revenue");
 
         barCharts.forEach(it -> {
-            monthly.getData().add(new XYChart.Data(it.getMonth(),it.getRevenue()));
+            monthly.getData().add(new XYChart.Data(it.getMonth(), it.getRevenue()));
         });
 //        XYChart.Series avgMonthly = new XYChart.Series();
 //        avgMonthly.setName("Monthly average");
@@ -59,13 +59,13 @@ public class HomeController implements Initializable {
         chart1.getData().addAll(monthly);
     }
 
-    void setPieChart(){
+    void setPieChart() {
         // Pie Chart
         pieChart.setData(MyPie.countCourse());
         pieChart.setTitle("Total sale per service");
     }
 
-    void setBarChart2(){
+    void setBarChart2() {
         barChart2.setTitle("Customer per staff");
         xChart2.setLabel("Name of the staff");
         yChart2.setLabel("Count of customer");
@@ -75,12 +75,12 @@ public class HomeController implements Initializable {
         item.setName("Staff");
 
         barCharts.forEach(it -> {
-            item.getData().add(new XYChart.Data(it.getMonth(),it.getRevenue()));
+            item.getData().add(new XYChart.Data(it.getMonth(), it.getRevenue()));
         });
         barChart2.getData().addAll(item);
     }
 
-    void setBarChart3(){
+    void setBarChart3() {
         barChart3.setTitle("Sale this month compare to last month");
         List<MyChart> barCharts = MyChart.monthReport(0);
         List<MyChart> lastMonth = MyChart.monthReport(1);
@@ -89,13 +89,13 @@ public class HomeController implements Initializable {
         XYChart.Series item = new XYChart.Series();
         item.setName("This month");
         barCharts.forEach(it -> {
-            item.getData().add(new XYChart.Data(it.getMonth(),it.getRevenue()));
+            item.getData().add(new XYChart.Data(it.getMonth(), it.getRevenue()));
         });
 
         XYChart.Series item2 = new XYChart.Series();
         item2.setName("Last month");
         lastMonth.forEach(it -> {
-            item2.getData().add(new XYChart.Data(it.getMonth(),it.getRevenue()));
+            item2.getData().add(new XYChart.Data(it.getMonth(), it.getRevenue()));
         });
 
         barChart3.getData().addAll(item2, item);

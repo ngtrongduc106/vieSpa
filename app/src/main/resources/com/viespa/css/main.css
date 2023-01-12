@@ -148,7 +148,7 @@
 }
 
 .date-picker .arrow-button .arrow {
-    -fx-background-color: rgba(255,255,255,0.8);
+    -fx-background-color: rgba(255, 255, 255, 0.8);
 }
 
 .date-picker .cell {
@@ -174,7 +174,8 @@
     -fx-background-color: -fx-color-table;
     -fx-text-fill: #000000;
 }
-.date-picker-popup  {
+
+.date-picker-popup {
     -fx-border-color: transparent;
 }
 
@@ -267,11 +268,12 @@
     -fx-padding: 2;
 }
 
-.table-view .virtual-flow .scroll-bar:vertical .thumb{
-    -fx-background-color:  -fx-color-table;
+.table-view .virtual-flow .scroll-bar:vertical .thumb {
+    -fx-background-color: -fx-color-table;
 }
+
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
-    -fx-background-color:  -fx-color-table;
+    -fx-background-color: -fx-color-table;
 }
 
 .table-row-cell:selected {

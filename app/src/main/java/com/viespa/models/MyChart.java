@@ -16,27 +16,13 @@ public class MyChart {
     private Long revenue;
     private double avgRevenue;
 
-    public String getMonth() {
-        return month;
-    }
-
-    public Long getRevenue() {
-        return revenue;
-    }
-
-    public Double getAvgRevenue() {
-        return avgRevenue;
-    }
-
     public MyChart(String month, String revenue, String avgRevenue) {
         this.month = month;
         this.revenue = Long.parseLong(revenue);
         this.avgRevenue = Double.parseDouble(avgRevenue);
     }
 
-    // SELECT month(booking) AS month_name, SUM(pay) AS sum_of_month, AVG(pay) AS AVG_of_month FROM transactions GROUP BY month(booking) ORDER BY month_name DESC LIMIT 12;
-
-    public static List<MyChart> getMonthlyRevenue (){
+    public static List<MyChart> getMonthlyRevenue() {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
@@ -46,7 +32,7 @@ public class MyChart {
             pst = connection.prepareStatement("SELECT month(booking) AS month_name, SUM(pay) AS sum_of_month, AVG(pay) AS AVG_of_month FROM transactions GROUP BY month(booking) ORDER BY month_name DESC LIMIT 12;");
             rs = pst.executeQuery();
             while (rs.next()) {
-                myCharts.add(new MyChart(rs.getString("month_name"), rs.getString("sum_of_month"), rs.getString("AVG_of_month")) );
+                myCharts.add(new MyChart(rs.getString("month_name"), rs.getString("sum_of_month"), rs.getString("AVG_of_month")));
             }
             return myCharts;
 
@@ -57,7 +43,8 @@ public class MyChart {
             db.closeAll(connection, pst, rs);
         }
     }
-    public static List<MyChart> customerPerStaff (){
+
+    public static List<MyChart> customerPerStaff() {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
@@ -67,7 +54,7 @@ public class MyChart {
             pst = connection.prepareStatement("SELECT users.fullname as name, COUNT(transactions.id) as count FROM transactions join users on transactions.staff_id = users.id GROUP BY users.id;");
             rs = pst.executeQuery();
             while (rs.next()) {
-                myCharts.add(new MyChart(rs.getString("name"), rs.getString("count"), "0" ));
+                myCharts.add(new MyChart(rs.getString("name"), rs.getString("count"), "0"));
             }
             return myCharts;
 
@@ -80,19 +67,19 @@ public class MyChart {
     }
 
     // SELECT weekday(booking) AS week_name, count(transactions.id) FROM transactions where (month(now()) = month(booking) AND year(now()) = year(booking)) GROUP BY weekday(booking) ORDER BY week_name;
-    public static List<MyChart> monthReport(int i){
+    public static List<MyChart> monthReport(int i) {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
         List<MyChart> myCharts = new ArrayList<>();
         try {
-            pst = i == 1?
-                    connection.prepareStatement("SELECT weekday(booking) AS week_name, count(transactions.id) as count FROM transactions where if(month(now())>1,(month(booking) = (month(now()) -1) AND year(now()) = year(booking)),(month(booking) = 12 AND year(booking) = year(now())-1))GROUP BY weekday(booking) ORDER BY week_name;"):
+            pst = i == 1 ?
+                    connection.prepareStatement("SELECT weekday(booking) AS week_name, count(transactions.id) as count FROM transactions where if(month(now())>1,(month(booking) = (month(now()) -1) AND year(now()) = year(booking)),(month(booking) = 12 AND year(booking) = year(now())-1))GROUP BY weekday(booking) ORDER BY week_name;") :
                     connection.prepareStatement("SELECT weekday(booking) AS week_name, count(transactions.id) as count FROM transactions where (month(booking) = month(now()) AND year(now()) = year(booking)) GROUP BY weekday(booking) ORDER BY week_name;");
             rs = pst.executeQuery();
             while (rs.next()) {
-                myCharts.add(new MyChart(DateForm.toWeekDay(rs.getInt("week_name")), rs.getString("count"), "0" ));
+                myCharts.add(new MyChart(DateForm.toWeekDay(rs.getInt("week_name")), rs.getString("count"), "0"));
             }
             return myCharts;
 
@@ -102,6 +89,20 @@ public class MyChart {
         } finally {
             db.closeAll(connection, pst, rs);
         }
+    }
+
+    // SELECT month(booking) AS month_name, SUM(pay) AS sum_of_month, AVG(pay) AS AVG_of_month FROM transactions GROUP BY month(booking) ORDER BY month_name DESC LIMIT 12;
+
+    public String getMonth() {
+        return month;
+    }
+
+    public Long getRevenue() {
+        return revenue;
+    }
+
+    public Double getAvgRevenue() {
+        return avgRevenue;
     }
 
 }

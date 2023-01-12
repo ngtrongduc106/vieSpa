@@ -17,54 +17,6 @@ public class Course {
     private final SimpleStringProperty price = new SimpleStringProperty();
     private final SimpleStringProperty description = new SimpleStringProperty();
 
-    public SimpleLongProperty idProperty() {
-        return id;
-    }
-
-    public long getId() {
-        return id.get();
-    }
-
-    public void setId(long newId) {
-        id.set(newId);
-    }
-
-    public SimpleStringProperty nameProperty() {
-        return name;
-    }
-
-    public String getName() {
-        return name.get();
-    }
-
-    public void setName(String newName) {
-        name.set(newName);
-    }
-
-    public SimpleStringProperty priceProperty() {
-        return price;
-    }
-
-    public String getPrice() {
-        return price.get();
-    }
-
-    public void setPrice(String newPrice) {
-        price.set(newPrice);
-    }
-
-    public SimpleStringProperty descriptionProperty() {
-        return description;
-    }
-
-    public String getDescription() {
-        return description.get();
-    }
-
-    public void setDescription(String newDescription) {
-        description.set(newDescription);
-    }
-
     public static ObservableList<Course> getAllCourses() {
         DButil db = new DButil();
         Connection connection = db.connect();
@@ -126,9 +78,9 @@ public class Course {
     }
 
     public static void update(
-            String id ,
-            String name ,
-            String price ,
+            String id,
+            String name,
+            String price,
             String description
     ) throws SQLException {
         DButil db = new DButil();
@@ -161,7 +113,7 @@ public class Course {
         }
     }
 
-    public static String queryId(String data){
+    public static String queryId(String data) {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
@@ -169,21 +121,21 @@ public class Course {
 
         try {
             statement = connection.prepareStatement("SELECT id from course where name = ?");
-            statement.setString(1,data);
+            statement.setString(1, data);
             resultSet = statement.executeQuery();
-            if(resultSet.next()){
-                return resultSet.getString("id") ;
-            }else {
+            if (resultSet.next()) {
+                return resultSet.getString("id");
+            } else {
                 return null;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            db.closeAll(connection,statement,resultSet);
+        } finally {
+            db.closeAll(connection, statement, resultSet);
         }
     }
 
-    public static String queryPrice(String data){
+    public static String queryPrice(String data) {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
@@ -191,21 +143,21 @@ public class Course {
 
         try {
             statement = connection.prepareStatement("SELECT price from course where id = ?");
-            statement.setString(1,data);
+            statement.setString(1, data);
             resultSet = statement.executeQuery();
-            if(resultSet.next()){
-                return resultSet.getString("price") ;
-            }else {
+            if (resultSet.next()) {
+                return resultSet.getString("price");
+            } else {
                 return null;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            db.closeAll(connection,statement,resultSet);
+        } finally {
+            db.closeAll(connection, statement, resultSet);
         }
     }
 
-    public static Course getByName(String data){
+    public static Course getByName(String data) {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
@@ -213,10 +165,10 @@ public class Course {
 
         try {
             statement = connection.prepareStatement("SELECT * from course where name = ?");
-            statement.setString(1,data);
+            statement.setString(1, data);
             resultSet = statement.executeQuery();
             Course it = new Course();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 it.setId(Long.parseLong(resultSet.getString("id")));
                 it.setName(resultSet.getString("name"));
                 it.setPrice(resultSet.getString("price"));
@@ -225,8 +177,56 @@ public class Course {
             return it;
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            db.closeAll(connection,statement,resultSet);
+        } finally {
+            db.closeAll(connection, statement, resultSet);
         }
+    }
+
+    public SimpleLongProperty idProperty() {
+        return id;
+    }
+
+    public long getId() {
+        return id.get();
+    }
+
+    public void setId(long newId) {
+        id.set(newId);
+    }
+
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
+
+    public String getName() {
+        return name.get();
+    }
+
+    public void setName(String newName) {
+        name.set(newName);
+    }
+
+    public SimpleStringProperty priceProperty() {
+        return price;
+    }
+
+    public String getPrice() {
+        return price.get();
+    }
+
+    public void setPrice(String newPrice) {
+        price.set(newPrice);
+    }
+
+    public SimpleStringProperty descriptionProperty() {
+        return description;
+    }
+
+    public String getDescription() {
+        return description.get();
+    }
+
+    public void setDescription(String newDescription) {
+        description.set(newDescription);
     }
 }

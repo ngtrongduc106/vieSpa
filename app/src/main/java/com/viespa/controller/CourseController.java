@@ -20,19 +20,19 @@ public class CourseController implements Initializable {
     TableView<Course> table_course;
 
     @FXML
-    TableColumn<Course , String> column_name;
+    TableColumn<Course, String> column_name;
 
     @FXML
-    TableColumn<Course , String> column_price;
+    TableColumn<Course, String> column_price;
 
     @FXML
-    TableColumn<Course , String> column_description;
+    TableColumn<Course, String> column_description;
 
     @FXML
     Button button_add;
 
     @FXML
-    Button  button_update;
+    Button button_update;
 
     @FXML
     TextField input_name;
@@ -42,16 +42,12 @@ public class CourseController implements Initializable {
 
     @FXML
     TextArea input_description;
-
-    @FXML
-    private Button buttonCancel;
-
-    @FXML
-    private Button buttonChangeStatus;
-
     int id;
     int myIndex;
-
+    @FXML
+    private Button buttonCancel;
+    @FXML
+    private Button buttonChangeStatus;
 
     @FXML
     void buttonCancel() {
@@ -69,7 +65,7 @@ public class CourseController implements Initializable {
 
     }
 
-    public void table(){
+    public void table() {
         ObservableList<Course> courses = Course.getAllCourses();
         table_course.setItems(courses);
         column_name.setCellValueFactory(f -> f.getValue().nameProperty());
@@ -112,10 +108,10 @@ public class CourseController implements Initializable {
         String val_price = input_price.getText().trim();
         String val_description = input_description.getText().trim();
 
-        if(val_name.isEmpty()){
+        if (val_name.isEmpty()) {
             return;
         } else {
-            Course.addNew(val_name,val_price,val_description);
+            Course.addNew(val_name, val_price, val_description);
             input_name.setText("");
             input_price.setText("");
             input_description.setText("");
@@ -132,10 +128,10 @@ public class CourseController implements Initializable {
         String val_price = input_price.getText().trim();
         String val_description = input_description.getText().trim();
 
-        if(val_name.isEmpty()){
+        if (val_name.isEmpty()) {
             return;
-        }else {
-            Course.update(String.valueOf(id), val_name , val_price , val_description);
+        } else {
+            Course.update(String.valueOf(id), val_name, val_price, val_description);
             input_name.setText("");
             input_price.setText("");
             input_description.setText("");

@@ -81,13 +81,12 @@ public class StaffController implements Initializable {
 
     @FXML
     Button buttonAddNew;
-
+    int id;
+    int myIndex;
     @FXML
     private Button buttonCancel;
-
     @FXML
     private Button buttonChangeStatus;
-
     @FXML
     private Button buttonUpdate;
 
@@ -111,7 +110,6 @@ public class StaffController implements Initializable {
     void buttonChangeStatus() {
 
     }
-
 
     public void buttonAddNew() throws SQLException {
         String val_fullname = input_fullname.getText().trim();
@@ -196,10 +194,6 @@ public class StaffController implements Initializable {
 
         table();
     }
-
-    int id;
-
-    int myIndex;
 
     public void table() {
         ObservableList<Staff> staffs = Staff.getAllStaffs();

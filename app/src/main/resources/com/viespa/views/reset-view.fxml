@@ -10,86 +10,98 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.ResetPasswordController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../css/main.css"
+            xmlns="http://javafx.com/javafx/19" fx:controller="com.viespa.controller.ResetPasswordController">
     <children>
-        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="background" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                     <children>
-                        <Text fill="#ff00ae" layoutX="71.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Privacy" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="218.0">
+                        <Text fill="#ff00ae" layoutX="71.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              styleClass="text-title" text="Privacy" AnchorPane.leftAnchor="120.0"
+                              AnchorPane.topAnchor="218.0">
                             <font>
-                                <Font name="System Bold" size="64.0" />
+                                <Font name="System Bold" size="64.0"/>
                             </font>
                         </Text>
-                        <Text layoutX="277.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Never forget to note down your password&quot;" AnchorPane.leftAnchor="310.0">
+                        <Text layoutX="277.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="&quot;Never forget to note down your password&quot;" AnchorPane.leftAnchor="310.0">
                             <font>
-                                <Font name="System Italic" size="15.0" />
+                                <Font name="System Italic" size="15.0"/>
                             </font>
                         </Text>
                     </children>
                 </AnchorPane>
                 <AnchorPane maxWidth="500.0" prefWidth="500.0" styleClass="container">
                     <children>
-                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0">
+                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0"
+                              AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <Text fill="#ff00ae" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Reset Password" wrappingWidth="233.84337615966797">
+                                <Text fill="#ff00ae" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title"
+                                      text="Reset Password" wrappingWidth="233.84337615966797">
                                     <VBox.margin>
-                                        <Insets bottom="50.0" />
+                                        <Insets bottom="50.0"/>
                                     </VBox.margin>
                                     <font>
-                                        <Font name="System Bold" size="32.0" />
+                                        <Font name="System Bold" size="32.0"/>
                                     </font>
                                 </Text>
-                                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Username:">
+                                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                       text="Username:">
                                     <font>
-                                        <Font size="16.0" />
+                                        <Font size="16.0"/>
                                     </font>
                                     <VBox.margin>
-                                        <Insets top="8.0" />
+                                        <Insets top="8.0"/>
                                     </VBox.margin>
                                 </Label>
                                 <TextField fx:id="input_account">
                                     <VBox.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </VBox.margin>
                                     <font>
-                                        <Font size="16.0" />
+                                        <Font size="16.0"/>
                                     </font>
                                 </TextField>
                                 <Label fx:id="error_account" styleClass="error" textFill="#e80505">
                                     <VBox.margin>
-                                        <Insets top="4.0" />
-                                    </VBox.margin></Label>
-                                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Email:">
+                                        <Insets top="4.0"/>
+                                    </VBox.margin>
+                                </Label>
+                                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                       text="Email:">
                                     <font>
-                                        <Font size="16.0" />
+                                        <Font size="16.0"/>
                                     </font>
                                     <VBox.margin>
-                                        <Insets top="8.0" />
+                                        <Insets top="8.0"/>
                                     </VBox.margin>
                                 </Label>
                                 <PasswordField fx:id="input_password">
                                     <font>
-                                        <Font size="16.0" />
+                                        <Font size="16.0"/>
                                     </font>
                                 </PasswordField>
                                 <Label fx:id="error_password" styleClass="error" textFill="#e80505">
                                     <VBox.margin>
-                                        <Insets top="4.0" />
-                                    </VBox.margin></Label>
-                                <Button alignment="CENTER" mnemonicParsing="false" styleClass="button-login" text="Confirm" textAlignment="CENTER" textFill="#fdf6f0">
+                                        <Insets top="4.0"/>
+                                    </VBox.margin>
+                                </Label>
+                                <Button alignment="CENTER" mnemonicParsing="false" styleClass="button-login"
+                                        text="Confirm" textAlignment="CENTER" textFill="#fdf6f0">
                                     <font>
-                                        <Font name="System Bold" size="16.0" />
+                                        <Font name="System Bold" size="16.0"/>
                                     </font>
                                     <VBox.margin>
-                                        <Insets top="10.0" />
+                                        <Insets top="10.0"/>
                                     </VBox.margin>
                                 </Button>
                             </children>
                         </VBox>
                     </children>
                     <HBox.margin>
-                        <Insets bottom="30.0" right="30.0" top="30.0" />
+                        <Insets bottom="30.0" right="30.0" top="30.0"/>
                     </HBox.margin>
                 </AnchorPane>
             </children>

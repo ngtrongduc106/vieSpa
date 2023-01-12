@@ -19,7 +19,7 @@ public class MyPie {
         this.count = count;
     }
 
-    public static ObservableList<PieChart.Data> countCourse(){
+    public static ObservableList<PieChart.Data> countCourse() {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement pst = null;

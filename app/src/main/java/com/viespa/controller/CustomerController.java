@@ -23,19 +23,19 @@ public class CustomerController implements Initializable {
     TableView<Customer> table_customer;
 
     @FXML
-    TableColumn<Customer , String> column_fullname;
+    TableColumn<Customer, String> column_fullname;
 
     @FXML
-    TableColumn<Customer , String> column_phone;
+    TableColumn<Customer, String> column_phone;
 
     @FXML
-    TableColumn<Customer , String> column_address;
+    TableColumn<Customer, String> column_address;
 
     @FXML
-    TableColumn<Customer , String> column_email;
+    TableColumn<Customer, String> column_email;
 
     @FXML
-    TableColumn<Customer , String> column_dob;
+    TableColumn<Customer, String> column_dob;
 
     @FXML
     Button button_add;
@@ -60,10 +60,10 @@ public class CustomerController implements Initializable {
 
     @FXML
     TextField input_female;
-
+    int id;
+    int myIndex;
     @FXML
     private Button buttonCancel;
-
     @FXML
     private Button buttonChangeStatus;
 
@@ -85,10 +85,7 @@ public class CustomerController implements Initializable {
 
     }
 
-    int id ;
-    int myIndex;
-
-    public void table(){
+    public void table() {
         ObservableList<Customer> customers = Customer.getAllCustomers();
         table_customer.setItems(customers);
         column_fullname.setCellValueFactory(f -> f.getValue().fullNameProperty());
@@ -149,10 +146,10 @@ public class CustomerController implements Initializable {
         LocalDate val_dob = input_dob.getValue();
         String val_isfemale = input_female.getText().trim();
 
-        if(val_fullname.isEmpty()){
+        if (val_fullname.isEmpty()) {
             return;
         } else {
-            Customer.addNewCustomer(val_fullname,val_phone,val_email,val_address,val_isfemale,val_dob);
+            Customer.addNewCustomer(val_fullname, val_phone, val_email, val_address, val_isfemale, val_dob);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");
@@ -175,10 +172,10 @@ public class CustomerController implements Initializable {
         LocalDate val_dob = input_dob.getValue();
         String val_isfemale = input_female.getText().trim();
 
-        if(val_fullname.isEmpty()){
+        if (val_fullname.isEmpty()) {
             return;
         } else {
-            Customer.updateCustomer(val_fullname,val_phone,val_email,val_address,id,val_isfemale,val_dob);
+            Customer.updateCustomer(val_fullname, val_phone, val_email, val_address, id, val_isfemale, val_dob);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");

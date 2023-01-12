@@ -9,7 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 
 public class Contract {
-    public static void print(Transaction transaction) throws Exception{
+    public static void print(Transaction transaction) throws Exception {
 
         BufferedWriter writer = null;
         Customer customer = Customer.getByName(transaction.getCustomer());
@@ -17,15 +17,15 @@ public class Contract {
         Staff staff = Staff.getById(transaction.getStaff());
 
         try {
-            writer = new BufferedWriter(new FileWriter("..\\contracts\\contract_"+ transaction.getId() +".html"));
+            writer = new BufferedWriter(new FileWriter("..\\contracts\\contract_" + transaction.getId() + ".html"));
 
             String head = String.format("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Contract - %s</title><style>.container{width:800px;margin:auto}.center{text-align:center}.sign{display:flex;justify-content:space-around}.sign p{margin-top:7em}</style></head>",
-                transaction.getId());
+                    transaction.getId());
             writer.write(head);
 
             String header = String.format("<body><div class=\"container\"><h3 class=\"center\">CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</h3><h4 class=\"center\">Độc lập - Tự do - Hạnh phúc</h4><h1 class=\"center\">HỢP ĐỒNG DỊCH VỤ</h1><p class=\"center\">Số: %s /HĐDV</p><p>Căn cứ Bộ Luật dân sự số 91/2015/QH13 ngày 24/11/2015;</p><p>Căn cứ …</p><p>Căn cứ nhu cầu và khả năng thực tế của các bên trong hợp đồng;</p>",
                     transaction.getId()
-                    );
+            );
             writer.write(header);
 
             String benA = String.format("<p>Hôm nay, ngày %s , tại ... chúng tôi gồm có:</p><p>Bên sử dụng dịch vụ (sau đây gọi tắt là bên A):</p><p>Họ và tên: %s </p><p>Năm sinh: %s </p><p>Chỗ ở hiện tại: %s </p><p>Điện thoại: %s </p><p>Email: %s </p>",
@@ -44,7 +44,7 @@ public class Contract {
                     staff.getRole(),
                     staff.getPhone(),
                     staff.getEmail()
-                    );
+            );
             writer.write(benB);
 
             String courseInfo = String.format("<h4>Điều 1. Đối tượng của hợp đồng</h4><p>Theo yêu cầu của bên A về việc thực hiện dịch vụ %s , bên B đảm nhận và thực hiện %s </p><h4>Điều 2. Thời hạn thực hiện hợp đồng</h4><p>Hợp đồng này được thực hiện kể từ ngày %s </p><p>Thời gian dự kiến hoàn thành: là 30 ngày, kể từ ngày %s </p>",

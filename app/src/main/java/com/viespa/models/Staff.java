@@ -28,114 +28,7 @@ public class Staff {
     private final SimpleObjectProperty<LocalDate> joinDate = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<LocalDate> endDate = new SimpleObjectProperty<>();
 
-    public Staff(){}
-
-    public SimpleLongProperty idProperty(){return id;}
-
-    public long getId() {
-        return id.get();
-    }
-
-    public void setId(Long newId){id.set(newId);}
-
-    public SimpleStringProperty accountProperty(){return account;}
-
-    public String getAccount() {
-        return account.get();
-    }
-
-    public void setAccount(String newAccount){
-        account.set(newAccount);
-    }
-
-    public SimpleStringProperty passwordProperty(){return password;}
-
-    public String getPassword() {
-        return password.get();
-    }
-
-    public void setPassword(String newPassword){
-        password.set(newPassword);
-    }
-
-    public SimpleStringProperty fullNameProperty(){return fullname;}
-
-    public String getFullname() {
-        return fullname.get();
-    }
-
-    public void setFullName(String newFullName){
-        fullname.set(newFullName);
-    }
-
-    public SimpleObjectProperty<LocalDate> dobProperty(){return dob;}
-
-    public LocalDate getDob() {
-        return dob.get();
-    }
-
-    public void setDob(LocalDate newDob){
-        dob.set(newDob);
-    }
-
-    public SimpleStringProperty phoneProperty(){return phone;}
-
-    public String getPhone() {
-        return phone.get();
-    }
-
-    public void setPhone(String newPhone){
-        phone.set(newPhone);
-    }
-
-    public SimpleStringProperty emailProperty(){return email;}
-
-    public String getEmail() {
-        return email.get();
-    }
-
-    public void setEmail(String newEmail){
-        email.set(newEmail);
-    }
-
-    public SimpleStringProperty addressProperty(){return address;}
-
-    public String getAddress() {
-        return address.get();
-    }
-
-    public void setAddress(String newAddress){
-        address.set(newAddress);
-    }
-
-    public SimpleStringProperty roleProperty(){return role;}
-
-    public String getRole() {
-        return role.get();
-    }
-
-    public void setRole(String newRole){
-        role.set(newRole);
-    }
-
-    public SimpleObjectProperty<LocalDate> joinDateProperty(){return joinDate;}
-
-    public LocalDate getJoinDate() {
-        return joinDate.get();
-    }
-
-    public void setJoinDate(LocalDate newJoinDate){
-        joinDate.set(newJoinDate);
-    }
-
-    public SimpleObjectProperty<LocalDate> endDateProperty(){return endDate;}
-
-    public LocalDate getEndDate() {
-        return endDate.get();
-    }
-
-    public void setEndDate(LocalDate newEndDate){
-        endDate.set(newEndDate);
+    public Staff() {
     }
 
     public static ObservableList<Staff> getAllStaffs() {
@@ -149,7 +42,7 @@ public class Staff {
                 pst = connection.prepareStatement("SELECT users.id, users.account, users.password, users.fullname, users.dob, users.phone, users.email, users.address, roles.role_name , users.joindate, users.enddate, users.status \n" +
                         "FROM `users` JOIN roles ON roles.id = users.role\n" +
                         "WHERE role != ?");
-                pst.setString(1,"1");
+                pst.setString(1, "1");
                 rs = pst.executeQuery();
                 while (rs.next()) {
                     Staff it = new Staff();
@@ -203,10 +96,10 @@ public class Staff {
             statement.setString(3, fullname);
             statement.setDate(4, Date.valueOf(dob));
             statement.setString(5, phone);
-            statement.setString(6,email);
-            statement.setString(7,address);
-            statement.setInt(8,role);
-            statement.setDate(9,Date.valueOf(joinDate));
+            statement.setString(6, email);
+            statement.setString(7, address);
+            statement.setInt(8, role);
+            statement.setDate(9, Date.valueOf(joinDate));
 
             statement.executeUpdate();
 
@@ -248,11 +141,11 @@ public class Staff {
             statement.setString(3, fullname);
             statement.setDate(4, Date.valueOf(dob));
             statement.setString(5, phone);
-            statement.setString(6,email);
-            statement.setString(7,address);
-            statement.setInt(8,role);
-            statement.setDate(9,Date.valueOf(joinDate));
-            statement.setDate(10,endDate != null ? Date.valueOf(endDate) : null);
+            statement.setString(6, email);
+            statement.setString(7, address);
+            statement.setInt(8, role);
+            statement.setDate(9, Date.valueOf(joinDate));
+            statement.setDate(10, endDate != null ? Date.valueOf(endDate) : null);
             statement.setString(11, String.valueOf(id));
 
             statement.executeUpdate();
@@ -268,28 +161,28 @@ public class Staff {
         }
     }
 
-    public static boolean checkDuplicate(String data){
+    public static boolean checkDuplicate(String data) {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
         ResultSet rs = null;
         try {
             statement = connection.prepareStatement("select * from users where account = ? ");
-            statement.setString(1,data);
+            statement.setString(1, data);
             rs = statement.executeQuery();
-            if(rs.next()){
-                return true ;
-            }else {
-                return false ;
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            db.closeAll(connection,statement,rs);
+            db.closeAll(connection, statement, rs);
         }
     }
 
-    public static String queryId(String data){
+    public static String queryId(String data) {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
@@ -297,22 +190,20 @@ public class Staff {
 
         try {
             statement = connection.prepareStatement("SELECT id from users where fullname = ? AND role != ?");
-            statement.setString(1,data);
-            statement.setString(2,"1");
+            statement.setString(1, data);
+            statement.setString(2, "1");
             resultSet = statement.executeQuery();
-            if(resultSet.next()){
-                return resultSet.getString("id") ;
-            }else {
+            if (resultSet.next()) {
+                return resultSet.getString("id");
+            } else {
                 return null;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            db.closeAll(connection,statement,resultSet);
+        } finally {
+            db.closeAll(connection, statement, resultSet);
         }
     }
-
-    //get by ID
 
     public static Staff getById(String id) {
         {
@@ -322,7 +213,7 @@ public class Staff {
             ResultSet rs = null;
             try {
                 pst = connection.prepareStatement("select * from users where id = ?");
-                pst.setString(1,id);
+                pst.setString(1, id);
                 rs = pst.executeQuery();
                 Staff it = new Staff();
                 if (rs.next()) {
@@ -348,5 +239,139 @@ public class Staff {
                 db.closeAll(connection, pst, rs);
             }
         }
+    }
+
+    public SimpleLongProperty idProperty() {
+        return id;
+    }
+
+    public long getId() {
+        return id.get();
+    }
+
+    public void setId(Long newId) {
+        id.set(newId);
+    }
+
+    public SimpleStringProperty accountProperty() {
+        return account;
+    }
+
+    public String getAccount() {
+        return account.get();
+    }
+
+    public void setAccount(String newAccount) {
+        account.set(newAccount);
+    }
+
+    public SimpleStringProperty passwordProperty() {
+        return password;
+    }
+
+    public String getPassword() {
+        return password.get();
+    }
+
+    public void setPassword(String newPassword) {
+        password.set(newPassword);
+    }
+
+    public SimpleStringProperty fullNameProperty() {
+        return fullname;
+    }
+
+    public String getFullname() {
+        return fullname.get();
+    }
+
+    public void setFullName(String newFullName) {
+        fullname.set(newFullName);
+    }
+
+    public SimpleObjectProperty<LocalDate> dobProperty() {
+        return dob;
+    }
+
+    public LocalDate getDob() {
+        return dob.get();
+    }
+
+    public void setDob(LocalDate newDob) {
+        dob.set(newDob);
+    }
+
+    public SimpleStringProperty phoneProperty() {
+        return phone;
+    }
+
+    public String getPhone() {
+        return phone.get();
+    }
+
+    public void setPhone(String newPhone) {
+        phone.set(newPhone);
+    }
+
+    public SimpleStringProperty emailProperty() {
+        return email;
+    }
+
+    public String getEmail() {
+        return email.get();
+    }
+
+    public void setEmail(String newEmail) {
+        email.set(newEmail);
+    }
+
+    public SimpleStringProperty addressProperty() {
+        return address;
+    }
+
+    public String getAddress() {
+        return address.get();
+    }
+
+    public void setAddress(String newAddress) {
+        address.set(newAddress);
+    }
+
+    public SimpleStringProperty roleProperty() {
+        return role;
+    }
+
+    public String getRole() {
+        return role.get();
+    }
+
+    public void setRole(String newRole) {
+        role.set(newRole);
+    }
+
+    public SimpleObjectProperty<LocalDate> joinDateProperty() {
+        return joinDate;
+    }
+
+    public LocalDate getJoinDate() {
+        return joinDate.get();
+    }
+
+    public void setJoinDate(LocalDate newJoinDate) {
+        joinDate.set(newJoinDate);
+    }
+
+    public SimpleObjectProperty<LocalDate> endDateProperty() {
+        return endDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate.get();
+    }
+
+    //get by ID
+
+    public void setEndDate(LocalDate newEndDate) {
+        endDate.set(newEndDate);
     }
 }

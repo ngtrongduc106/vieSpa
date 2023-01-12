@@ -80,10 +80,10 @@ public class TransactionController implements Initializable {
 
     @FXML
     TextField input_pay;
-
+    int id;
+    int myIndex;
     @FXML
     private Button buttonCancel;
-
     @FXML
     private Button button_print;
 
@@ -106,10 +106,6 @@ public class TransactionController implements Initializable {
         User.getInstance().setPage(2);
         App.setRoot("views/customer-view");
     }
-
-
-    int id;
-    int myIndex;
 
     public void table() {
         ObservableList<Transaction> transactions = Transaction.getAllTransaction();
@@ -179,7 +175,7 @@ public class TransactionController implements Initializable {
         LocalDate val_booking = input_booking.getValue();
 
         if (val_customer == null || val_course == null || val_staff == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Admin cannot do label work!");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Admin cannot do label work!");
             alert.show();
             return;
         }
@@ -297,7 +293,7 @@ public class TransactionController implements Initializable {
                 default:
                     break;
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("File does not exist");
             alert.showAndWait();

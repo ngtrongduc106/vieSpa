@@ -18,25 +18,21 @@ public class SideBarController implements Initializable {
 
     //Set name
     final StringProperty userFullNameValue = new SimpleStringProperty(user.getFullname());
-    public String getUserNameValue(){
-        return "Hi! " + userFullNameValue.get();
-    }
-
     //Button Logout
     @FXML
     Button button_staff;
-
     @FXML
     private Button course;
-
     @FXML
     private Button customer;
-
     @FXML
     private Button home;
-
     @FXML
     private Button transaction;
+
+    public String getUserNameValue() {
+        return "Hi! " + userFullNameValue.get();
+    }
 
     @FXML
     public void buttonLogout() throws IOException {
@@ -52,7 +48,7 @@ public class SideBarController implements Initializable {
 
     @FXML
     public void buttonHome() throws IOException {
-         user.setPage(0);
+        user.setPage(0);
         App.setRoot("views/home-view");
     }
 
@@ -74,8 +70,8 @@ public class SideBarController implements Initializable {
         App.setRoot("views/transaction-view");
     }
 
-    public void author_active(){
-        if(user.getRole() == 2){
+    public void author_active() {
+        if (user.getRole() == 2) {
             button_staff.setDisable(true);
             home.setDisable(false);
             course.setDisable(false);
@@ -87,7 +83,7 @@ public class SideBarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         author_active();
-        switch (user.getPage()){
+        switch (user.getPage()) {
             case 0:
                 home.setDisable(true);
                 home.getStyleClass().add("active");

@@ -14,111 +14,128 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="680.0" prefWidth="1200.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.LoginController">
-   <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
-               <children>
-                  <Text fill="#ff00ae" layoutX="71.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Beauty" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="218.0">
-                     <font>
-                        <Font name="System Bold" size="64.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="291.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Spa" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="220.0">
-                     <font>
-                        <Font name="Algerian" size="84.0" />
-                     </font>
-                     <fill>
-                        <RadialGradient centerX="1.0" centerY="0.5681818254066237" radius="0.5">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.7529356479644775" green="0.13988304138183594" blue="0.821052610874176" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="1.0" blue="0.6666666865348816" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </RadialGradient>
-                     </fill>
-                  </Text>
-                  <Text layoutX="277.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Tiên học nhậu, hậu học say&quot;" AnchorPane.leftAnchor="310.0">
-                     <font>
-                        <Font name="System Italic" size="15.0" />
-                     </font>
-                  </Text>
-               </children>
-            </AnchorPane>
-            <AnchorPane maxWidth="500.0" prefWidth="500.0" styleClass="container">
-               <children>
-                  <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Text fill="#ff00ae" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Welcome" wrappingWidth="143.84337615966797">
-                           <VBox.margin>
-                              <Insets bottom="50.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="32.0" />
-                           </font>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="680.0"
+            prefWidth="1200.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19"
+            fx:controller="com.viespa.controller.LoginController">
+    <children>
+        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="background" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Text fill="#ff00ae" layoutX="71.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              styleClass="text-title" text="Beauty" AnchorPane.leftAnchor="120.0"
+                              AnchorPane.topAnchor="218.0">
+                            <font>
+                                <Font name="System Bold" size="64.0"/>
+                            </font>
                         </Text>
-                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Username:">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="8.0" />
-                           </VBox.margin>
-                        </Label>
-                        <TextField fx:id="input_account">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </TextField>
-                        <Label fx:id="error_account" styleClass="error" textFill="#e80505">
-                           <VBox.margin>
-                              <Insets top="4.0" />
-                           </VBox.margin></Label>
-                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Password:">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="8.0" />
-                           </VBox.margin>
-                        </Label>
-                        <PasswordField fx:id="input_password">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </PasswordField>
-                        <Label fx:id="error_password" styleClass="error" textFill="#e80505">
-                           <VBox.margin>
-                              <Insets top="4.0" />
-                           </VBox.margin></Label>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#buttonLogin" styleClass="button-login" text="Login" textAlignment="CENTER" textFill="#fdf6f0">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Hyperlink onAction="#resetPassword" text="Forgot your password ?" />
-                     </children>
-                  </VBox>
-               </children>
-               <HBox.margin>
-                  <Insets bottom="30.0" right="30.0" top="30.0" />
-               </HBox.margin>
-            </AnchorPane>
-         </children>
-      </HBox>
-   </children>
+                        <Text layoutX="291.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              styleClass="text-title" text="Spa" AnchorPane.leftAnchor="340.0"
+                              AnchorPane.topAnchor="220.0">
+                            <font>
+                                <Font name="Algerian" size="84.0"/>
+                            </font>
+                            <fill>
+                                <RadialGradient centerX="1.0" centerY="0.5681818254066237" radius="0.5">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.7529356479644775" green="0.13988304138183594"
+                                                       blue="0.821052610874176"/>
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="1.0" blue="0.6666666865348816"/>
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </RadialGradient>
+                            </fill>
+                        </Text>
+                        <Text layoutX="277.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="&quot;Tiên học nhậu, hậu học say&quot;" AnchorPane.leftAnchor="310.0">
+                            <font>
+                                <Font name="System Italic" size="15.0"/>
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+                <AnchorPane maxWidth="500.0" prefWidth="500.0" styleClass="container">
+                    <children>
+                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0"
+                              AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <Text fill="#ff00ae" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title"
+                                      text="Welcome" wrappingWidth="143.84337615966797">
+                                    <VBox.margin>
+                                        <Insets bottom="50.0"/>
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="32.0"/>
+                                    </font>
+                                </Text>
+                                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                       text="Username:">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="8.0"/>
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="input_account">
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </TextField>
+                                <Label fx:id="error_account" styleClass="error" textFill="#e80505">
+                                    <VBox.margin>
+                                        <Insets top="4.0"/>
+                                    </VBox.margin>
+                                </Label>
+                                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                       text="Password:">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="8.0"/>
+                                    </VBox.margin>
+                                </Label>
+                                <PasswordField fx:id="input_password">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </PasswordField>
+                                <Label fx:id="error_password" styleClass="error" textFill="#e80505">
+                                    <VBox.margin>
+                                        <Insets top="4.0"/>
+                                    </VBox.margin>
+                                </Label>
+                                <Button alignment="CENTER" mnemonicParsing="false" onAction="#buttonLogin"
+                                        styleClass="button-login" text="Login" textAlignment="CENTER"
+                                        textFill="#fdf6f0">
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="10.0"/>
+                                    </VBox.margin>
+                                </Button>
+                                <Hyperlink onAction="#resetPassword" text="Forgot your password ?"/>
+                            </children>
+                        </VBox>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="30.0" right="30.0" top="30.0"/>
+                    </HBox.margin>
+                </AnchorPane>
+            </children>
+        </HBox>
+    </children>
 </AnchorPane>

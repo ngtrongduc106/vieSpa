@@ -22,90 +22,6 @@ public class Customer {
     private final SimpleStringProperty phone = new SimpleStringProperty();
     private final SimpleStringProperty email = new SimpleStringProperty();
 
-    public SimpleLongProperty idProperty() {
-        return id;
-    }
-
-    public long getId() {
-        return id.get();
-    }
-
-    public void setId(Long newId) {
-        id.set(newId);
-    }
-
-    public SimpleStringProperty fullNameProperty() {
-        return fullName;
-    }
-
-    public String getFullName() {
-        return fullName.get();
-    }
-
-    public void setFullName(String newFullName) {
-        fullName.set(newFullName);
-    }
-
-    public SimpleStringProperty phoneProperty() {
-        return phone;
-    }
-
-    public String getPhone() {
-        return phone.get();
-    }
-
-    public void setPhone(String newPhone) {
-        phone.set(newPhone);
-    }
-
-    public SimpleStringProperty isFemeleProperty() {
-        return is_female;
-    }
-
-    public String getIs_female() {
-        return is_female.get();
-    }
-
-    public void setIs_female(String newIsFemale) {
-        is_female.set(newIsFemale);
-    }
-
-    public SimpleObjectProperty<LocalDate> dobProperty() {
-        return dob;
-    }
-
-    public LocalDate getDob() {
-        return dob.get();
-    }
-
-    public void setDob(LocalDate newDob) {
-        dob.set(newDob);
-    }
-
-    public SimpleStringProperty addressProperty() {
-        return address;
-    }
-
-    public String getAddress() {
-        return address.get();
-    }
-
-    public void setAddress(String newAddress) {
-        address.set(newAddress);
-    }
-
-    public SimpleStringProperty emailProperty() {
-        return email;
-    }
-
-    public String getEmail() {
-        return email.get();
-    }
-
-    public void setEmail(String newEmail) {
-        email.set(newEmail);
-    }
-
     public static ObservableList<Customer> getAllCustomers() {
         DButil db = new DButil();
         Connection connection = db.connect();
@@ -259,5 +175,89 @@ public class Customer {
         } finally {
             db.closeAll(connection, statement, resultSet);
         }
+    }
+
+    public SimpleLongProperty idProperty() {
+        return id;
+    }
+
+    public long getId() {
+        return id.get();
+    }
+
+    public void setId(Long newId) {
+        id.set(newId);
+    }
+
+    public SimpleStringProperty fullNameProperty() {
+        return fullName;
+    }
+
+    public String getFullName() {
+        return fullName.get();
+    }
+
+    public void setFullName(String newFullName) {
+        fullName.set(newFullName);
+    }
+
+    public SimpleStringProperty phoneProperty() {
+        return phone;
+    }
+
+    public String getPhone() {
+        return phone.get();
+    }
+
+    public void setPhone(String newPhone) {
+        phone.set(newPhone);
+    }
+
+    public SimpleStringProperty isFemeleProperty() {
+        return is_female;
+    }
+
+    public String getIs_female() {
+        return is_female.get();
+    }
+
+    public void setIs_female(String newIsFemale) {
+        is_female.set(newIsFemale);
+    }
+
+    public SimpleObjectProperty<LocalDate> dobProperty() {
+        return dob;
+    }
+
+    public LocalDate getDob() {
+        return dob.get();
+    }
+
+    public void setDob(LocalDate newDob) {
+        dob.set(newDob);
+    }
+
+    public SimpleStringProperty addressProperty() {
+        return address;
+    }
+
+    public String getAddress() {
+        return address.get();
+    }
+
+    public void setAddress(String newAddress) {
+        address.set(newAddress);
+    }
+
+    public SimpleStringProperty emailProperty() {
+        return email;
+    }
+
+    public String getEmail() {
+        return email.get();
+    }
+
+    public void setEmail(String newEmail) {
+        email.set(newEmail);
     }
 }
