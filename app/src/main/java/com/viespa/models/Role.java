@@ -16,29 +16,7 @@ public class Role {
 
     private final SimpleStringProperty role = new SimpleStringProperty();
 
-    public SimpleLongProperty idProperty() {return id;}
-
-    public long getId() {
-        return id.get();
-    }
-
-    public void setId(Long newId){
-        id.set(newId);
-    }
-
-    public SimpleStringProperty roleProperty() {
-        return role;
-    }
-
-    public String getRole() {
-        return role.get();
-    }
-
-    public void setRole(String newRole) {
-        role.set(newRole);
-    }
-
-    public static ObservableList<Role> getAllRole(){
+    public static ObservableList<Role> getAllRole() {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
@@ -46,7 +24,7 @@ public class Role {
         ObservableList<Role> roles = FXCollections.observableArrayList();
         try {
             pst = connection.prepareStatement("SELECT * FROM roles WHERE id != ?");
-            pst.setString(1,"1");
+            pst.setString(1, "1");
             rs = pst.executeQuery();
             while (rs.next()) {
                 Role it = new Role();
@@ -65,7 +43,7 @@ public class Role {
         }
     }
 
-    public static String queryRoleId(String data){
+    public static String queryRoleId(String data) {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
@@ -73,17 +51,41 @@ public class Role {
 
         try {
             statement = connection.prepareStatement("SELECT id from roles where role_name = ?");
-            statement.setString(1,data);
+            statement.setString(1, data);
             resultSet = statement.executeQuery();
-            if(resultSet.next()){
-                return resultSet.getString("id") ;
-            }else {
+            if (resultSet.next()) {
+                return resultSet.getString("id");
+            } else {
                 return null;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            db.closeAll(connection,statement,resultSet);
+        } finally {
+            db.closeAll(connection, statement, resultSet);
         }
+    }
+
+    public SimpleLongProperty idProperty() {
+        return id;
+    }
+
+    public long getId() {
+        return id.get();
+    }
+
+    public void setId(Long newId) {
+        id.set(newId);
+    }
+
+    public SimpleStringProperty roleProperty() {
+        return role;
+    }
+
+    public String getRole() {
+        return role.get();
+    }
+
+    public void setRole(String newRole) {
+        role.set(newRole);
     }
 }

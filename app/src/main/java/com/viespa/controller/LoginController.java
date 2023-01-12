@@ -36,29 +36,29 @@ public class LoginController {
     public void buttonLogin() throws IOException {
         String val_account = input_account.getText().trim().toLowerCase();
         String val_password = input_password.getText().trim();
-        int errors = 0 ;
+        int errors = 0;
 
         // Validation account name
-        if(val_account.isEmpty()){
+        if (val_account.isEmpty()) {
             error_account.setText("Account name cannot empty !");
-            errors = 1 ;
+            errors = 1;
         } else if (checkWhiteSpace(val_account)) {
             error_account.setText("Account name cannot has white space !");
-            errors = 1 ;
-        }else {
+            errors = 1;
+        } else {
             error_account.setText("");
         }
 
         // Validate password
-        if(val_password.isEmpty()){
+        if (val_password.isEmpty()) {
             error_password.setText("Password cannot empty !");
-            errors = 1 ;
-        }else {
+            errors = 1;
+        } else {
             error_password.setText("");
         }
 
         //Check DB
-        if(errors == 0){
+        if (errors == 0) {
             DButil db = new DButil();
             Connection connection = null;
             PreparedStatement statement = null;
@@ -73,13 +73,13 @@ public class LoginController {
                 resultSet = statement.executeQuery();
 
                 if (resultSet.next()) {
-                    if(!resultSet.getString("status").equals("1")){
+                    if (!resultSet.getString("status").equals("1")) {
                         user.setId(Integer.parseInt(resultSet.getString("id")));
                         user.setAccount(resultSet.getString("account"));
                         user.setFullname(resultSet.getString("fullname"));
                         user.setRole(Integer.parseInt(resultSet.getString("role")));
                         App.setRoot("views/home-view");
-                    }else {
+                    } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.show();
                     }
@@ -103,7 +103,7 @@ public class LoginController {
         App.setRoot("views/reset-view");
     }
 
-    public boolean checkWhiteSpace(String data){
+    public boolean checkWhiteSpace(String data) {
         Pattern pattern = Pattern.compile("\\s");
         Matcher matcher = pattern.matcher(data);
         return matcher.find();
