@@ -81,14 +81,16 @@ public class MyChart {
     }
 
     // SELECT weekday(booking) AS week_name, count(transactions.id) FROM transactions where (month(now()) = month(booking) AND year(now()) = year(booking)) GROUP BY weekday(booking) ORDER BY week_name;
-    public static List<MyChart> monthReport(){
+    public static List<MyChart> monthReport(int i){
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
         List<MyChart> myCharts = new ArrayList<>();
         try {
-            pst = connection.prepareStatement("SELECT weekday(booking) AS week_name, count(transactions.id) as count FROM transactions where (month(now()) = month(booking) AND year(now()) = year(booking)) GROUP BY weekday(booking) ORDER BY week_name");
+            pst = i == 1?
+                    connection.prepareStatement("SELECT weekday(booking) AS week_name, count(transactions.id) as count FROM transactions where if(month(now())>1,(month(booking) = (month(now()) -1) AND year(now()) = year(booking)),(month(booking) = 12 AND year(booking) = year(now())-1))GROUP BY weekday(booking) ORDER BY week_name;"):
+                    connection.prepareStatement("SELECT weekday(booking) AS week_name, count(transactions.id) as count FROM transactions where (month(booking) = month(now()) AND year(now()) = year(booking)) GROUP BY weekday(booking) ORDER BY week_name;");
             rs = pst.executeQuery();
             while (rs.next()) {
                 myCharts.add(new MyChart(DateForm.toWeekDay(rs.getInt("week_name")), rs.getString("count"), "0" ));

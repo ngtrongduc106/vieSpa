@@ -57,17 +57,17 @@ public class HomeController implements Initializable {
         barCharts.forEach(it -> {
             monthly.getData().add(new XYChart.Data(it.getMonth(),it.getRevenue()));
         });
-        XYChart.Series avgMonthly = new XYChart.Series();
-        avgMonthly.setName("Monthly average");
-        barCharts.forEach(it-> avgMonthly.getData().add(new XYChart.Data(it.getMonth(),it.getAvgRevenue())));
+//        XYChart.Series avgMonthly = new XYChart.Series();
+//        avgMonthly.setName("Monthly average");
+//        barCharts.forEach(it-> avgMonthly.getData().add(new XYChart.Data(it.getMonth(),it.getAvgRevenue())));
 
-        chart1.getData().addAll(monthly, avgMonthly);
+        chart1.getData().addAll(monthly);
     }
 
     void setPieChart(){
         // Pie Chart
         pieChart.setData(MyPie.countCourse());
-        pieChart.setTitle("Imported Fruits");
+        pieChart.setTitle("Total sale per service");
     }
 
     void setBarChart2(){
@@ -86,16 +86,24 @@ public class HomeController implements Initializable {
     }
 
     void setBarChart3(){
-        barChart3.setTitle("Sale this month group by weekday");
+        barChart3.setTitle("Sale this month compare to last month");
+        List<MyChart> barCharts = MyChart.monthReport(0);
+        List<MyChart> lastMonth = MyChart.monthReport(1);
 
-        List<MyChart> barCharts = MyChart.monthReport();
+
         XYChart.Series item = new XYChart.Series();
-        item.setName("Staff");
-
+        item.setName("This month");
         barCharts.forEach(it -> {
             item.getData().add(new XYChart.Data(it.getMonth(),it.getRevenue()));
         });
-        barChart3.getData().addAll(item);
+
+        XYChart.Series item2 = new XYChart.Series();
+        item2.setName("Last month");
+        lastMonth.forEach(it -> {
+            item2.getData().add(new XYChart.Data(it.getMonth(),it.getRevenue()));
+        });
+
+        barChart3.getData().addAll(item2, item);
     }
 
     @Override
