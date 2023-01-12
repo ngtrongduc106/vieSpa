@@ -2,7 +2,6 @@ package com.viespa.models;
 
 import com.viespa.utils.DButil;
 import com.viespa.utils.DateForm;
-import javafx.collections.FXCollections;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
