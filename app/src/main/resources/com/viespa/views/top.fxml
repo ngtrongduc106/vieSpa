@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane prefHeight="116.0" prefWidth="1200.0" stylesheets="@../css/main.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.TopController">
     <children>
       <HBox layoutX="549.0" layoutY="17.0" styleClass="container" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="4.0">
