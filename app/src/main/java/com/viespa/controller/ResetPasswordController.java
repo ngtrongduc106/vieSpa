@@ -2,14 +2,19 @@ package com.viespa.controller;
 
 import com.viespa.App;
 import com.viespa.utils.DButil;
+import com.viespa.utils.Md5;
+import com.viespa.utils.RandomString;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Date;
+import java.util.Properties;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -34,7 +39,11 @@ public class ResetPasswordController implements Initializable {
     @FXML
     private TextField input_email;
 
+    private final String accountAdminMail = "duc.nt.2081@aptechlearning.edu.vn" ;
+    private final String passAdminMail = "hdegofgkoynycuqq" ;
+    private final String passReset = RandomString.getAlphaNumericString(10);
 
+    final String subject = "Reset password";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,10 +78,63 @@ public class ResetPasswordController implements Initializable {
             error_email.setText("");
         }
 
-        //Check DB
+//        Check DB
         if (errors == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Reset password successfully !");
-            alert.show();
+            DButil db = new DButil();
+            Connection connection = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+            try {
+                connection = db.connect();
+                statement = connection.prepareStatement("UPDATE users SET password = ? WHERE account = ? AND email = ? ");
+
+                statement.setString(1,Md5.getMD5(passReset));
+                statement.setString(2, val_account);
+                statement.setString(3, val_email);
+
+                int countRowModified = statement.executeUpdate();
+
+                if (countRowModified > 0) {
+                    Properties props = new Properties();
+                    props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+                    props.put("mail.smtp.port", "587"); //TLS Port
+                    props.put("mail.smtp.auth", "true"); //enable authentication
+                    props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+                    Authenticator auth = new Authenticator() {
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(accountAdminMail, passAdminMail);
+                        }
+                    };
+                    Session session = Session.getInstance(props, auth);
+                    MimeMessage msg = new MimeMessage(session);
+                    //set message headers
+                    msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+                    msg.addHeader("format", "flowed");
+                    msg.addHeader("Content-Transfer-Encoding", "8bit");
+                    msg.setFrom(new InternetAddress(accountAdminMail, "NoReply-JD"));
+                    msg.setReplyTo(InternetAddress.parse(accountAdminMail, false));
+                    msg.setSubject(subject, "UTF-8");
+                    String bodyMail = "New your password : " + passReset;
+                    msg.setText(bodyMail, "UTF-8");
+                    msg.setSentDate(new Date());
+                    msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(val_email, false));
+                    Transport.send(msg);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Reset password successful ! Pls check your email .");
+                    alert.show();
+                    App.setRoot("views/login-view");
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("ERROR");
+                    alert.setContentText("Account or email incorrect !");
+                    alert.show();
+                }
+
+            } catch (SQLException | MessagingException | IOException e) {
+                throw new RuntimeException(e);
+            } finally {
+                db.closeAll(connection, statement, resultSet);
+            }
         }
     }
 

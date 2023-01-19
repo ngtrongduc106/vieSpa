@@ -26,6 +26,7 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+        // Java Mail
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>

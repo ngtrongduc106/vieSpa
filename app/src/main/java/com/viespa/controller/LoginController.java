@@ -3,6 +3,7 @@ package com.viespa.controller;
 import com.viespa.App;
 import com.viespa.models.User;
 import com.viespa.utils.DButil;
+import com.viespa.utils.Md5;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -56,7 +57,7 @@ public class LoginController {
         } else {
             error_password.setText("");
         }
-
+        String md5_password = Md5.getMD5(val_password);
         //Check DB
         if (errors == 0) {
             DButil db = new DButil();
@@ -68,7 +69,7 @@ public class LoginController {
                 statement = connection.prepareStatement("SELECT * FROM users WHERE account = ? AND password = ? ");
 
                 statement.setString(1, val_account);
-                statement.setString(2, val_password);
+                statement.setString(2, md5_password);
 
                 resultSet = statement.executeQuery();
 

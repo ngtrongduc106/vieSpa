@@ -5,6 +5,7 @@ module com.viespa {
     requires mysql.connector.j;
     requires org.jetbrains.annotations;
     requires javafx.graphics;
+    requires javax.mail;
 
     opens com.viespa to javafx.fxml;
     exports com.viespa;
