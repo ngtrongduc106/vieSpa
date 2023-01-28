@@ -65,6 +65,28 @@ public class Role {
         }
     }
 
+    public static String queryRoleName(String data) {
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            statement = connection.prepareStatement("SELECT role_name from roles where id = ?");
+            statement.setString(1, data);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("role_name");
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            db.closeAll(connection, statement, resultSet);
+        }
+    }
+
     public SimpleLongProperty idProperty() {
         return id;
     }

@@ -40,16 +40,16 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Label text="Name:" />
-                                <Label text="Username:" GridPane.rowIndex="1" />
-                        <Label text="Role:" GridPane.rowIndex="2" />
+                                <Label fx:id="lb_name" text="Name:" />
+                                <Label fx:id="lb_username" text="Username:" GridPane.rowIndex="1" />
+                        <Label fx:id="lb_role" text="Role:" GridPane.rowIndex="2" />
                         <Label text="Old Password:" GridPane.rowIndex="3" />
-                        <PasswordField maxWidth="300.0" GridPane.rowIndex="4" />
+                        <PasswordField fx:id="old_pass" maxWidth="300.0" GridPane.rowIndex="4" />
                         <Label text="New Password:" GridPane.rowIndex="5" />
-                        <PasswordField maxWidth="300.0" GridPane.rowIndex="6" />
+                        <PasswordField fx:id="new_pass" maxWidth="300.0" GridPane.rowIndex="6" />
                         <Label text="Confirm Password:" GridPane.rowIndex="7" />
-                        <PasswordField maxWidth="300.0" GridPane.rowIndex="8" />
-                        <Button mnemonicParsing="false" styleClass="button-add-new" text="Save Change" GridPane.rowIndex="9">
+                        <PasswordField fx:id="conf_pass" maxWidth="300.0" GridPane.rowIndex="8" />
+                        <Button onAction="#change_pass" mnemonicParsing="false" styleClass="button-add-new" text="Save Change" GridPane.rowIndex="9">
                            <GridPane.margin>
                               <Insets top="20.0" />
                            </GridPane.margin>
