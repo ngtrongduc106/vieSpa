@@ -6,10 +6,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SideBarController implements Initializable {
@@ -39,8 +42,20 @@ public class SideBarController implements Initializable {
 
     @FXML
     public void buttonLogout() throws IOException {
-        user.setPage(0);
-        App.setRoot("views/login-view");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to log out?");
+        int currentPage = user.getPage();
+
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.isEmpty()) {
+            return;
+        }
+        if (option.get() == ButtonType.OK) {
+            user.setPage(0);
+            App.setRoot("views/login-view");
+        } else {
+            user.setPage(currentPage);
+        }
+
     }
 
     @FXML
