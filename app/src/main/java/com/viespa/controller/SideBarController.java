@@ -30,6 +30,9 @@ public class SideBarController implements Initializable {
     @FXML
     private Button transaction;
 
+    @FXML
+    private Button setting;
+
     public String getUserNameValue() {
         return "Hi! " + userFullNameValue.get();
     }
@@ -70,6 +73,12 @@ public class SideBarController implements Initializable {
         App.setRoot("views/transaction-view");
     }
 
+    @FXML
+    void buttonSetting() throws IOException {
+        user.setPage(5);
+        App.setRoot("views/setting-view");
+    }
+
     public void author_active() {
         if (user.getRole() == 2) {
             button_staff.setDisable(true);
@@ -77,6 +86,7 @@ public class SideBarController implements Initializable {
             course.setDisable(false);
             transaction.setDisable(false);
             customer.setDisable(false);
+            setting.setDisable(false);
         }
     }
 
@@ -103,6 +113,10 @@ public class SideBarController implements Initializable {
             case 4:
                 transaction.setDisable(true);
                 transaction.getStyleClass().add("active");
+                break;
+            case 5:
+                setting.setDisable(true);
+                setting.getStyleClass().add("active");
                 break;
             default:
                 break;
