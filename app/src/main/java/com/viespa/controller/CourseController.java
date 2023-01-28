@@ -4,6 +4,7 @@ import com.viespa.models.Course;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -108,7 +109,9 @@ public class CourseController implements Initializable {
         String val_price = input_price.getText().trim();
         String val_description = input_description.getText().trim();
 
-        if (val_name.isEmpty()) {
+        if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
+            alert.show();
             return;
         } else {
             Course.addNew(val_name, val_price, val_description);
@@ -128,7 +131,9 @@ public class CourseController implements Initializable {
         String val_price = input_price.getText().trim();
         String val_description = input_description.getText().trim();
 
-        if (val_name.isEmpty()) {
+        if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
+            alert.show();
             return;
         } else {
             Course.update(String.valueOf(id), val_name, val_price, val_description);

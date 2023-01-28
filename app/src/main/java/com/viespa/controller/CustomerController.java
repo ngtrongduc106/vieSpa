@@ -5,6 +5,7 @@ import com.viespa.utils.DateForm;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -114,7 +115,7 @@ public class CustomerController implements Initializable {
                     input_email.setText(table_customer
                             .getItems()
                             .get(myIndex)
-                            .getPhone());
+                            .getEmail());
                     input_address.setText(table_customer
                             .getItems()
                             .get(myIndex)
@@ -146,7 +147,9 @@ public class CustomerController implements Initializable {
         LocalDate val_dob = input_dob.getValue();
         String val_isfemale = input_female.getText().trim();
 
-        if (val_fullname.isEmpty()) {
+        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_dob == null || val_isfemale.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
+            alert.show();
             return;
         } else {
             Customer.addNewCustomer(val_fullname, val_phone, val_email, val_address, val_isfemale, val_dob);
@@ -172,7 +175,9 @@ public class CustomerController implements Initializable {
         LocalDate val_dob = input_dob.getValue();
         String val_isfemale = input_female.getText().trim();
 
-        if (val_fullname.isEmpty()) {
+        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty()|| val_dob == null || val_isfemale.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
+            alert.show();
             return;
         } else {
             Customer.updateCustomer(val_fullname, val_phone, val_email, val_address, id, val_isfemale, val_dob);

@@ -103,6 +103,7 @@ public class StaffController implements Initializable {
         input_role.setValue("");
         buttonUpdate.setDisable(true);
         buttonAddNew.setDisable(false);
+        input_enddate.setDisable(true);
         table_staff.getSelectionModel().select(null);
     }
 
@@ -122,7 +123,9 @@ public class StaffController implements Initializable {
         String val_password = input_password.getText().trim();
         String val_role = Role.queryRoleId(input_role.getValue());
 
-        if (val_fullname.isEmpty()) {
+        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty() || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty for this request");
+            alert.show();
             return;
         }
 
@@ -169,7 +172,9 @@ public class StaffController implements Initializable {
         String val_role = Role.queryRoleId(input_role.getValue());
         LocalDate val_enddate = input_enddate.getValue();
 
-        if (val_fullname.isEmpty()) {
+        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty() || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty for this request");
+            alert.show();
             return;
         }
 
