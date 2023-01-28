@@ -24,21 +24,4 @@ public class Md5 {
         }
         return hashtext;
     }
-    public static String convertByteToHex2(byte[] data) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < data.length; i++) {
-            sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
-        }
-        return sb.toString();
-    }
-    public static String convertByteToHex3(byte[] data) {
-        StringBuffer hexString = new StringBuffer();
-        for (int i = 0; i < data.length; i++) {
-            String hex = Integer.toHexString(0xff & data[i]);
-            if (hex.length() == 1)
-                hexString.append('0');
-            hexString.append(hex);
-        }
-        return hexString.toString();
-    }
 }
