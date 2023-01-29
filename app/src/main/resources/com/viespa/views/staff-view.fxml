@@ -16,177 +16,154 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-            prefWidth="1500.0" styleClass="background" stylesheets="@../css/main.css"
-            xmlns="http://javafx.com/javafx/19" fx:controller="com.viespa.controller.StaffController">
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="background" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.StaffController">
     <top>
-        <fx:include source="top.fxml"/>
+        <fx:include source="top.fxml" />
     </top>
     <left>
-        <fx:include source="sidebar.fxml"/>
+        <fx:include source="sidebar.fxml" />
     </left>
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="container" BorderPane.alignment="CENTER">
             <children>
-                <VBox layoutY="-13.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0"
-                      AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
+                <VBox layoutY="-13.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
                     <children>
-                        <TableView fx:id="table_staff" maxHeight="1.7976931348623157E308"
-                                   maxWidth="1.7976931348623157E308" minWidth="600.0">
+                        <TableView fx:id="table_staff" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="600.0">
                             <columns>
-                                <TableColumn fx:id="column_fullname" prefWidth="147.5" text="Full Name"/>
-                                <TableColumn fx:id="column_phone" prefWidth="102.0" text="Phone"/>
-                                <TableColumn fx:id="column_email" prefWidth="115.0" text="Email"/>
-                                <TableColumn fx:id="column_address" prefWidth="256.5" text="Address"/>
-                                <TableColumn fx:id="column_dob" prefWidth="118.0" text="DOB"/>
-                                <TableColumn fx:id="column_role" prefWidth="38.0" text="Role"/>
-                                <TableColumn fx:id="column_joindate" prefWidth="114.0" text="Join Date"/>
-                                <TableColumn fx:id="column_enddate" prefWidth="108.0" text="End Date"/>
+                                <TableColumn fx:id="column_fullname" prefWidth="147.5" text="Full Name" />
+                                <TableColumn fx:id="column_phone" prefWidth="102.0" text="Phone" />
+                                <TableColumn fx:id="column_email" prefWidth="115.0" text="Email" />
+                                <TableColumn fx:id="column_address" prefWidth="256.5" text="Address" />
+                                <TableColumn fx:id="column_dob" prefWidth="118.0" text="DOB" />
+                                <TableColumn fx:id="column_role" prefWidth="38.0" text="Role" />
+                                <TableColumn fx:id="column_joindate" prefWidth="114.0" text="Join Date" />
+                                <TableColumn fx:id="column_enddate" prefWidth="108.0" text="End Date" />
                             </columns>
                             <columnResizePolicy>
-                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
                         <Separator prefWidth="200.0">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <VBox.margin>
-                                <Insets left="100.0" right="100.0"/>
+                                <Insets left="100.0" right="100.0" />
                             </VBox.margin>
                         </Separator>
                         <GridPane hgap="20.0">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0"
-                                                   prefWidth="100.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Label text="Full Name:"/>
+                                <Label text="Full Name:" />
                                 <TextField fx:id="input_fullname" GridPane.rowIndex="1">
                                     <GridPane.margin>
-                                        <Insets bottom="12.0"/>
+                                        <Insets bottom="12.0" />
                                     </GridPane.margin>
                                 </TextField>
-                                <DatePicker fx:id="input_dob" maxHeight="1.7976931348623157E308"
-                                            maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-                                            GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                                <DatePicker fx:id="input_dob" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                                     <GridPane.margin>
-                                        <Insets bottom="12.0"/>
+                                        <Insets bottom="12.0" />
                                     </GridPane.margin>
                                 </DatePicker>
                                 <TextField fx:id="input_account" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                     <GridPane.margin>
-                                        <Insets bottom="12.0"/>
+                                        <Insets bottom="12.0" />
                                     </GridPane.margin>
                                 </TextField>
                                 <TextField fx:id="input_phone" GridPane.rowIndex="3">
                                     <GridPane.margin>
-                                        <Insets bottom="12.0"/>
+                                        <Insets bottom="12.0" />
                                     </GridPane.margin>
                                 </TextField>
                                 <TextField fx:id="input_email" GridPane.rowIndex="5">
                                     <GridPane.margin>
-                                        <Insets bottom="12.0"/>
+                                        <Insets bottom="12.0" />
                                     </GridPane.margin>
                                 </TextField>
-                                <DatePicker fx:id="input_joindate" maxHeight="1.7976931348623157E308"
-                                            maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-                                            GridPane.rowIndex="3">
+                                <DatePicker fx:id="input_joindate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                     <GridPane.margin>
-                                        <Insets bottom="12.0"/>
+                                        <Insets bottom="12.0" />
                                     </GridPane.margin>
                                 </DatePicker>
-                                <DatePicker fx:id="input_enddate" maxHeight="1.7976931348623157E308"
-                                            maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-                                            GridPane.rowIndex="5">
+                                <DatePicker fx:id="input_enddate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                     <GridPane.margin>
-                                        <Insets bottom="12.0"/>
+                                        <Insets bottom="12.0" />
                                     </GridPane.margin>
                                 </DatePicker>
-                                <TextField fx:id="input_password" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                    <GridPane.margin>
-                                        <Insets bottom="12.0"/>
-                                    </GridPane.margin>
-                                </TextField>
-                                <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="7"
-                                      GridPane.valignment="CENTER">
+                                <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                                     <children>
-                                        <Button fx:id="buttonCancel" maxWidth="1.7976931348623157E308"
-                                                mnemonicParsing="false" onAction="#buttonCancel"
-                                                styleClass="button-update" text="Cancel" HBox.hgrow="ALWAYS">
+                                        <Button fx:id="buttonCancel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonCancel" styleClass="button-update" text="Cancel" HBox.hgrow="ALWAYS">
                                             <HBox.margin>
-                                                <Insets left="10.0"/>
+                                                <Insets left="10.0" />
                                             </HBox.margin>
                                         </Button>
                                     </children>
                                     <opaqueInsets>
-                                        <Insets/>
+                                        <Insets />
                                     </opaqueInsets>
                                 </HBox>
-                                <TextField fx:id="input_address" prefHeight="26.0" prefWidth="625.0"
-                                           GridPane.rowIndex="7">
+                                <TextField fx:id="input_address" prefHeight="26.0" prefWidth="625.0" GridPane.rowIndex="7">
                                     <GridPane.margin>
-                                        <Insets/>
+                                        <Insets />
                                     </GridPane.margin>
                                 </TextField>
                                 <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                     <children>
-                                        <Button fx:id="buttonAddNew" maxWidth="1.7976931348623157E308"
-                                                mnemonicParsing="false" onAction="#buttonAddNew"
-                                                styleClass="button-add-new" text="Add new" HBox.hgrow="ALWAYS">
+                                        <Button fx:id="buttonAddNew" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonAddNew" styleClass="button-add-new" text="Add new" HBox.hgrow="ALWAYS">
                                             <HBox.margin>
-                                                <Insets right="10.0"/>
+                                                <Insets right="10.0" />
                                             </HBox.margin>
                                         </Button>
-                                        <Button fx:id="buttonUpdate" maxWidth="1.7976931348623157E308"
-                                                mnemonicParsing="false" onAction="#buttonUpdate"
-                                                styleClass="button-update" text="Update" HBox.hgrow="ALWAYS">
+                                        <Button fx:id="buttonUpdate" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonUpdate" styleClass="button-update" text="Update" HBox.hgrow="ALWAYS">
                                             <HBox.margin>
-                                                <Insets left="10.0"/>
+                                                <Insets left="10.0" />
                                             </HBox.margin>
                                         </Button>
                                     </children>
                                     <opaqueInsets>
-                                        <Insets/>
+                                        <Insets />
                                     </opaqueInsets>
                                 </HBox>
-                                <Label text="Date of Birth:" GridPane.columnIndex="1"/>
-                                <Label text="Account:" GridPane.columnIndex="2"/>
-                                <Label text="Phone:" GridPane.rowIndex="2"/>
-                                <Label text="Join Date:" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                                <Label text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-                                <Label text="Email:" GridPane.rowIndex="4"/>
-                                <Label text="End Date:" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                                <Label text="Address:" GridPane.rowIndex="6"/>
-                                <Label text="Role:" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-                                <ChoiceBox fx:id="input_role" prefWidth="150.0" GridPane.columnIndex="2"
-                                           GridPane.rowIndex="5"/>
+                                <Label text="Date of Birth:" GridPane.columnIndex="1" />
+                                <Label text="Account:" GridPane.columnIndex="2" />
+                                <Label text="Phone:" GridPane.rowIndex="2" />
+                                <Label text="Join Date:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Status:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <Label text="Email:" GridPane.rowIndex="4" />
+                                <Label text="End Date:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="Address:" GridPane.rowIndex="6" />
+                                <Label text="Role:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                <ChoiceBox fx:id="input_role" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <ChoiceBox fx:id="input_status" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                             </children>
                             <padding>
-                                <Insets bottom="40.0" left="40.0" right="40.0" top="20.0"/>
+                                <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
                             </padding>
                         </GridPane>
                     </children>
                 </VBox>
             </children>
             <BorderPane.margin>
-                <Insets bottom="12.0" right="16.0"/>
+                <Insets bottom="12.0" right="16.0" />
             </BorderPane.margin>
         </AnchorPane>
     </center>
     <bottom>
-        <fx:include source="bottom.fxml"/>
+        <fx:include source="bottom.fxml" />
     </bottom>
 </BorderPane>

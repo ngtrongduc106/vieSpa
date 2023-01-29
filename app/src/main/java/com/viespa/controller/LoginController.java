@@ -82,6 +82,7 @@ public class LoginController {
                         App.setRoot("views/home-view");
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("You do not have access !");
                         alert.show();
                     }
                 } else {

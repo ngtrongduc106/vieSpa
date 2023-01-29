@@ -3,6 +3,7 @@ package com.viespa.controller;
 import com.viespa.models.Role;
 import com.viespa.models.Staff;
 import com.viespa.utils.DateForm;
+import com.viespa.utils.Md5;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,6 +23,8 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class StaffController implements Initializable {
+
+    private final String default_password = Md5.getMD5("123123");
     @FXML
     TableView<Staff> table_staff;
 
@@ -74,10 +77,10 @@ public class StaffController implements Initializable {
     TextField input_account;
 
     @FXML
-    TextField input_password;
+    ChoiceBox<String> input_role;
 
     @FXML
-    ChoiceBox<String> input_role;
+    ChoiceBox<String> input_status;
 
     @FXML
     Button buttonAddNew;
@@ -99,8 +102,8 @@ public class StaffController implements Initializable {
         input_dob.setValue(null);
         input_joindate.setValue(null);
         input_account.setText("");
-        input_password.setText("");
         input_role.setValue("");
+        input_status.setValue("");
         buttonUpdate.setDisable(true);
         buttonAddNew.setDisable(false);
         input_enddate.setDisable(true);
@@ -120,8 +123,13 @@ public class StaffController implements Initializable {
         LocalDate val_dob = input_dob.getValue();
         LocalDate val_joindate = input_joindate.getValue();
         String val_account = input_account.getText().trim().toLowerCase();
-        String val_password = input_password.getText().trim();
         String val_role = Role.queryRoleId(input_role.getValue());
+        String val_status ;
+        if(input_status.getValue().equals("Active")){
+            val_status = "0";
+        }else {
+            val_status = "1";
+        }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty() || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty for this request");
@@ -142,7 +150,7 @@ public class StaffController implements Initializable {
             alert.show();
             return;
         } else {
-            Staff.addStaff(val_account, val_password, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate);
+            Staff.addStaff(val_account, default_password, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate,val_status);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");
@@ -150,8 +158,12 @@ public class StaffController implements Initializable {
             input_dob.setValue(null);
             input_joindate.setValue(null);
             input_account.setText("");
-            input_password.setText("");
             input_role.setValue("");
+            input_status.setValue("");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Create Staff Success !");
+            alert.setContentText("Default password : 123123");
+            alert.show();
         }
 
         table();
@@ -168,9 +180,14 @@ public class StaffController implements Initializable {
         LocalDate val_dob = input_dob.getValue();
         LocalDate val_joindate = input_joindate.getValue();
         String val_account = input_account.getText().trim().toLowerCase();
-        String val_password = input_password.getText().trim();
         String val_role = Role.queryRoleId(input_role.getValue());
         LocalDate val_enddate = input_enddate.getValue();
+        String val_status ;
+        if(input_status.getValue() == "Active"){
+            val_status = "0";
+        }else {
+            val_status = "1";
+        }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty() || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty for this request");
@@ -185,7 +202,7 @@ public class StaffController implements Initializable {
             alert.show();
             return;
         } else {
-            Staff.updateStaff(id, val_account, val_password, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate, val_enddate);
+            Staff.updateStaff(id, val_account, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate, val_enddate,val_status);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");
@@ -193,8 +210,8 @@ public class StaffController implements Initializable {
             input_dob.setValue(null);
             input_joindate.setValue(null);
             input_account.setText("");
-            input_password.setText("");
             input_role.setValue("");
+            input_status.setValue("");
         }
 
         table();
@@ -257,14 +274,15 @@ public class StaffController implements Initializable {
                             .getItems()
                             .get(myIndex)
                             .getAccount());
-                    input_password.setText(table_staff
-                            .getItems()
-                            .get(myIndex)
-                            .getPassword());
                     input_role.setValue(table_staff
                             .getItems()
                             .get(myIndex)
                             .getRole());
+                    if(table_staff.getItems().get(myIndex).getStatus().equals("0")){
+                        input_status.setValue("Active");
+                    }else {
+                        input_status.setValue("UnActive");
+                    }
 
                     input_enddate.setDisable(false);
                     buttonUpdate.setDisable(false);
@@ -283,5 +301,8 @@ public class StaffController implements Initializable {
         ObservableList<Role> roles = Role.getAllRole();
         assert roles != null;
         roles.stream().map(Role::getRole).forEach(t -> input_role.getItems().add(t));
+
+        input_status.getItems().add("Active");
+        input_status.getItems().add("UnActive");
     }
 }

@@ -18,7 +18,6 @@ import java.time.LocalDate;
 public class Staff {
     private final SimpleLongProperty id = new SimpleLongProperty();
     private final SimpleStringProperty account = new SimpleStringProperty();
-    private final SimpleStringProperty password = new SimpleStringProperty();
     private final SimpleStringProperty fullname = new SimpleStringProperty();
     private final SimpleObjectProperty<LocalDate> dob = new SimpleObjectProperty<>();
     private final SimpleStringProperty phone = new SimpleStringProperty();
@@ -27,6 +26,7 @@ public class Staff {
     private final SimpleStringProperty role = new SimpleStringProperty();
     private final SimpleObjectProperty<LocalDate> joinDate = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<LocalDate> endDate = new SimpleObjectProperty<>();
+    private final SimpleStringProperty status = new SimpleStringProperty();
 
     public Staff() {
     }
@@ -39,7 +39,7 @@ public class Staff {
             ResultSet rs = null;
             ObservableList<Staff> staffs = FXCollections.observableArrayList();
             try {
-                pst = connection.prepareStatement("SELECT users.id, users.account, users.password, users.fullname, users.dob, users.phone, users.email, users.address, roles.role_name , users.joindate, users.enddate, users.status \n" +
+                pst = connection.prepareStatement("SELECT users.id, users.account, users.fullname, users.dob, users.phone, users.email, users.address, roles.role_name , users.joindate, users.enddate, users.status \n" +
                         "FROM `users` JOIN roles ON roles.id = users.role\n" +
                         "WHERE role != ?");
                 pst.setString(1, "1");
@@ -48,7 +48,6 @@ public class Staff {
                     Staff it = new Staff();
                     it.setId(Long.valueOf(rs.getString("id")));
                     it.setAccount(rs.getString("account"));
-                    it.setPassword(rs.getString("password"));
                     it.setFullName(rs.getString("fullname"));
                     it.setDob((rs.getObject("dob", LocalDate.class)));
                     it.setPhone(rs.getString("phone"));
@@ -57,6 +56,7 @@ public class Staff {
                     it.setRole((rs.getString("role_name")));
                     it.setJoinDate((rs.getObject("joindate", LocalDate.class)));
                     it.setEndDate((rs.getObject("enddate", LocalDate.class)));
+                    it.setStatus(rs.getString("status"));
                     staffs.add(it);
                 }
 
@@ -79,7 +79,8 @@ public class Staff {
                                 String phone,
                                 int role,
                                 LocalDate dob,
-                                LocalDate joinDate) throws SQLException {
+                                LocalDate joinDate,
+                                String status) throws SQLException {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
@@ -88,8 +89,8 @@ public class Staff {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
                     "INSERT into " +
-                            "users(account, password, fullname, dob, phone, email , address , role , joindate) " +
-                            "values (?,?,?,?,?,?,?,?,?)");
+                            "users(account, password, fullname, dob, phone, email , address , role , joindate , status) " +
+                            "values (?,?,?,?,?,?,?,?,?,?)");
 
             statement.setString(1, account);
             statement.setString(2, password);
@@ -100,6 +101,7 @@ public class Staff {
             statement.setString(7, address);
             statement.setInt(8, role);
             statement.setDate(9, Date.valueOf(joinDate));
+            statement.setString(10, status);
 
             statement.executeUpdate();
 
@@ -117,7 +119,6 @@ public class Staff {
     public static void updateStaff(
             int id,
             String account,
-            String password,
             String fullname,
             String address,
             String email,
@@ -125,7 +126,8 @@ public class Staff {
             int role,
             LocalDate dob,
             LocalDate joinDate,
-            @Nullable LocalDate endDate) throws SQLException {
+            @Nullable LocalDate endDate,
+            String status) throws SQLException {
         DButil db = new DButil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
@@ -133,19 +135,19 @@ public class Staff {
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
-                    "UPDATE users SET account = ? , password = ? , fullname = ? , dob = ? , phone = ? , email = ? , address = ? , role = ? , joindate = ? , enddate = ? where id = ?");
+                    "UPDATE users SET account = ? , fullname = ? , dob = ? , phone = ? , email = ? , address = ? , role = ? , joindate = ? , enddate = ?, status = ? where id = ?");
 
 
             statement.setString(1, account);
-            statement.setString(2, password);
-            statement.setString(3, fullname);
-            statement.setDate(4, Date.valueOf(dob));
-            statement.setString(5, phone);
-            statement.setString(6, email);
-            statement.setString(7, address);
-            statement.setInt(8, role);
-            statement.setDate(9, Date.valueOf(joinDate));
-            statement.setDate(10, endDate != null ? Date.valueOf(endDate) : null);
+            statement.setString(2, fullname);
+            statement.setDate(3, Date.valueOf(dob));
+            statement.setString(4, phone);
+            statement.setString(5, email);
+            statement.setString(6, address);
+            statement.setInt(7, role);
+            statement.setDate(8, Date.valueOf(joinDate));
+            statement.setDate(9, endDate != null ? Date.valueOf(endDate) : null);
+            statement.setString(10,status);
             statement.setString(11, String.valueOf(id));
 
             statement.executeUpdate();
@@ -219,7 +221,6 @@ public class Staff {
                 if (rs.next()) {
                     it.setId(Long.valueOf(rs.getString("id")));
                     it.setAccount(rs.getString("account"));
-                    it.setPassword(rs.getString("password"));
                     it.setFullName(rs.getString("fullname"));
                     it.setDob((rs.getObject("dob", LocalDate.class)));
                     it.setPhone(rs.getString("phone"));
@@ -263,18 +264,6 @@ public class Staff {
 
     public void setAccount(String newAccount) {
         account.set(newAccount);
-    }
-
-    public SimpleStringProperty passwordProperty() {
-        return password;
-    }
-
-    public String getPassword() {
-        return password.get();
-    }
-
-    public void setPassword(String newPassword) {
-        password.set(newPassword);
     }
 
     public SimpleStringProperty fullNameProperty() {
@@ -373,5 +362,15 @@ public class Staff {
 
     public void setEndDate(LocalDate newEndDate) {
         endDate.set(newEndDate);
+    }
+
+    public SimpleStringProperty statusProperty(){return status;}
+
+    public String getStatus() {
+        return status.get();
+    }
+
+    public void setStatus(String newStatus){
+        status.set(newStatus);
     }
 }
