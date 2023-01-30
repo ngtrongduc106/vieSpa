@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class StaffController implements Initializable {
@@ -51,6 +52,9 @@ public class StaffController implements Initializable {
 
     @FXML
     TableColumn<Staff, String> column_enddate;
+
+    @FXML
+    private TableColumn<Staff, String> column_status;
 
     @FXML
     TextField input_fullname;
@@ -183,7 +187,7 @@ public class StaffController implements Initializable {
         String val_role = Role.queryRoleId(input_role.getValue());
         LocalDate val_enddate = input_enddate.getValue();
         String val_status ;
-        if(input_status.getValue() == "Active"){
+        if(Objects.equals(input_status.getValue(), "Active")){
             val_status = "0";
         }else {
             val_status = "1";
@@ -230,6 +234,9 @@ public class StaffController implements Initializable {
         column_enddate.setCellValueFactory(f -> f.getValue().endDateProperty().getValue() != null
                 ? DateForm.convert(String.valueOf(f.getValue().endDateProperty().getValue()))
                 : new SimpleStringProperty(""));
+        column_status.setCellValueFactory(f -> f.getValue().statusProperty().getValue().equals("0")
+                ? new SimpleStringProperty("Active")
+                : new SimpleStringProperty("UnActive"));
 
         input_enddate.setDisable(true);
         buttonUpdate.setDisable(true);
@@ -237,6 +244,7 @@ public class StaffController implements Initializable {
 
         table_staff.setRowFactory(it -> {
             TableRow<Staff> myRow = new TableRow<>();
+
             myRow.setOnMouseClicked(event ->
             {
                 if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
@@ -291,8 +299,6 @@ public class StaffController implements Initializable {
             });
             return myRow;
         });
-
-
     }
 
     @Override
