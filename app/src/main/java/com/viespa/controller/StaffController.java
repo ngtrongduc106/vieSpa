@@ -232,7 +232,7 @@ public class StaffController implements Initializable {
                 : new SimpleStringProperty(""));
         column_status.setCellValueFactory(f -> f.getValue().statusProperty().getValue().equals("0")
                 ? new SimpleStringProperty("Active")
-                : new SimpleStringProperty("UnActive"));
+                : new SimpleStringProperty("Inactive"));
 
         input_enddate.setDisable(true);
         buttonUpdate.setDisable(true);
