@@ -17,6 +17,8 @@ public class Course {
     private final SimpleStringProperty price = new SimpleStringProperty();
     private final SimpleStringProperty description = new SimpleStringProperty();
 
+    private final SimpleStringProperty active = new SimpleStringProperty();
+
     public static ObservableList<Course> getAllCourses() {
         DButil db = new DButil();
         Connection connection = db.connect();
@@ -24,7 +26,7 @@ public class Course {
         ResultSet rs = null;
         ObservableList<Course> courses = FXCollections.observableArrayList();
         try {
-            pst = connection.prepareStatement("SELECT course.id , course.name , course.price , course.description FROM course");
+            pst = connection.prepareStatement("SELECT course.id , course.name , course.price , course.description, course.active FROM course");
             rs = pst.executeQuery();
             while (rs.next()) {
                 Course it = new Course();
@@ -32,6 +34,7 @@ public class Course {
                 it.setName(rs.getString("name"));
                 it.setPrice(rs.getString("price"));
                 it.setDescription(rs.getString("description"));
+                it.setActive(rs.getString("active"));
                 courses.add(it);
             }
             return courses;
@@ -47,7 +50,8 @@ public class Course {
     public static void addNew(
             String name,
             String price,
-            String description
+            String description,
+            String active
     ) throws SQLException {
         DButil db = new DButil();
         Connection connection = db.connect();
@@ -57,12 +61,13 @@ public class Course {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
                     "INSERT into " +
-                            "course(name, price, description) " +
-                            "values (?,?,?)");
+                            "course(name, price, description, active) " +
+                            "values (?,?,?,?)");
 
             statement.setString(1, name);
             statement.setString(2, price);
             statement.setString(3, description);
+            statement.setString(4, active);
 
             statement.executeUpdate();
 
@@ -81,7 +86,8 @@ public class Course {
             String id,
             String name,
             String price,
-            String description
+            String description,
+            String active
     ) throws SQLException {
         DButil db = new DButil();
         Connection connection = db.connect();
@@ -91,14 +97,15 @@ public class Course {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
                     "UPDATE course" +
-                            " SET name = ? , price = ? , description = ?" +
+                            " SET name = ? , price = ? , description = ?, active = ?" +
                             " where id = ?");
 
 
             statement.setString(1, name);
             statement.setString(2, price);
             statement.setString(3, description);
-            statement.setString(4, id);
+            statement.setString(4, active);
+            statement.setString(5, id);
 
             statement.executeUpdate();
 
@@ -173,6 +180,7 @@ public class Course {
                 it.setName(resultSet.getString("name"));
                 it.setPrice(resultSet.getString("price"));
                 it.setDescription(resultSet.getString("description"));
+                it.setActive(resultSet.getString("active"));
             }
             return it;
         } catch (SQLException e) {
@@ -228,5 +236,18 @@ public class Course {
 
     public void setDescription(String newDescription) {
         description.set(newDescription);
+    }
+
+
+    public String getActive() {
+        return active.get();
+    }
+
+    public SimpleStringProperty activeProperty() {
+        return active;
+    }
+
+    public void setActive(String newActive) {
+        active.set(newActive);
     }
 }

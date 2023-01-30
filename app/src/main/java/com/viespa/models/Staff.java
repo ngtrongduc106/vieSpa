@@ -229,6 +229,7 @@ public class Staff {
                     it.setRole((rs.getString("role")));
                     it.setJoinDate((rs.getObject("joindate", LocalDate.class)));
                     it.setEndDate((rs.getObject("enddate", LocalDate.class)));
+                    it.setStatus((rs.getString("status")));
                 }
 
                 return it;

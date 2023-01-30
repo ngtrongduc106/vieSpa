@@ -1,11 +1,13 @@
 package com.viespa.controller;
 
 import com.viespa.models.Course;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -14,6 +16,7 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CourseController implements Initializable {
@@ -30,6 +33,9 @@ public class CourseController implements Initializable {
     TableColumn<Course, String> column_description;
 
     @FXML
+    private TableColumn<Course, String> column_status;
+
+    @FXML
     Button button_add;
 
     @FXML
@@ -43,26 +49,24 @@ public class CourseController implements Initializable {
 
     @FXML
     TextArea input_description;
+
+    @FXML
+    private ChoiceBox<String> input_status;
+
     int id;
     int myIndex;
     @FXML
     private Button buttonCancel;
-    @FXML
-    private Button buttonChangeStatus;
 
     @FXML
     void buttonCancel() {
         input_name.setText("");
         input_price.setText("");
         input_description.setText("");
+        input_status.setValue("");
         button_update.setDisable(true);
         button_add.setDisable(false);
         table_course.getSelectionModel().select(null);
-
-    }
-
-    @FXML
-    void buttonChangeStatus() {
 
     }
 
@@ -72,6 +76,9 @@ public class CourseController implements Initializable {
         column_name.setCellValueFactory(f -> f.getValue().nameProperty());
         column_price.setCellValueFactory(f -> f.getValue().priceProperty());
         column_description.setCellValueFactory(f -> f.getValue().descriptionProperty());
+        column_status.setCellValueFactory(f -> f.getValue().activeProperty().getValue().equals("1")
+                ? new SimpleStringProperty("Available")
+                : new SimpleStringProperty("Unavailable"));
 
         button_update.setDisable(true);
         button_add.setDisable(false);
@@ -95,6 +102,11 @@ public class CourseController implements Initializable {
                             .getItems()
                             .get(myIndex)
                             .getDescription());
+                    if (table_course.getItems().get(myIndex).getActive().equals("1")) {
+                        input_status.setValue("Available");
+                    } else {
+                        input_status.setValue("Unvailable");
+                    }
 
                     button_add.setDisable(true);
                     button_update.setDisable(false);
@@ -108,16 +120,24 @@ public class CourseController implements Initializable {
         String val_name = input_name.getText().trim();
         String val_price = input_price.getText().trim();
         String val_description = input_description.getText().trim();
+        String val_status;
+
+        if (Objects.equals(input_status.getValue(), "Available")) {
+            val_status = "1";
+        } else {
+            val_status = "0";
+        }
 
         if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
             alert.show();
             return;
         } else {
-            Course.addNew(val_name, val_price, val_description);
+            Course.addNew(val_name, val_price, val_description, val_status);
             input_name.setText("");
             input_price.setText("");
             input_description.setText("");
+            input_status.setValue("");
         }
 
         table();
@@ -131,15 +151,24 @@ public class CourseController implements Initializable {
         String val_price = input_price.getText().trim();
         String val_description = input_description.getText().trim();
 
+        String val_status;
+
+        if (Objects.equals(input_status.getValue(), "Available")) {
+            val_status = "1";
+        } else {
+            val_status = "0";
+        }
+
         if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
             alert.show();
             return;
         } else {
-            Course.update(String.valueOf(id), val_name, val_price, val_description);
+            Course.update(String.valueOf(id), val_name, val_price, val_description, val_status);
             input_name.setText("");
             input_price.setText("");
             input_description.setText("");
+            input_status.setValue("");
             button_update.setDisable(true);
         }
 
@@ -149,5 +178,7 @@ public class CourseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         table();
+        input_status.getItems().add("Available");
+        input_status.getItems().add("Unavailable");
     }
 }

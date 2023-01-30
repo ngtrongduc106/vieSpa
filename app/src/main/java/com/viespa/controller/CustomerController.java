@@ -163,7 +163,7 @@ public class CustomerController implements Initializable {
             val_gender = "0";
         }
 
-        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_dob == null || val_gender.isEmpty()) {
+        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_dob == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
             alert.show();
             return;
