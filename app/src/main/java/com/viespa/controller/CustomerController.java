@@ -2,11 +2,13 @@ package com.viespa.controller;
 
 import com.viespa.models.Customer;
 import com.viespa.utils.DateForm;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -16,6 +18,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
@@ -39,6 +42,9 @@ public class CustomerController implements Initializable {
     TableColumn<Customer, String> column_dob;
 
     @FXML
+    TableColumn<Customer, String> column_gender;
+
+    @FXML
     Button button_add;
 
     @FXML
@@ -60,7 +66,8 @@ public class CustomerController implements Initializable {
     DatePicker input_dob;
 
     @FXML
-    TextField input_female;
+    private ChoiceBox<String> input_gender;
+
     int id;
     int myIndex;
     @FXML
@@ -75,7 +82,7 @@ public class CustomerController implements Initializable {
         input_email.setText("");
         input_address.setText("");
         input_dob.setValue(null);
-        input_female.setText("");
+        input_gender.setValue("");
         button_update.setDisable(true);
         button_add.setDisable(false);
         table_customer.getSelectionModel().select(null);
@@ -91,6 +98,9 @@ public class CustomerController implements Initializable {
         table_customer.setItems(customers);
         column_fullname.setCellValueFactory(f -> f.getValue().fullNameProperty());
         column_phone.setCellValueFactory(f -> f.getValue().phoneProperty());
+        column_gender.setCellValueFactory(f -> f.getValue().isFemeleProperty().getValue().equals("0")
+                ? new SimpleStringProperty("Male")
+                : new SimpleStringProperty("Female"));
         column_address.setCellValueFactory(f -> f.getValue().addressProperty());
         column_email.setCellValueFactory(f -> f.getValue().emailProperty());
         column_dob.setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().dobProperty().getValue())));
@@ -124,10 +134,11 @@ public class CustomerController implements Initializable {
                             .getItems()
                             .get(myIndex)
                             .getDob());
-                    input_female.setText(table_customer
-                            .getItems()
-                            .get(myIndex)
-                            .getIs_female());
+                    if(table_customer.getItems().get(myIndex).getIs_female().equals("0")) {
+                        input_gender.setValue("Male");
+                    } else {
+                        input_gender.setValue("Female");
+                    }
 
                     button_add.setDisable(true);
                     button_update.setDisable(false);
@@ -145,20 +156,25 @@ public class CustomerController implements Initializable {
         String val_email = input_email.getText().trim();
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
-        String val_isfemale = input_female.getText().trim();
+        String val_gender;
+        if (Objects.equals(input_gender.getValue(), "Female")) {
+            val_gender = "1";
+        } else {
+            val_gender = "0";
+        }
 
-        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_dob == null || val_isfemale.isEmpty()) {
+        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_dob == null || val_gender.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
             alert.show();
             return;
         } else {
-            Customer.addNewCustomer(val_fullname, val_phone, val_email, val_address, val_isfemale, val_dob);
+            Customer.addNewCustomer(val_fullname, val_phone, val_email, val_address, val_gender, val_dob);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");
             input_address.setText("");
             input_dob.setValue(null);
-            input_female.setText("");
+            input_gender.setValue("");
         }
         table();
     }
@@ -173,20 +189,26 @@ public class CustomerController implements Initializable {
         String val_email = input_email.getText().trim();
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
-        String val_isfemale = input_female.getText().trim();
+        String val_gender;
 
-        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty()|| val_dob == null || val_isfemale.isEmpty()) {
+        if (Objects.equals(input_gender.getValue(), "Female")) {
+            val_gender = "1";
+        } else {
+            val_gender = "0";
+        }
+
+        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty()|| val_dob == null || val_gender.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
             alert.show();
             return;
         } else {
-            Customer.updateCustomer(val_fullname, val_phone, val_email, val_address, id, val_isfemale, val_dob);
+            Customer.updateCustomer(val_fullname, val_phone, val_email, val_address, id, val_gender, val_dob);
             input_fullname.setText("");
             input_phone.setText("");
             input_email.setText("");
             input_address.setText("");
             input_dob.setValue(null);
-            input_female.setText("");
+            input_gender.setValue("");
         }
 
         table();
@@ -195,5 +217,7 @@ public class CustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         table();
+        input_gender.getItems().add("Male");
+        input_gender.getItems().add("Female");
     }
 }
