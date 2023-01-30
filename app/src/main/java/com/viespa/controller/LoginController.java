@@ -3,6 +3,7 @@ package com.viespa.controller;
 import com.viespa.App;
 import com.viespa.models.User;
 import com.viespa.utils.DButil;
+import com.viespa.utils.DateForm;
 import com.viespa.utils.Md5;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -15,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -79,6 +81,9 @@ public class LoginController {
                         user.setAccount(resultSet.getString("account"));
                         user.setFullname(resultSet.getString("fullname"));
                         user.setRole(Integer.parseInt(resultSet.getString("role")));
+                        user.setEmail(resultSet.getString("email"));
+                        user.setDob(LocalDate.parse(resultSet.getString("dob")));
+                        user.setAddress(resultSet.getString("address"));
                         App.setRoot("views/home-view");
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);

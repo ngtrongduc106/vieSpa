@@ -30,16 +30,13 @@ public class StaffController implements Initializable {
     TableView<Staff> table_staff;
 
     @FXML
+    TableColumn<Staff, String> column_account;
+
+    @FXML
     TableColumn<Staff, String> column_fullname;
 
     @FXML
-    TableColumn<Staff, String> column_dob;
-
-    @FXML
     TableColumn<Staff, String> column_phone;
-
-    @FXML
-    TableColumn<Staff, String> column_email;
 
     @FXML
     TableColumn<Staff, String> column_address;
@@ -93,8 +90,6 @@ public class StaffController implements Initializable {
     @FXML
     private Button buttonCancel;
     @FXML
-    private Button buttonChangeStatus;
-    @FXML
     private Button buttonUpdate;
 
     @FXML
@@ -112,11 +107,6 @@ public class StaffController implements Initializable {
         buttonAddNew.setDisable(false);
         input_enddate.setDisable(true);
         table_staff.getSelectionModel().select(null);
-    }
-
-    @FXML
-    void buttonChangeStatus() {
-
     }
 
     public void buttonAddNew() throws SQLException {
@@ -224,10 +214,9 @@ public class StaffController implements Initializable {
     public void table() {
         ObservableList<Staff> staffs = Staff.getAllStaffs();
         table_staff.setItems(staffs);
+        column_account.setCellValueFactory(f -> f.getValue().accountProperty());
         column_fullname.setCellValueFactory(f -> f.getValue().fullNameProperty());
-        column_dob.setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().dobProperty().getValue())));
         column_phone.setCellValueFactory(f -> f.getValue().phoneProperty());
-        column_email.setCellValueFactory(f -> f.getValue().emailProperty());
         column_address.setCellValueFactory(f -> f.getValue().addressProperty());
         column_role.setCellValueFactory(f -> f.getValue().roleProperty());
         column_joindate.setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().joinDateProperty().getValue())));
