@@ -31,11 +31,10 @@
                     <children>
                         <TableView fx:id="table_staff" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="600.0">
                             <columns>
+                        <TableColumn fx:id="column_account" prefWidth="147.5" text="Account" />
                                 <TableColumn fx:id="column_fullname" prefWidth="147.5" text="Full Name" />
                                 <TableColumn fx:id="column_phone" prefWidth="102.0" text="Phone" />
-                                <TableColumn fx:id="column_email" prefWidth="115.0" text="Email" />
                                 <TableColumn fx:id="column_address" prefWidth="256.5" text="Address" />
-                                <TableColumn fx:id="column_dob" prefWidth="118.0" text="DOB" />
                                 <TableColumn fx:id="column_role" prefWidth="38.0" text="Role" />
                                 <TableColumn fx:id="column_joindate" prefWidth="114.0" text="Join Date" />
                                 <TableColumn fx:id="column_enddate" prefWidth="108.0" text="End Date" />

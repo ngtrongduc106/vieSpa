@@ -29,6 +29,15 @@ public class SettingController implements Initializable {
     Label lb_role;
 
     @FXML
+    Label lb_email;
+
+    @FXML
+    Label lb_dob;
+
+    @FXML
+    Label lb_address;
+
+    @FXML
     PasswordField old_pass;
 
     @FXML
@@ -37,7 +46,7 @@ public class SettingController implements Initializable {
     @FXML
     PasswordField conf_pass;
 
-    public void change_pass(){
+    public void change_pass() {
         String val_old_pass = old_pass.getText();
         String val_new_pass = new_pass.getText();
         String val_conf_pass = conf_pass.getText();
@@ -45,13 +54,13 @@ public class SettingController implements Initializable {
         Alert alert_errors = new Alert(Alert.AlertType.ERROR);
         Alert alert_success = new Alert(Alert.AlertType.INFORMATION);
 
-        if(val_old_pass.equals("") || val_new_pass.equals("") || val_conf_pass.equals("")){
+        if (val_old_pass.equals("") || val_new_pass.equals("") || val_conf_pass.equals("")) {
             alert_errors.setContentText("Pls input all");
             alert_errors.show();
-        }else if(!val_new_pass.equals(val_conf_pass)) {
+        } else if (!val_new_pass.equals(val_conf_pass)) {
             alert_errors.setContentText("New pass and Conf pass incorrect");
             alert_errors.show();
-        }else {
+        } else {
             DButil db = new DButil();
             Connection connection = null;
             PreparedStatement statement = null;
@@ -65,19 +74,19 @@ public class SettingController implements Initializable {
 
                 int countRowModified = statement.executeUpdate();
 
-                if(countRowModified > 1){
+                if (countRowModified > 1) {
                     alert_success.setContentText("Change pass success");
                     alert_success.show();
                     old_pass.setText("");
                     new_pass.setText("");
                     conf_pass.setText("");
-                }else {
+                } else {
                     alert_errors.setContentText("Pls check old pass");
                     alert_errors.show();
                 }
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 throw new RuntimeException(e);
-            }finally {
+            } finally {
                 db.closeAll(connection, statement, resultSet);
             }
         }
@@ -85,8 +94,11 @@ public class SettingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lb_name.setText("Full name : "+user.getFullname());
-        lb_username.setText("Username : "+user.getAccount());
-        lb_role.setText("Role : "+ Role.queryRoleName(String.valueOf(user.getRole())));
+        lb_name.setText("Full name : " + user.getFullname());
+        lb_username.setText("Username : " + user.getAccount());
+        lb_role.setText("Role : " + Role.queryRoleName(String.valueOf(user.getRole())));
+        lb_email.setText("Email: " + user.getEmail());
+        lb_dob.setText("Email: " + user.getDob());
+        lb_address.setText("Email: " + user.getAddress());
     }
 }
