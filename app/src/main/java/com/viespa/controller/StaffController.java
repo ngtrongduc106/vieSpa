@@ -90,8 +90,6 @@ public class StaffController implements Initializable {
     @FXML
     private Button buttonCancel;
     @FXML
-    private Button buttonChangeStatus;
-    @FXML
     private Button buttonUpdate;
 
     @FXML
@@ -109,11 +107,6 @@ public class StaffController implements Initializable {
         buttonAddNew.setDisable(false);
         input_enddate.setDisable(true);
         table_staff.getSelectionModel().select(null);
-    }
-
-    @FXML
-    void buttonChangeStatus() {
-
     }
 
     public void buttonAddNew() throws SQLException {
