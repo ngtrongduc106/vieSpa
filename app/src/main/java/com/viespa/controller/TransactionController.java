@@ -176,7 +176,7 @@ public class TransactionController implements Initializable {
 
         if (val_customer == null || val_course == null || val_staff == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Admin cannot do label work!");
-            alert.show();
+            alert.showAndWait();
             return;
         }
         Transaction.addNew(val_customer, val_course, val_staff, val_price, val_note, val_booking, val_createby);
@@ -305,7 +305,7 @@ public class TransactionController implements Initializable {
         ObservableList<Customer> customers = Customer.getAllCustomers();
         customers.stream().map(Customer::getFullName).forEach(t -> input_customer.getItems().add(t));
 
-        ObservableList<Course> courses = Course.getAllCourses();
+        ObservableList<Course> courses = Course.getActiveCourses();
         courses.stream().map(Course::getName).forEach(t -> input_course.getItems().add(t));
 
         ObservableList<Staff> staffs = Staff.getAllStaffs();

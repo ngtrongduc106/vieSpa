@@ -71,6 +71,45 @@ public class Staff {
         }
     }
 
+    public static ObservableList<Staff> getActiveStaffs() {
+        {
+            DButil db = new DButil();
+            Connection connection = db.connect();
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+            ObservableList<Staff> staffs = FXCollections.observableArrayList();
+            try {
+                pst = connection.prepareStatement("SELECT users.id, users.account, users.fullname, users.dob, users.phone, users.email, users.address, roles.role_name , users.joindate, users.enddate, users.status \n" +
+                        "FROM `users` JOIN roles ON roles.id = users.role\n" +
+                        "WHERE role != ? AND users.enddate = NULL");
+                pst.setString(1, "1");
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    Staff it = new Staff();
+                    it.setId(Long.valueOf(rs.getString("id")));
+                    it.setAccount(rs.getString("account"));
+                    it.setFullName(rs.getString("fullname"));
+                    it.setDob((rs.getObject("dob", LocalDate.class)));
+                    it.setPhone(rs.getString("phone"));
+                    it.setEmail(rs.getString("email"));
+                    it.setAddress(rs.getString("address"));
+                    it.setRole((rs.getString("role_name")));
+                    it.setJoinDate((rs.getObject("joindate", LocalDate.class)));
+                    it.setEndDate((rs.getObject("enddate", LocalDate.class)));
+                    it.setStatus(rs.getString("status"));
+                    staffs.add(it);
+                }
+
+                return staffs;
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                return null;
+            } finally {
+                db.closeAll(connection, pst, rs);
+            }
+        }
+    }
     public static void addStaff(String account,
                                 String password,
                                 String fullname,

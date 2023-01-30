@@ -289,7 +289,7 @@ public class StaffController implements Initializable {
                     if(table_staff.getItems().get(myIndex).getStatus().equals("0")){
                         input_status.setValue("Active");
                     }else {
-                        input_status.setValue("UnActive");
+                        input_status.setValue("Inactive");
                     }
 
                     input_enddate.setDisable(false);
@@ -309,6 +309,6 @@ public class StaffController implements Initializable {
         roles.stream().map(Role::getRole).forEach(t -> input_role.getItems().add(t));
 
         input_status.getItems().add("Active");
-        input_status.getItems().add("UnActive");
+        input_status.getItems().add("Inactive");
     }
 }

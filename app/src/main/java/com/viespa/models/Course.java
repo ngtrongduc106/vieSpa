@@ -47,6 +47,34 @@ public class Course {
         }
     }
 
+    public static ObservableList<Course> getActiveCourses() {
+        DButil db = new DButil();
+        Connection connection = db.connect();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        ObservableList<Course> courses = FXCollections.observableArrayList();
+        try {
+            pst = connection.prepareStatement("SELECT course.id , course.name , course.price , course.description, course.active FROM course WHERE active");
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Course it = new Course();
+                it.setId(Long.parseLong(rs.getString("id")));
+                it.setName(rs.getString("name"));
+                it.setPrice(rs.getString("price"));
+                it.setDescription(rs.getString("description"));
+                it.setActive(rs.getString("active"));
+                courses.add(it);
+            }
+            return courses;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        } finally {
+            db.closeAll(connection, pst, rs);
+        }
+    }
+
     public static void addNew(
             String name,
             String price,
