@@ -115,7 +115,7 @@ public class TransactionController implements Initializable {
         column_number.setCellValueFactory(f -> f.getValue().idProperty());
         column_customer.setCellValueFactory(f -> f.getValue().customerProperty());
         column_course.setCellValueFactory(f -> f.getValue().courseProperty());
-        column_staff.setCellValueFactory(f -> new ReadOnlyStringWrapper(f.getValue().getId().toString()));
+        column_staff.setCellValueFactory(f -> f.getValue().staffProperty());
         column_booking.setCellValueFactory(f -> DateUtil.convert(String.valueOf(f.getValue().bookingProperty().getValue())));
         column_note.setCellValueFactory(f -> f.getValue().noteProperty());
         column_createby.setCellValueFactory(f -> f.getValue().createByProperty());
