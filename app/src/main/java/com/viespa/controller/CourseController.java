@@ -103,11 +103,8 @@ public class CourseController implements Initializable {
                             .getItems()
                             .get(myIndex)
                             .getDescription());
-                    if (table_course.getItems().get(myIndex).getActive().equals("1")) {
-                        input_status.setValue("Available");
-                    } else {
-                        input_status.setValue("Unvailable");
-                    }
+                    input_status.setValue(table_course.getItems().get(myIndex).getActive().equals("1") ? "Available" : "Unavailable");
+
 
                     button_add.setDisable(true);
                     button_update.setDisable(false);

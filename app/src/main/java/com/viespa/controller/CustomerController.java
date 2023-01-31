@@ -138,11 +138,7 @@ public class CustomerController implements Initializable {
                             .getItems()
                             .get(myIndex)
                             .getDob());
-                    if(table_customer.getItems().get(myIndex).getIs_female().equals("0")) {
-                        input_gender.setValue("Male");
-                    } else {
-                        input_gender.setValue("Female");
-                    }
+                    input_gender.setValue(table_customer.getItems().get(myIndex).getIs_female().equals("0") ? "Male" : "Female");
 
                     button_add.setDisable(true);
                     button_update.setDisable(false);

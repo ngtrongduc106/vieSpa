@@ -283,11 +283,7 @@ public class StaffController implements Initializable {
                             .getItems()
                             .get(myIndex)
                             .getRole());
-                    if (table_staff.getItems().get(myIndex).getStatus().equals("0")) {
-                        input_status.setValue("Active");
-                    } else {
-                        input_status.setValue("Inactive");
-                    }
+                    input_status.setValue(table_staff.getItems().get(myIndex).getStatus().equals("0") ? "Active" : "Inactive");
 
                     input_enddate.setDisable(false);
                     buttonUpdate.setDisable(false);
