@@ -31,12 +31,7 @@
                     <children>
                   <HBox alignment="CENTER_RIGHT">
                      <children>
-                        <Label text="Search">
-                           <HBox.margin>
-                              <Insets right="8.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="input_search" onKeyPressed="#search" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="input_search" maxWidth="400.0" onKeyPressed="#search" promptText="Search..." HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets bottom="8.0" />
                            </HBox.margin></TextField>
