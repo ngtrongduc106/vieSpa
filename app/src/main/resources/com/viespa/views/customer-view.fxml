@@ -28,6 +28,19 @@
             <children>
                 <VBox layoutY="16.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
                     <children>
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Label text="Search">
+                           <HBox.margin>
+                              <Insets right="8.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="input_search" onKeyPressed="#search" HBox.hgrow="ALWAYS" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="8.0" />
+                     </VBox.margin>
+                  </HBox>
                         <TableView fx:id="table_customer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                             <columns>
                                 <TableColumn fx:id="column_fullname" prefWidth="237.65330505371094" text="Full Name" />

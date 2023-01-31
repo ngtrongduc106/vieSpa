@@ -24,6 +24,8 @@ import java.util.ResourceBundle;
 public class CustomerController implements Initializable {
 
     @FXML
+    private TextField input_search;
+    @FXML
     TableView<Customer> table_customer;
 
     @FXML
@@ -95,8 +97,7 @@ public class CustomerController implements Initializable {
 
     }
 
-    public void table() {
-        ObservableList<Customer> customers = Customer.getAllCustomers();
+    public void table(ObservableList<Customer> customers) {
         table_customer.setItems(customers);
         column_fullname.setCellValueFactory(f -> f.getValue().fullNameProperty());
         column_phone.setCellValueFactory(f -> f.getValue().phoneProperty());
@@ -178,7 +179,7 @@ public class CustomerController implements Initializable {
             input_dob.setValue(null);
             input_gender.setValue("");
         }
-        table();
+        table(Customer.getAllCustomers());
     }
 
     @FXML
@@ -216,12 +217,16 @@ public class CustomerController implements Initializable {
             input_gender.setValue("");
         }
 
-        table();
+        table(Customer.getAllCustomers());
+    }
+
+    public void search(){
+        table(Customer.search(input_search.getText()));
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        table();
+        table(Customer.getAllCustomers());
         input_gender.getItems().add("Male");
         input_gender.setValue("Female");
         input_gender.getItems().add("Female");

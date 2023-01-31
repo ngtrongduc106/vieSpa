@@ -177,6 +177,38 @@ public class Customer {
         }
     }
 
+    public static ObservableList<Customer> search(String text) {
+        DBUtil db = new DBUtil();
+        Connection connection = db.connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        ObservableList<Customer> customers = FXCollections.observableArrayList();
+        try {
+            statement = connection.prepareStatement("SELECT * from customers WHERE customers.fullname like '%"+ text+"%' or customers.email like '%\"+ text+\"%' or customers.address like '%\"+ text+\"%' or customers.phone like '%\"+ text+\"%'");
+
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Customer it = new Customer();
+                it.setId(Long.valueOf(resultSet.getString("id")));
+                it.setFullName(resultSet.getString("fullname"));
+                it.setIs_female(resultSet.getString("is_female"));
+                it.setDob(LocalDate.parse(resultSet.getString("dob")));
+                it.setPhone(resultSet.getString("phone"));
+                it.setEmail(resultSet.getString("email"));
+                it.setAddress(resultSet.getString("address"));
+                customers.add(it);
+            }
+
+            return customers;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        } finally {
+            db.closeAll(connection, statement, resultSet);
+        }
+    }
+
     public SimpleLongProperty idProperty() {
         return id;
     }

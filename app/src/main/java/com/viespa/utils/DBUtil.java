@@ -17,7 +17,7 @@ public class DBUtil {
 
     public Connection connect(){
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(DB_URL,DB_USERNAME,DB_PASSWORD);
         }catch (Exception e){
             Logger.getLogger(DBUtil.class.getName()).log(Level.SEVERE, null, e);
