@@ -123,14 +123,12 @@ public class CourseController implements Initializable {
         if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
             AlertUtil.showError("Input can not empty for this request");
             return;
-        } else {
-            Course.addNew(val_name, val_price, val_description, val_status);
-            input_name.setText("");
-            input_price.setText("");
-            input_description.setText("");
-            input_status.setValue("");
         }
-
+        Course.addNew(val_name, val_price, val_description, val_status);
+        input_name.setText("");
+        input_price.setText("");
+        input_description.setText("");
+        input_status.setValue("");
         table();
     }
 
@@ -148,14 +146,13 @@ public class CourseController implements Initializable {
         if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
             AlertUtil.showError("Input can not empty for this request");
             return;
-        } else {
-            Course.update(String.valueOf(id), val_name, val_price, val_description, val_status);
-            input_name.setText("");
-            input_price.setText("");
-            input_description.setText("");
-            input_status.setValue("");
-            button_update.setDisable(true);
         }
+        Course.update(String.valueOf(id), val_name, val_price, val_description, val_status);
+        input_name.setText("");
+        input_price.setText("");
+        input_description.setText("");
+        input_status.setValue("");
+        button_update.setDisable(true);
 
         table();
     }

@@ -157,12 +157,12 @@ public class CustomerController implements Initializable {
         LocalDate val_dob = input_dob.getValue();
         String val_gender = input_gender.getValue().equals("Female") ? "1" : "0";
 
-        if(val_phone.equals("0")) {
+        if (val_phone.equals("0")) {
             AlertUtil.showError("Phone wrong format !");
             return;
         }
 
-        if(val_email.equals("0")) {
+        if (val_email.equals("0")) {
             AlertUtil.showError("Email wrong format, e.g: test@mail.com");
             return;
         }
@@ -170,15 +170,14 @@ public class CustomerController implements Initializable {
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_dob == null) {
             AlertUtil.showError("Input can not empty for this request");
             return;
-        } else {
-            Customer.addNewCustomer(val_fullname, val_phone, val_email, val_address, val_gender, val_dob);
-            input_fullname.setText("");
-            input_phone.setText("");
-            input_email.setText("");
-            input_address.setText("");
-            input_dob.setValue(null);
-            input_gender.setValue("");
         }
+        Customer.addNewCustomer(val_fullname, val_phone, val_email, val_address, val_gender, val_dob);
+        input_fullname.setText("");
+        input_phone.setText("");
+        input_email.setText("");
+        input_address.setText("");
+        input_dob.setValue(null);
+        input_gender.setValue("");
         table(Customer.getAllCustomers());
     }
 
@@ -194,33 +193,31 @@ public class CustomerController implements Initializable {
         LocalDate val_dob = input_dob.getValue();
         String val_gender = input_gender.getValue().equals("Female") ? "1" : "0";
 
-        if(val_phone.equals("0")) {
+        if (val_phone.equals("0")) {
             AlertUtil.showError("Phone wrong format !");
             return;
         }
 
-        if(val_email.equals("0")) {
+        if (val_email.equals("0")) {
             AlertUtil.showError("Email wrong format, e.g: test@mail.com");
             return;
         }
 
-        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty()|| val_dob == null) {
+        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_dob == null) {
             AlertUtil.showError("Input can not empty for this request");
             return;
-        } else {
-            Customer.updateCustomer(val_fullname, val_phone, val_email, val_address, id, val_gender, val_dob);
-            input_fullname.setText("");
-            input_phone.setText("");
-            input_email.setText("");
-            input_address.setText("");
-            input_dob.setValue(null);
-            input_gender.setValue("");
         }
-
+        Customer.updateCustomer(val_fullname, val_phone, val_email, val_address, id, val_gender, val_dob);
+        input_fullname.setText("");
+        input_phone.setText("");
+        input_email.setText("");
+        input_address.setText("");
+        input_dob.setValue(null);
+        input_gender.setValue("");
         table(Customer.getAllCustomers());
     }
 
-    public void search(){
+    public void search() {
         table(Customer.search(input_search.getText()));
     }
 
