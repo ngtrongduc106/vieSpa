@@ -23,8 +23,8 @@ public class Role {
         ResultSet rs = null;
         ObservableList<Role> roles = FXCollections.observableArrayList();
         try {
-            pst = connection.prepareStatement("SELECT * FROM roles WHERE id != ?");
-            pst.setString(1, "1");
+            pst = connection.prepareStatement("SELECT * FROM roles");
+//            pst.setString(1, "1");
             rs = pst.executeQuery();
             while (rs.next()) {
                 Role it = new Role();
