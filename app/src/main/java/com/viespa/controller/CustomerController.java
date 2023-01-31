@@ -2,6 +2,7 @@ package com.viespa.controller;
 
 import com.viespa.models.Customer;
 import com.viespa.utils.DateForm;
+import com.viespa.utils.Regex;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -70,6 +71,7 @@ public class CustomerController implements Initializable {
 
     int id;
     int myIndex;
+    String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     @FXML
     private Button buttonCancel;
     @FXML
@@ -153,7 +155,7 @@ public class CustomerController implements Initializable {
 
         String val_fullname = input_fullname.getText().trim();
         String val_phone = input_phone.getText().trim();
-        String val_email = input_email.getText().trim();
+        String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
         String val_gender;
@@ -161,6 +163,12 @@ public class CustomerController implements Initializable {
             val_gender = "1";
         } else {
             val_gender = "0";
+        }
+
+        if(val_email.equals("0")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Email wrong format, Try again !");
+            alert.show();
+            return;
         }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_dob == null) {
@@ -186,7 +194,7 @@ public class CustomerController implements Initializable {
 
         String val_fullname = input_fullname.getText().trim();
         String val_phone = input_phone.getText().trim();
-        String val_email = input_email.getText().trim();
+        String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
         String val_gender;
@@ -195,6 +203,12 @@ public class CustomerController implements Initializable {
             val_gender = "1";
         } else {
             val_gender = "0";
+        }
+
+        if(val_email.equals("0")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Email wrong format, Try again !");
+            alert.show();
+            return;
         }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty()|| val_dob == null || val_gender.isEmpty()) {

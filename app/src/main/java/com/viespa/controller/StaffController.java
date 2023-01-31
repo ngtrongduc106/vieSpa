@@ -4,6 +4,7 @@ import com.viespa.models.Role;
 import com.viespa.models.Staff;
 import com.viespa.utils.DateForm;
 import com.viespa.utils.Md5;
+import com.viespa.utils.Regex;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -87,6 +88,7 @@ public class StaffController implements Initializable {
     Button buttonAddNew;
     int id;
     int myIndex;
+    String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     @FXML
     private Button buttonCancel;
     @FXML
@@ -112,7 +114,7 @@ public class StaffController implements Initializable {
     public void buttonAddNew() throws SQLException {
         String val_fullname = input_fullname.getText().trim();
         String val_phone = input_phone.getText().trim();
-        String val_email = input_email.getText().trim();
+        String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
         LocalDate val_joindate = input_joindate.getValue();
@@ -123,6 +125,12 @@ public class StaffController implements Initializable {
             val_status = "0";
         }else {
             val_status = "1";
+        }
+
+        if(val_email.equals("0")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Email wrong format, Try again !");
+            alert.show();
+            return;
         }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty() || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
@@ -169,7 +177,7 @@ public class StaffController implements Initializable {
 
         String val_fullname = input_fullname.getText().trim();
         String val_phone = input_phone.getText().trim();
-        String val_email = input_email.getText().trim();
+        String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
         LocalDate val_joindate = input_joindate.getValue();
@@ -181,6 +189,12 @@ public class StaffController implements Initializable {
             val_status = "0";
         }else {
             val_status = "1";
+        }
+
+        if(val_email.equals("0")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Email wrong format, Try again !");
+            alert.show();
+            return;
         }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty() || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
