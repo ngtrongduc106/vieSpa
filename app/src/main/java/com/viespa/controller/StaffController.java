@@ -136,8 +136,7 @@ public class StaffController implements Initializable {
         }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty()
-                || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null
-                || val_status == null) {
+                || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
             AlertUtil.showError("Input can not empty for this request");
             return;
         }

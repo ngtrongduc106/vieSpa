@@ -11,11 +11,11 @@ import javafx.scene.control.Alert;
 public class AlertUtil {
     public static void showError(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR, msg);
-        alert.show();
+        alert.showAndWait();
     }
 
     public static void showSuccess(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, msg);
-        alert.show();
+        alert.showAndWait();
     }
 }
