@@ -227,7 +227,7 @@ public class TransactionController implements Initializable {
     }
 
     public void button_update() throws Exception {
-        if (User.getInstance().getId() != 1) {
+        if (User.getInstance().getRole() != 1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("You don't have author !");
             alert.show();
