@@ -142,10 +142,6 @@ public class StaffController implements Initializable {
             return;
         }
 
-        if (Integer.parseInt(val_role) == 1) {
-            AlertUtil.showError("Staff cannot set role 'Admin' aka '1'");
-            return;
-        }
         if (Staff.checkDuplicate(val_account)) {
             AlertUtil.showError("This account is existed, try a different one ! ");
             return;
@@ -195,11 +191,6 @@ public class StaffController implements Initializable {
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty()
                 || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
             AlertUtil.showError("Input can not empty for this request");
-            return;
-        }
-
-        if (Integer.parseInt(val_role) == 1) {
-            AlertUtil.showError("Staff cannot set role 'Admin' aka '1'");
             return;
         }
 

@@ -88,11 +88,11 @@ public class SettingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lb_name.setText("Full name : " + user.getFullname());
-        lb_username.setText("Username : " + user.getAccount());
-        lb_role.setText("Role : " + Role.queryRoleName(String.valueOf(user.getRole())));
-        lb_email.setText("Email: " + user.getEmail());
-        lb_dob.setText("Email: " + user.getDob());
-        lb_address.setText("Email: " + user.getAddress());
+        lb_name.setText(user.getFullname());
+        lb_username.setText(user.getAccount());
+        lb_role.setText(Role.queryRoleName(String.valueOf(user.getRole())));
+        lb_email.setText(user.getEmail());
+        lb_dob.setText(user.getDob().toString());
+        lb_address.setText( user.getAddress());
     }
 }
