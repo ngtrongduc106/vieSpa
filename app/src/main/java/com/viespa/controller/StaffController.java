@@ -129,18 +129,18 @@ public class StaffController implements Initializable {
         }
 
         if (val_email.equals("0")) {
-            AlertUtil.showError("Email wrong format, e.g: test@mail.com");
+            AlertUtil.showError("Incorrect email format, e.g: test@mail.com");
             return;
         }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty()
                 || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
-            AlertUtil.showError("Input can not empty for this request");
+            AlertUtil.showError("Inputs cannot leave empty");
             return;
         }
 
         if (Staff.checkDuplicate(val_account)) {
-            AlertUtil.showError("This account is existed, try a different one ! ");
+            AlertUtil.showError("This account is existed, try a different one! ");
             return;
         }
 
@@ -155,7 +155,7 @@ public class StaffController implements Initializable {
         input_account.setText("");
         input_role.setValue("");
         input_status.setValue("");
-        AlertUtil.showSuccess("Create Staff Successfully ! Default password : 123123");
+        AlertUtil.showSuccess("Staff created successfully ! Default password : 123123");
 
         table();
     }
@@ -176,18 +176,18 @@ public class StaffController implements Initializable {
         String val_status = input_status.getValue().equals("Active") ? "0" : "1";
 
         if (val_phone.equals("0")) {
-            AlertUtil.showError("Phone wrong format !");
+            AlertUtil.showError("Incorrect phone format !");
             return;
         }
 
         if (val_email.equals("0")) {
-            AlertUtil.showError("Email wrong format, e.g: test@mail.com");
+            AlertUtil.showError("Incorrect email format, e.g: test@mail.com");
             return;
         }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty()
                 || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
-            AlertUtil.showError("Input can not empty for this request");
+            AlertUtil.showError("Inputs cannot leave empty!");
             return;
         }
 

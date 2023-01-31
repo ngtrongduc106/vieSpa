@@ -194,17 +194,17 @@ public class CustomerController implements Initializable {
         String val_gender = input_gender.getValue().equals("Female") ? "1" : "0";
 
         if (val_phone.equals("0")) {
-            AlertUtil.showError("Phone wrong format !");
+            AlertUtil.showError("Incorrect phone format!");
             return;
         }
 
         if (val_email.equals("0")) {
-            AlertUtil.showError("Email wrong format, e.g: test@mail.com");
+            AlertUtil.showError("incorrect email format, e.g: test@mail.com");
             return;
         }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_dob == null) {
-            AlertUtil.showError("Input can not empty for this request");
+            AlertUtil.showError("Input can not be empty");
             return;
         }
         Customer.updateCustomer(val_fullname, val_phone, val_email, val_address, id, val_gender, val_dob);

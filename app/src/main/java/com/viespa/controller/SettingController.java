@@ -52,7 +52,7 @@ public class SettingController implements Initializable {
         String val_conf_pass = conf_pass.getText();
 
         if (val_old_pass.equals("") || val_new_pass.equals("") || val_conf_pass.equals("")) {
-            AlertUtil.showError("Input can not empty for this request");
+            AlertUtil.showError("Inputs cannot leave empty");
         } else if (!val_new_pass.equals(val_conf_pass)) {
             AlertUtil.showError("Wrong confirmation password !");
         } else {

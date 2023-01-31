@@ -1,6 +1,7 @@
 package com.viespa.controller;
 
 import com.viespa.models.Course;
+import com.viespa.models.User;
 import com.viespa.utils.AlertUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -115,13 +116,19 @@ public class CourseController implements Initializable {
     }
 
     public void button_add() throws SQLException {
+        if (User.getInstance().getRole() != 1) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Insufficient permission!");
+            alert.show();
+            return;
+        }
         String val_name = input_name.getText().trim();
         String val_price = input_price.getText().trim();
         String val_description = input_description.getText().trim();
         String val_status = input_status.getValue().equals("Available") ? "1" : "0";
 
         if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
-            AlertUtil.showError("Input can not empty for this request");
+            AlertUtil.showError("Inputs can not be empty");
             return;
         }
         Course.addNew(val_name, val_price, val_description, val_status);
@@ -133,6 +140,12 @@ public class CourseController implements Initializable {
     }
 
     public void button_update() throws SQLException {
+        if (User.getInstance().getRole() != 1) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Insufficient permission!");
+            alert.show();
+            return;
+        }
         myIndex = table_course.getSelectionModel().getSelectedIndex();
         id = Integer.parseInt(String.valueOf(table_course.getItems().get(myIndex).getId()));
 
@@ -144,7 +157,7 @@ public class CourseController implements Initializable {
 
 
         if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
-            AlertUtil.showError("Input can not empty for this request");
+            AlertUtil.showError("Inputs can not be empty");
             return;
         }
         Course.update(String.valueOf(id), val_name, val_price, val_description, val_status);

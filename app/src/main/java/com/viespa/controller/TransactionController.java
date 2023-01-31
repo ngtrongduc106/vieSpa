@@ -177,7 +177,7 @@ public class TransactionController implements Initializable {
         LocalDate val_booking = input_booking.getValue();
 
         if (val_customer == null || val_course == null || val_staff == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Admin cannot do label work!");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Insufficient permission!");
             alert.showAndWait();
             return;
         }
@@ -229,7 +229,7 @@ public class TransactionController implements Initializable {
     public void button_update() throws Exception {
         if (User.getInstance().getRole() != 1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("You don't have author !");
+            alert.setContentText("Insufficient permission!");
             alert.show();
             return;
         }

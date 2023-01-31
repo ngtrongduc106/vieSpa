@@ -42,7 +42,7 @@ public class LoginController {
 
         // Validation account name
         if (val_account.isEmpty()) {
-            error_account.setText("Account name cannot empty !");
+            error_account.setText("Account name cannot leave empty !");
             errors = 1;
         } else if (checkWhiteSpace(val_account)) {
             error_account.setText("Account name cannot has white space !");
@@ -53,7 +53,7 @@ public class LoginController {
 
         // Validate password
         if (val_password.isEmpty()) {
-            error_password.setText("Password cannot empty !");
+            error_password.setText("Password cannot leave empty !");
             errors = 1;
         } else {
             error_password.setText("");
