@@ -279,6 +279,12 @@ public class TransactionController implements Initializable {
 
     @FXML
     void onPrint() {
+        try {
+            ContractUtil.print(Transaction.getById(id));
+            InvoiceUtil.print(Transaction.getById(id));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to print?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
         try {
@@ -290,8 +296,6 @@ public class TransactionController implements Initializable {
                     Runtime.getRuntime().exec("cmd /c ..\\invoices\\invoice_" + id + ".html");
                     break;
                 case "Both":
-                    ContractUtil.print(Transaction.getById(id));
-                    InvoiceUtil.print(Transaction.getById(id));
                     Runtime.getRuntime().exec("cmd /c ..\\contracts\\contract_" + id + ".html");
                     Runtime.getRuntime().exec("cmd /c ..\\invoices\\invoice_" + id + ".html");
                 default:

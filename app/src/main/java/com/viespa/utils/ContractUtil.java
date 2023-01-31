@@ -29,7 +29,7 @@ public class ContractUtil {
             writer.write(header);
 
             String benA = String.format("<p>Hôm nay, ngày %s , tại ... chúng tôi gồm có:</p><p>Bên sử dụng dịch vụ (sau đây gọi tắt là bên A):</p><p>Họ và tên: %s </p><p>Năm sinh: %s </p><p>Chỗ ở hiện tại: %s </p><p>Điện thoại: %s </p><p>Email: %s </p>",
-                    DateUtil.convert(String.valueOf(transaction.bookingProperty().getValue())),
+                    DateUtil.convert(String.valueOf(transaction.bookingProperty().getValue())).getValue(),
                     customer.getFullName(),
                     customer.getDob(),
                     customer.getAddress(),
