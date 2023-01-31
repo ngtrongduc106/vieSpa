@@ -160,12 +160,7 @@ public class CustomerController implements Initializable {
         String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
-        String val_gender;
-        if (Objects.equals(input_gender.getValue(), "Female")) {
-            val_gender = "1";
-        } else {
-            val_gender = "0";
-        }
+        String val_gender = input_gender.getValue().equals("Female") ? "1" : "0";
 
         if(val_phone.equals("0")) {
             AlertUtil.showError("Phone wrong format !");
@@ -202,13 +197,7 @@ public class CustomerController implements Initializable {
         String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
-        String val_gender;
-
-        if (Objects.equals(input_gender.getValue(), "Female")) {
-            val_gender = "1";
-        } else {
-            val_gender = "0";
-        }
+        String val_gender = input_gender.getValue().equals("Female") ? "1" : "0";
 
         if(val_phone.equals("0")) {
             AlertUtil.showError("Phone wrong format !");
@@ -240,6 +229,7 @@ public class CustomerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         table();
         input_gender.getItems().add("Male");
+        input_gender.setValue("Female");
         input_gender.getItems().add("Female");
     }
 }

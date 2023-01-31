@@ -121,13 +121,7 @@ public class CourseController implements Initializable {
         String val_name = input_name.getText().trim();
         String val_price = input_price.getText().trim();
         String val_description = input_description.getText().trim();
-        String val_status;
-
-        if (Objects.equals(input_status.getValue(), "Available")) {
-            val_status = "1";
-        } else {
-            val_status = "0";
-        }
+        String val_status = input_status.getValue().equals("Available") ? "1" : "0";
 
         if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
             AlertUtil.showError("Input can not empty for this request");
@@ -151,13 +145,8 @@ public class CourseController implements Initializable {
         String val_price = input_price.getText().trim();
         String val_description = input_description.getText().trim();
 
-        String val_status;
+        String val_status = input_status.getValue().equals("Available") ? "1" : "0";
 
-        if (Objects.equals(input_status.getValue(), "Available")) {
-            val_status = "1";
-        } else {
-            val_status = "0";
-        }
 
         if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
             AlertUtil.showError("Input can not empty for this request");
@@ -178,6 +167,7 @@ public class CourseController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         table();
         input_status.getItems().add("Available");
+        input_status.setValue("Available");
         input_status.getItems().add("Unavailable");
     }
 }

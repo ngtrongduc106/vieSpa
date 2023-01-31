@@ -123,12 +123,7 @@ public class StaffController implements Initializable {
         LocalDate val_joindate = input_joindate.getValue();
         String val_account = input_account.getText().trim().toLowerCase();
         String val_role = Role.queryRoleId(input_role.getValue());
-        String val_status ;
-        if(input_status.getValue().equals("Active")){
-            val_status = "0";
-        }else {
-            val_status = "1";
-        }
+        String val_status = input_status.getValue().equals("Active") ? "0" : "1";
 
         if(val_phone.equals("0")) {
             AlertUtil.showError("Phone wrong format !");
@@ -140,7 +135,7 @@ public class StaffController implements Initializable {
             return;
         }
 
-        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty() || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
+        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty() || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null || val_status == null) {
             AlertUtil.showError("Input can not empty for this request");
             return;
         }
@@ -181,12 +176,8 @@ public class StaffController implements Initializable {
         String val_account = input_account.getText().trim().toLowerCase();
         String val_role = Role.queryRoleId(input_role.getValue());
         LocalDate val_enddate = input_enddate.getValue();
-        String val_status ;
-        if(Objects.equals(input_status.getValue(), "Active")){
-            val_status = "0";
-        }else {
-            val_status = "1";
-        }
+        String val_status = input_status.getValue().equals("Active") ? "0" : "1";
+
 
         if(val_phone.equals("0")) {
             AlertUtil.showError("Phone wrong format !");
@@ -309,6 +300,7 @@ public class StaffController implements Initializable {
         roles.stream().map(Role::getRole).forEach(t -> input_role.getItems().add(t));
 
         input_status.getItems().add("Active");
+        input_status.setValue("Active");
         input_status.getItems().add("Inactive");
     }
 }
