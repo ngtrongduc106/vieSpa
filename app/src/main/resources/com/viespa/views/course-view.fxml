@@ -33,7 +33,6 @@
                                 <TableColumn fx:id="column_name" prefWidth="288.3925018310547" text="Name" />
                                 <TableColumn fx:id="column_price" minWidth="0.0" prefWidth="113.53268432617188" text="Price" />
                                 <TableColumn fx:id="column_description" prefWidth="404.51177978515625" text="Description" />
-                                <TableColumn fx:id="column_createby" prefWidth="174.98822021484375" text="Create by" />
                         <TableColumn fx:id="column_status" prefWidth="174.98822021484375" text="Status" />
                             </columns>
                             <columnResizePolicy>

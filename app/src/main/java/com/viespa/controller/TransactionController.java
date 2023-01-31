@@ -190,7 +190,7 @@ public class TransactionController implements Initializable {
         input_note.setText("");
         table(Transaction.getAllTransaction());
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction created successfully! Do you want to create invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction created successfully! Do you want to create invoice and/or contract?", new ButtonType("Contract"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
 
         switch (alert.getResult().getText()) {
@@ -207,7 +207,7 @@ public class TransactionController implements Initializable {
                 break;
         }
 
-        alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to print?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
+        alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to print?", new ButtonType("Contract"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
 
         switch (alert.getResult().getText()) {
@@ -259,7 +259,7 @@ public class TransactionController implements Initializable {
         ;
         table(Transaction.getAllTransaction());
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction updated successfully! Do you want to modify invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction updated successfully! Do you want to modify invoice and/or contract?", new ButtonType("Contract"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
 
         switch (alert.getResult().getText()) {
@@ -285,7 +285,7 @@ public class TransactionController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to print?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to print?", new ButtonType("Contract"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
         try {
             switch (alert.getResult().getText()) {

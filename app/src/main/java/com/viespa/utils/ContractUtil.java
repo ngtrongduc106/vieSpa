@@ -50,8 +50,8 @@ public class ContractUtil {
             String courseInfo = String.format("<h4>Điều 1. Đối tượng của hợp đồng</h4><p>Theo yêu cầu của bên A về việc thực hiện dịch vụ %s , bên B đảm nhận và thực hiện %s </p><h4>Điều 2. Thời hạn thực hiện hợp đồng</h4><p>Hợp đồng này được thực hiện kể từ ngày %s </p><p>Thời gian dự kiến hoàn thành: là 30 ngày, kể từ ngày %s </p>",
                     course.getName(),
                     course.getDescription(),
-                    DateUtil.convert(String.valueOf(transaction.bookingProperty().getValue())),
-                    DateUtil.convert(String.valueOf(transaction.bookingProperty().getValue())));
+                    DateUtil.convert(String.valueOf(transaction.bookingProperty().getValue())).getValue(),
+                    DateUtil.convert(String.valueOf(transaction.bookingProperty().getValue())).getValue());
             writer.write(courseInfo);
 
             String data = "<h4>Điều 3. Quyền, nghĩa vụ của bên A</h4><h5>1. Quyền của Bên A:</h5><p>Yêu cầu bên B thực hiện công việc theo đúng chất lượng, số lượng, thời hạn, địa điểm thỏa thuận tại hợp đồng này.</p><p>Trường hợp bên B vi phạm nghiêm trọng nghĩa vụ thì bên A có quyền đơn phương chấm dứt thực hiện hợp đồng và yêu cầu bồi thường thiệt hại.</p><h5>2. Nghĩa vụ của bên A:</h5><p>Cung cấp cho bên B thông tin, tài liệu và các phương tiện cần thiết để thực hiện công việc, nếu có thỏa thuận hoặc việc thực hiện công việc đòi hỏi.</p><p>Trả tiền dịch vụ cho bên B theo thỏa thuận tại hợp đồng này.</p><h4>Điều 4. Quyền và nghĩa vụ của bên B:</h4><h5>1. Quyền của bên B:</h5><p>Yêu cầu bên A cung cấp thông tin, tài liệu và phương tiện để thực hiện công việc.</p><p>Được thay đổi điều kiện dịch vụ vì lợi ích của bên A mà không nhất thiết phải chờ ý kiến của bên A, nếu việc chờ ý kiến sẽ gây thiệt hại cho bên A, nhưng phải báo ngay cho bên A.</p><p>Yêu cầu bên A trả tiền dịch vụ</p><h5>2. Nghĩa vụ của bên A:</h5><p>Thực hiện công việc đúng chất lượng, số lượng, thời hạn, địa điểm thỏa thuận tại hợp đồng này.</p><p>Không được giao cho người khác thực hiện thay công việc nếu không có sự đồng ý bằng văn bản của bên A.</p><p>Báo ngay cho bên B về việc thông tin, tài liệu không đầy đủ, phương tiện không bảo đảm chất lượng để hoàn thành công việc.</p><p>Giữ bí mật thông tin mà mình biết được trong thời gian thực hiện công việc.</p>";
@@ -64,7 +64,7 @@ public class ContractUtil {
             writer.write(data2);
 
             String sign = String.format("<div class=\"sign\"><div><h4>BÊN B</h4><div>LOGO_SPA</div></div><div><h5>Hà Nội, ngày %s </h5><h4 class=\"center\">BÊN A</h4><p class=\"center\">%s</p></div></div></div></body><script>window.print()</script></html>",
-                    DateUtil.convert(String.valueOf(transaction.bookingProperty().getValue())),
+                    DateUtil.convert(String.valueOf(transaction.bookingProperty().getValue())).getValue(),
                     customer.getFullName());
             writer.write(sign);
 
