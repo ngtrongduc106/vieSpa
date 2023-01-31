@@ -36,7 +36,10 @@
                               <Insets right="8.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="input_search" onKeyPressed="#search" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="input_search" onKeyPressed="#search" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="8.0" />
+                           </HBox.margin></TextField>
                      </children>
                   </HBox>
                         <TableView fx:id="table_transaction" prefHeight="299.0" prefWidth="984.0" VBox.vgrow="ALWAYS">

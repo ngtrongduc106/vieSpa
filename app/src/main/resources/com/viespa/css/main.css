@@ -284,3 +284,7 @@
     -fx-background-color: #FFC7C7;
     -fx-text-background-color: #A555EC;
 }
+
+.profile-label:hover {
+    -fx-text-fill: linear-gradient(from 35% 80% to 70% 100.0%, -fx-color-title-1 0.0%, -fx-color-title-2 100.0%) !important;
+}

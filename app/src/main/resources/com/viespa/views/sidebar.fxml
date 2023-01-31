@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,11 +12,11 @@
 
 <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/main.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viespa.controller.SideBarController">
     <children>
-        <VBox layoutY="-1.0">
+        <VBox layoutY="-1.0" maxWidth="220.0">
             <children>
                 <VBox alignment="TOP_CENTER">
                     <children>
-                        <Label onMouseClicked="#buttonSetting" text="${controller.userNameValue}" textFill="#7f167f">
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onMouseClicked="#buttonSetting" styleClass="profile-label" text="${controller.userNameValue}" textFill="#7f167f">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>
@@ -25,6 +26,9 @@
                             <font>
                                 <Font name="System Bold Italic" size="24.0" />
                             </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                         </Label>
                         <Button mnemonicParsing="false" onAction="#buttonLogout" styleClass="button-logout" text="Logout">
                             <padding>
