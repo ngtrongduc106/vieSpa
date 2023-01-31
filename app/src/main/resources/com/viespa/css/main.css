@@ -138,6 +138,11 @@
     -fx-border-color: linear-gradient(from 100.0% 25% to 100.0% 85%, -fx-color-button-1 0.0%, -fx-color-button-2 100.0%);
 }
 
+.choice-box .menu-item:focused {
+    -fx-background-color: -fx-color-table;
+    -fx-text-fill: #000000;
+}
+
 .date-picker {
     -fx-background-color: rgba(255, 255, 255, 0);
 }
