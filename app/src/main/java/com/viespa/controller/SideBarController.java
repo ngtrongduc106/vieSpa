@@ -50,8 +50,9 @@ public class SideBarController implements Initializable {
         if (option.get() == ButtonType.OK) {
             user.setPage(0);
             App.setRoot("views/login-view");
+        } else {
+            user.setPage(currentPage);
         }
-        user.setPage(currentPage);
 
     }
 
