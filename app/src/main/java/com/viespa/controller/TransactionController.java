@@ -30,6 +30,9 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class TransactionController implements Initializable {
+
+    @FXML
+    private TextField input_search;
     @FXML
     TableView<Transaction> table_transaction;
 
@@ -107,8 +110,7 @@ public class TransactionController implements Initializable {
         App.setRoot("views/customer-view");
     }
 
-    public void table() {
-        ObservableList<Transaction> transactions = Transaction.getAllTransaction();
+    public void table(ObservableList<Transaction> transactions) {
         table_transaction.setItems(transactions);
         column_number.setCellValueFactory(f -> f.getValue().idProperty());
         column_customer.setCellValueFactory(f -> f.getValue().customerProperty());
@@ -186,7 +188,7 @@ public class TransactionController implements Initializable {
         input_staff.setValue("");
         input_booking.setValue(null);
         input_note.setText("");
-        table();
+        table(Transaction.getAllTransaction());
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction created successfully! Do you want to create invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
@@ -255,7 +257,7 @@ public class TransactionController implements Initializable {
         input_pay.setText("");
         button_print.setDisable(true);
         ;
-        table();
+        table(Transaction.getAllTransaction());
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction updated successfully! Do you want to modify invoice and/or contract?", new ButtonType("Contact"), new ButtonType("Invoice"), new ButtonType("Both"), ButtonType.CANCEL);
         alert.showAndWait();
@@ -300,6 +302,10 @@ public class TransactionController implements Initializable {
         }
     }
 
+    public void search(){
+        table(Transaction.search(input_search.getText()));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<Customer> customers = Customer.getAllCustomers();
@@ -311,6 +317,6 @@ public class TransactionController implements Initializable {
         ObservableList<Staff> staffs = Staff.getAllStaffs();
         staffs.stream().map(Staff::getFullname).forEach(t -> input_staff.getItems().add(t));
 
-        table();
+        table(Transaction.getAllTransaction());
     }
 }

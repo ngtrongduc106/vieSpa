@@ -209,6 +209,37 @@ public class Transaction {
         }
     }
 
+    public static ObservableList<Transaction> search(String text) {
+        DBUtil db = new DBUtil();
+        Connection connection = db.connect();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        ObservableList<Transaction> transactions = FXCollections.observableArrayList();
+        try {
+            pst = connection.prepareStatement("SELECT transactions.id, customers.fullname as customer , course.name as course , u1.fullname as staff_sup , transactions.pay , transactions.note , transactions.booking , u2.fullname as create_by FROM `transactions` JOIN customers on customers.id = transactions.customer_id JOIN course on course.id = transactions.course_id JOIN users u1 on u1.id = transactions.staff_id JOIN users u2 on u2.id = transactions.created_by where customers.fullname like '%" + text + "%' or course.name like '%\" + text + \"%' or transactions.note like '%\" + text + \"%' or u2.fullname like '%\" + text + \"%'");
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Transaction it = new Transaction();
+                it.setId(rs.getString("id"));
+                it.setCustomer(rs.getString("customer"));
+                it.setCourse(rs.getString("course"));
+                it.setStaff(rs.getString("staff_sup"));
+                it.setPay(rs.getString("pay"));
+                it.setNote(rs.getString("note"));
+                it.setBooking(LocalDate.parse(rs.getString("booking")));
+                it.setCreateBy(rs.getString("create_by"));
+                transactions.add(it);
+            }
+            return transactions;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        } finally {
+            db.closeAll(connection, pst, rs);
+        }
+    }
+
     public SimpleStringProperty idProperty() {
         return id;
     }
