@@ -2,13 +2,12 @@ package com.viespa.controller;
 
 import com.viespa.App;
 import com.viespa.utils.AlertUtil;
-import com.viespa.utils.DButil;
-import com.viespa.utils.Md5;
+import com.viespa.utils.DBUtil;
+import com.viespa.utils.MD5Util;
 import com.viespa.utils.RandomString;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javax.mail.*;
@@ -81,7 +80,7 @@ public class ResetPasswordController implements Initializable {
 
 //        Check DB
         if (errors == 0) {
-            DButil db = new DButil();
+            DBUtil db = new DBUtil();
             Connection connection = null;
             PreparedStatement statement = null;
             ResultSet resultSet = null;
@@ -89,7 +88,7 @@ public class ResetPasswordController implements Initializable {
                 connection = db.connect();
                 statement = connection.prepareStatement("UPDATE users SET password = ? WHERE account = ? AND email = ? ");
 
-                statement.setString(1,Md5.getMD5(passReset));
+                statement.setString(1, MD5Util.getMD5(passReset));
                 statement.setString(2, val_account);
                 statement.setString(3, val_email);
 

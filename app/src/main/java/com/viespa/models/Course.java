@@ -1,6 +1,6 @@
 package com.viespa.models;
 
-import com.viespa.utils.DButil;
+import com.viespa.utils.DBUtil;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -20,7 +20,7 @@ public class Course {
     private final SimpleStringProperty active = new SimpleStringProperty();
 
     public static ObservableList<Course> getAllCourses() {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -48,7 +48,7 @@ public class Course {
     }
 
     public static ObservableList<Course> getActiveCourses() {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -81,7 +81,7 @@ public class Course {
             String description,
             String active
     ) throws SQLException {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
 
@@ -117,7 +117,7 @@ public class Course {
             String description,
             String active
     ) throws SQLException {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
 
@@ -149,7 +149,7 @@ public class Course {
     }
 
     public static String queryId(String data) {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -171,7 +171,7 @@ public class Course {
     }
 
     public static String queryPrice(String data) {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -193,7 +193,7 @@ public class Course {
     }
 
     public static Course getByName(String data) {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;

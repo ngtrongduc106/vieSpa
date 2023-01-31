@@ -3,11 +3,9 @@ package com.viespa.controller;
 import com.viespa.App;
 import com.viespa.models.User;
 import com.viespa.utils.AlertUtil;
-import com.viespa.utils.DButil;
-import com.viespa.utils.DateForm;
-import com.viespa.utils.Md5;
+import com.viespa.utils.DBUtil;
+import com.viespa.utils.MD5Util;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -60,10 +58,10 @@ public class LoginController {
         } else {
             error_password.setText("");
         }
-        String md5_password = Md5.getMD5(val_password);
+        String md5_password = MD5Util.getMD5(val_password);
         //Check DB
         if (errors == 0) {
-            DButil db = new DButil();
+            DBUtil db = new DBUtil();
             Connection connection = null;
             PreparedStatement statement = null;
             ResultSet resultSet = null;

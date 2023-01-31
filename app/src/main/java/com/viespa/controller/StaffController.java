@@ -3,14 +3,13 @@ package com.viespa.controller;
 import com.viespa.models.Role;
 import com.viespa.models.Staff;
 import com.viespa.utils.AlertUtil;
-import com.viespa.utils.DateForm;
-import com.viespa.utils.Md5;
-import com.viespa.utils.Regex;
+import com.viespa.utils.DateUtil;
+import com.viespa.utils.MD5Util;
+import com.viespa.utils.RegexUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -22,12 +21,11 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class StaffController implements Initializable {
 
-    private final String default_password = Md5.getMD5("123123");
+    private final String default_password = MD5Util.getMD5("123123");
     @FXML
     TableView<Staff> table_staff;
 
@@ -116,8 +114,8 @@ public class StaffController implements Initializable {
 
     public void buttonAddNew() throws SQLException {
         String val_fullname = input_fullname.getText().trim();
-        String val_phone = Regex.validate(input_phone.getText().trim(), phoneRegex);
-        String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
+        String val_phone = RegexUtil.validate(input_phone.getText().trim(), phoneRegex);
+        String val_email = RegexUtil.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
         LocalDate val_joindate = input_joindate.getValue();
@@ -136,8 +134,7 @@ public class StaffController implements Initializable {
         }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty()
-                || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null
-                || val_status == null) {
+                || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
             AlertUtil.showError("Input can not empty for this request");
             return;
         }
@@ -168,8 +165,8 @@ public class StaffController implements Initializable {
         id = Integer.parseInt(String.valueOf(table_staff.getItems().get(myIndex).getId()));
 
         String val_fullname = input_fullname.getText().trim();
-        String val_phone = Regex.validate(input_phone.getText().trim(), phoneRegex);
-        String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
+        String val_phone = RegexUtil.validate(input_phone.getText().trim(), phoneRegex);
+        String val_email = RegexUtil.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
         LocalDate val_joindate = input_joindate.getValue();
@@ -219,9 +216,9 @@ public class StaffController implements Initializable {
         column_address.setCellValueFactory(f -> f.getValue().addressProperty());
         column_role.setCellValueFactory(f -> f.getValue().roleProperty());
         column_joindate
-                .setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().joinDateProperty().getValue())));
+                .setCellValueFactory(f -> DateUtil.convert(String.valueOf(f.getValue().joinDateProperty().getValue())));
         column_enddate.setCellValueFactory(f -> f.getValue().endDateProperty().getValue() != null
-                ? DateForm.convert(String.valueOf(f.getValue().endDateProperty().getValue()))
+                ? DateUtil.convert(String.valueOf(f.getValue().endDateProperty().getValue()))
                 : new SimpleStringProperty(""));
         column_status.setCellValueFactory(f -> f.getValue().statusProperty().getValue().equals("0")
                 ? new SimpleStringProperty("Active")

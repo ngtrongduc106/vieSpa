@@ -1,6 +1,6 @@
 package com.viespa.models;
 
-import com.viespa.utils.DButil;
+import com.viespa.utils.DBUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -20,7 +20,7 @@ public class MyPie {
     }
 
     public static ObservableList<PieChart.Data> countCourse() {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;

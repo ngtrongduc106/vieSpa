@@ -1,7 +1,7 @@
 package com.viespa.models;
 
-import com.viespa.utils.DButil;
-import com.viespa.utils.DateForm;
+import com.viespa.utils.DBUtil;
+import com.viespa.utils.DateUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ public class MyChart {
     }
 
     public static List<MyChart> getMonthlyRevenue() {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -45,7 +45,7 @@ public class MyChart {
     }
 
     public static List<MyChart> customerPerStaff() {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -68,7 +68,7 @@ public class MyChart {
 
     // SELECT weekday(booking) AS week_name, count(transactions.id) FROM transactions where (month(now()) = month(booking) AND year(now()) = year(booking)) GROUP BY weekday(booking) ORDER BY week_name;
     public static List<MyChart> monthReport(int i) {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -79,7 +79,7 @@ public class MyChart {
                     connection.prepareStatement("SELECT weekday(booking) AS week_name, count(transactions.id) as count FROM transactions where (month(booking) = month(now()) AND year(now()) = year(booking)) GROUP BY weekday(booking) ORDER BY week_name;");
             rs = pst.executeQuery();
             while (rs.next()) {
-                myCharts.add(new MyChart(DateForm.toWeekDay(rs.getInt("week_name")), rs.getString("count"), "0"));
+                myCharts.add(new MyChart(DateUtil.toWeekDay(rs.getInt("week_name")), rs.getString("count"), "0"));
             }
             return myCharts;
 

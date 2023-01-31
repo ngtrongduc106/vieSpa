@@ -3,11 +3,10 @@ package com.viespa.controller;
 import com.viespa.models.Role;
 import com.viespa.models.User;
 import com.viespa.utils.AlertUtil;
-import com.viespa.utils.DButil;
-import com.viespa.utils.Md5;
+import com.viespa.utils.DBUtil;
+import com.viespa.utils.MD5Util;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
@@ -57,7 +56,7 @@ public class SettingController implements Initializable {
         } else if (!val_new_pass.equals(val_conf_pass)) {
             AlertUtil.showError("Wrong confirmation password !");
         } else {
-            DButil db = new DButil();
+            DBUtil db = new DBUtil();
             Connection connection = null;
             PreparedStatement statement = null;
             ResultSet resultSet = null;
@@ -65,8 +64,8 @@ public class SettingController implements Initializable {
                 connection = db.connect();
                 statement = connection.prepareStatement("UPDATE users SET password = ? WHERE password = ? ");
 
-                statement.setString(1, Md5.getMD5(val_new_pass));
-                statement.setString(2, Md5.getMD5(val_old_pass));
+                statement.setString(1, MD5Util.getMD5(val_new_pass));
+                statement.setString(2, MD5Util.getMD5(val_old_pass));
 
                 int countRowModified = statement.executeUpdate();
 

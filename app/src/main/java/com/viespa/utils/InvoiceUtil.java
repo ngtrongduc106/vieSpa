@@ -7,7 +7,7 @@ import com.viespa.models.Transaction;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
-public class Invoice {
+public class InvoiceUtil {
     static final String stamp = "<svg fill=\"red\" version=\"1.1\" id=\"Capa_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" \n" +
             "\t width=\"100px\" height=\"100px\" viewBox=\"0 0 959.199 959.199\"\n" +
             "\t xml:space=\"preserve\">\n" +
@@ -85,7 +85,7 @@ public class Invoice {
             writer.write(style);
             String header = String.format("<body><div class=\"container\"><header><div> %s </div><div><h1>Hóa đơn dịch vụ</h1><p>Ngày: %s </p></div><div><p>Mẫu số: VIESPA01</p><p style=\"\">Ký hiệu: HD01/23A</p><p>Số: %s </p></div></header>",
                     logo,
-                    DateForm.convert(String.valueOf(transaction.bookingProperty().getValue())),
+                    DateUtil.convert(String.valueOf(transaction.bookingProperty().getValue())),
                     transaction.getId());
             writer.write(header);
             String saler = "<section class=\"seller\"><p>Đơn vị bán hàng: Công ty TNHH nhiều thành viên VieSpa</p><p>Mã số thuế: 00000000000000</p><p>Địa chỉ: Số 265 Đội Cấn - Ba Đình - Hà Nội - Việt Nam</p><div><p>Số điện thoại: 0900000000000</p><p>Số tài khoản: 1234-1234-1234-1234-1234</p></div></section>";

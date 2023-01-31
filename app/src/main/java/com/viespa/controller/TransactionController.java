@@ -6,9 +6,9 @@ import com.viespa.models.Customer;
 import com.viespa.models.Staff;
 import com.viespa.models.Transaction;
 import com.viespa.models.User;
-import com.viespa.utils.Contract;
-import com.viespa.utils.DateForm;
-import com.viespa.utils.Invoice;
+import com.viespa.utils.ContractUtil;
+import com.viespa.utils.DateUtil;
+import com.viespa.utils.InvoiceUtil;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -114,7 +114,7 @@ public class TransactionController implements Initializable {
         column_customer.setCellValueFactory(f -> f.getValue().customerProperty());
         column_course.setCellValueFactory(f -> f.getValue().courseProperty());
         column_staff.setCellValueFactory(f -> new ReadOnlyStringWrapper(f.getValue().getId().toString()));
-        column_booking.setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().bookingProperty().getValue())));
+        column_booking.setCellValueFactory(f -> DateUtil.convert(String.valueOf(f.getValue().bookingProperty().getValue())));
         column_note.setCellValueFactory(f -> f.getValue().noteProperty());
         column_createby.setCellValueFactory(f -> f.getValue().createByProperty());
         column_pay.setCellValueFactory(f -> f.getValue().payProperty());
@@ -193,14 +193,14 @@ public class TransactionController implements Initializable {
 
         switch (alert.getResult().getText()) {
             case "Contract":
-                Contract.print(Transaction.getLastInput());
+                ContractUtil.print(Transaction.getLastInput());
                 break;
             case "Invoice":
-                Invoice.print(Transaction.getLastInput());
+                InvoiceUtil.print(Transaction.getLastInput());
                 break;
             case "Both":
-                Contract.print(Transaction.getLastInput());
-                Invoice.print(Transaction.getLastInput());
+                ContractUtil.print(Transaction.getLastInput());
+                InvoiceUtil.print(Transaction.getLastInput());
             default:
                 break;
         }
@@ -262,14 +262,14 @@ public class TransactionController implements Initializable {
 
         switch (alert.getResult().getText()) {
             case "Contract":
-                Contract.print(Transaction.getById(id));
+                ContractUtil.print(Transaction.getById(id));
                 break;
             case "Invoice":
-                Invoice.print(Transaction.getById(id));
+                InvoiceUtil.print(Transaction.getById(id));
                 break;
             case "Both":
-                Contract.print(Transaction.getById(id));
-                Invoice.print(Transaction.getById(id));
+                ContractUtil.print(Transaction.getById(id));
+                InvoiceUtil.print(Transaction.getById(id));
             default:
                 break;
         }

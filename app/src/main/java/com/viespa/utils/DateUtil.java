@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DateForm {
+public class DateUtil {
     public static SimpleStringProperty convert(String strDate) {
         DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");

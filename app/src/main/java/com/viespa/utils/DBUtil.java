@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DButil {
+public class DBUtil {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/dbviespa";
     private static final String DB_USERNAME = "root" ;
     private static final String DB_PASSWORD = "" ;
@@ -20,7 +20,7 @@ public class DButil {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(DB_URL,DB_USERNAME,DB_PASSWORD);
         }catch (Exception e){
-            Logger.getLogger(DButil.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(DBUtil.class.getName()).log(Level.SEVERE, null, e);
         }
         return conn;
     }
@@ -30,21 +30,21 @@ public class DButil {
             try {
                 resultSet.close();
             } catch (SQLException ex) {
-                Logger.getLogger(DButil.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DBUtil.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if (statement != null) {
             try {
                 statement.close();
             } catch (SQLException ex) {
-                Logger.getLogger(DButil.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DBUtil.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if (connection != null) {
             try {
                 connection.close();
             } catch (SQLException ex) {
-                Logger.getLogger(DButil.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DBUtil.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

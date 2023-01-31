@@ -1,6 +1,6 @@
 package com.viespa.models;
 
-import com.viespa.utils.DButil;
+import com.viespa.utils.DBUtil;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -17,7 +17,7 @@ public class Role {
     private final SimpleStringProperty role = new SimpleStringProperty();
 
     public static ObservableList<Role> getAllRole() {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -44,7 +44,7 @@ public class Role {
     }
 
     public static String queryRoleId(String data) {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -66,7 +66,7 @@ public class Role {
     }
 
     public static String queryRoleName(String data) {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;

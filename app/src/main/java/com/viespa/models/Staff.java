@@ -1,6 +1,6 @@
 package com.viespa.models;
 
-import com.viespa.utils.DButil;
+import com.viespa.utils.DBUtil;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -33,7 +33,7 @@ public class Staff {
 
     public static ObservableList<Staff> getAllStaffs() {
         {
-            DButil db = new DButil();
+            DBUtil db = new DBUtil();
             Connection connection = db.connect();
             PreparedStatement pst = null;
             ResultSet rs = null;
@@ -71,7 +71,7 @@ public class Staff {
 
     public static ObservableList<Staff> getActiveStaffs() {
         {
-            DButil db = new DButil();
+            DBUtil db = new DBUtil();
             Connection connection = db.connect();
             PreparedStatement pst = null;
             ResultSet rs = null;
@@ -117,7 +117,7 @@ public class Staff {
                                 LocalDate dob,
                                 LocalDate joinDate,
                                 String status) throws SQLException {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
 
@@ -164,7 +164,7 @@ public class Staff {
             LocalDate joinDate,
             @Nullable LocalDate endDate,
             String status) throws SQLException {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
 
@@ -200,7 +200,7 @@ public class Staff {
     }
 
     public static boolean checkDuplicate(String data) {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
         ResultSet rs = null;
@@ -221,7 +221,7 @@ public class Staff {
     }
 
     public static String queryId(String data) {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -245,7 +245,7 @@ public class Staff {
 
     public static Staff getById(String id) {
         {
-            DButil db = new DButil();
+            DBUtil db = new DBUtil();
             Connection connection = db.connect();
             PreparedStatement pst = null;
             ResultSet rs = null;

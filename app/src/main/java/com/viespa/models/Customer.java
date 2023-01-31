@@ -1,6 +1,6 @@
 package com.viespa.models;
 
-import com.viespa.utils.DButil;
+import com.viespa.utils.DBUtil;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -23,7 +23,7 @@ public class Customer {
     private final SimpleStringProperty email = new SimpleStringProperty();
 
     public static ObservableList<Customer> getAllCustomers() {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -54,7 +54,7 @@ public class Customer {
     }
 
     public static void addNewCustomer(String fullName, String phone, String email, String address, String is_female, LocalDate dob) throws SQLException {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
 
@@ -93,7 +93,7 @@ public class Customer {
             String is_female,
             LocalDate dob
     ) throws SQLException {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
 
@@ -127,7 +127,7 @@ public class Customer {
     }
 
     public static String queryId(String data) {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -150,7 +150,7 @@ public class Customer {
 
     //by Name
     public static Customer getByName(String data) {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;

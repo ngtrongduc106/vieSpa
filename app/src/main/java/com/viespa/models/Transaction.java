@@ -1,6 +1,6 @@
 package com.viespa.models;
 
-import com.viespa.utils.DButil;
+import com.viespa.utils.DBUtil;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -27,7 +27,7 @@ public class Transaction {
     }
 
     public static ObservableList<Transaction> getAllTransaction() {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -63,7 +63,7 @@ public class Transaction {
     }
 
     public static Transaction getLastInput() {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -98,7 +98,7 @@ public class Transaction {
 
     // get Transaction by id
     public static Transaction getById(int id) {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -140,7 +140,7 @@ public class Transaction {
             LocalDate booking,
             String create_by
     ) throws SQLException {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
 
@@ -180,7 +180,7 @@ public class Transaction {
             LocalDate booking,
             String id
     ) throws SQLException {
-        DButil db = new DButil();
+        DBUtil db = new DBUtil();
         Connection connection = db.connect();
         PreparedStatement statement = null;
 

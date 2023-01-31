@@ -2,13 +2,12 @@ package com.viespa.controller;
 
 import com.viespa.models.Customer;
 import com.viespa.utils.AlertUtil;
-import com.viespa.utils.DateForm;
-import com.viespa.utils.Regex;
+import com.viespa.utils.DateUtil;
+import com.viespa.utils.RegexUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -20,7 +19,6 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
@@ -107,7 +105,7 @@ public class CustomerController implements Initializable {
                 : new SimpleStringProperty("Female"));
         column_address.setCellValueFactory(f -> f.getValue().addressProperty());
         column_email.setCellValueFactory(f -> f.getValue().emailProperty());
-        column_dob.setCellValueFactory(f -> DateForm.convert(String.valueOf(f.getValue().dobProperty().getValue())));
+        column_dob.setCellValueFactory(f -> DateUtil.convert(String.valueOf(f.getValue().dobProperty().getValue())));
         button_update.setDisable(true);
         button_add.setDisable(false);
 
@@ -152,8 +150,8 @@ public class CustomerController implements Initializable {
     public void button_add() throws SQLException {
 
         String val_fullname = input_fullname.getText().trim();
-        String val_phone = Regex.validate(input_phone.getText().trim(), phoneRegex);
-        String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
+        String val_phone = RegexUtil.validate(input_phone.getText().trim(), phoneRegex);
+        String val_email = RegexUtil.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
         String val_gender = input_gender.getValue().equals("Female") ? "1" : "0";
@@ -189,8 +187,8 @@ public class CustomerController implements Initializable {
         id = Integer.parseInt(String.valueOf(table_customer.getItems().get(myIndex).getId()));
 
         String val_fullname = input_fullname.getText().trim();
-        String val_phone = Regex.validate(input_phone.getText().trim(), phoneRegex);
-        String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
+        String val_phone = RegexUtil.validate(input_phone.getText().trim(), phoneRegex);
+        String val_email = RegexUtil.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
         String val_gender = input_gender.getValue().equals("Female") ? "1" : "0";
