@@ -123,19 +123,19 @@ public class StaffController implements Initializable {
         LocalDate val_joindate = input_joindate.getValue();
         String val_account = input_account.getText().trim().toLowerCase();
         String val_role = Role.queryRoleId(input_role.getValue());
-        String val_status ;
-        if(input_status.getValue().equals("Active")){
+        String val_status;
+        if (input_status.getValue().equals("Active")) {
             val_status = "0";
-        }else {
+        } else {
             val_status = "1";
         }
 
-        if(val_phone.equals("0")) {
+        if (val_phone.equals("0")) {
             AlertUtil.showError("Phone wrong format !");
             return;
         }
 
-        if(val_email.equals("0")) {
+        if (val_email.equals("0")) {
             AlertUtil.showError("Email wrong format, e.g: test@mail.com");
             return;
         }
@@ -148,22 +148,23 @@ public class StaffController implements Initializable {
         if (Integer.parseInt(val_role) == 1) {
             AlertUtil.showError("Staff cannot set role 'Admin' aka '1'");
             return;
-        } else if (Staff.checkDuplicate(val_account)) {
+        }
+        if (Staff.checkDuplicate(val_account)) {
             AlertUtil.showError("This account is existed, try a different one ! ");
             return;
         }
-            Staff.addStaff(val_account, default_password, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate,val_status);
-            input_fullname.setText("");
-            input_phone.setText("");
-            input_email.setText("");
-            input_address.setText("");
-            input_dob.setValue(null);
-            input_joindate.setValue(null);
-            input_account.setText("");
-            input_role.setValue("");
-            input_status.setValue("");
-            AlertUtil.showSuccess("Create Staff Successfully ! Default password : 123123");
-        }
+
+        Staff.addStaff(val_account, default_password, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate, val_status);
+        input_fullname.setText("");
+        input_phone.setText("");
+        input_email.setText("");
+        input_address.setText("");
+        input_dob.setValue(null);
+        input_joindate.setValue(null);
+        input_account.setText("");
+        input_role.setValue("");
+        input_status.setValue("");
+        AlertUtil.showSuccess("Create Staff Successfully ! Default password : 123123");
 
         table();
     }
@@ -181,19 +182,19 @@ public class StaffController implements Initializable {
         String val_account = input_account.getText().trim().toLowerCase();
         String val_role = Role.queryRoleId(input_role.getValue());
         LocalDate val_enddate = input_enddate.getValue();
-        String val_status ;
-        if(Objects.equals(input_status.getValue(), "Active")){
+        String val_status;
+        if (Objects.equals(input_status.getValue(), "Active")) {
             val_status = "0";
-        }else {
+        } else {
             val_status = "1";
         }
 
-        if(val_phone.equals("0")) {
+        if (val_phone.equals("0")) {
             AlertUtil.showError("Phone wrong format !");
             return;
         }
 
-        if(val_email.equals("0")) {
+        if (val_email.equals("0")) {
             AlertUtil.showError("Email wrong format, e.g: test@mail.com");
             return;
         }
@@ -206,19 +207,21 @@ public class StaffController implements Initializable {
         if (Integer.parseInt(val_role) == 1) {
             AlertUtil.showError("Staff cannot set role 'Admin' aka '1'");
             return;
-        } else {
-            Staff.updateStaff(id, val_account, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate, val_enddate,val_status);
-            input_fullname.setText("");
-            input_phone.setText("");
-            input_email.setText("");
-            input_address.setText("");
-            input_dob.setValue(null);
-            input_joindate.setValue(null);
-            input_account.setText("");
-            input_role.setValue("");
-            input_status.setValue("");
+        }
+
+        Staff.updateStaff(id, val_account, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate, val_enddate, val_status);
+        input_fullname.setText("");
+        input_phone.setText("");
+        input_email.setText("");
+        input_address.setText("");
+        input_dob.setValue(null);
+        input_joindate.setValue(null);
+        input_account.setText("");
+        input_role.setValue("");
+        input_status.setValue("");
 
         table();
+
     }
 
     public void table() {
@@ -285,9 +288,9 @@ public class StaffController implements Initializable {
                             .getItems()
                             .get(myIndex)
                             .getRole());
-                    if(table_staff.getItems().get(myIndex).getStatus().equals("0")){
+                    if (table_staff.getItems().get(myIndex).getStatus().equals("0")) {
                         input_status.setValue("Active");
-                    }else {
+                    } else {
                         input_status.setValue("Inactive");
                     }
 
@@ -311,3 +314,4 @@ public class StaffController implements Initializable {
         input_status.getItems().add("Inactive");
     }
 }
+
