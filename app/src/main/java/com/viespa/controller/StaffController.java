@@ -2,6 +2,7 @@ package com.viespa.controller;
 
 import com.viespa.models.Role;
 import com.viespa.models.Staff;
+import com.viespa.utils.AlertUtil;
 import com.viespa.utils.DateForm;
 import com.viespa.utils.Md5;
 import com.viespa.utils.Regex;
@@ -88,6 +89,8 @@ public class StaffController implements Initializable {
     Button buttonAddNew;
     int id;
     int myIndex;
+
+    String phoneRegex = "(84|0[3|5|7|8|9])+([0-9]{8})\\b";
     String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     @FXML
     private Button buttonCancel;
@@ -113,7 +116,7 @@ public class StaffController implements Initializable {
 
     public void buttonAddNew() throws SQLException {
         String val_fullname = input_fullname.getText().trim();
-        String val_phone = input_phone.getText().trim();
+        String val_phone = Regex.validate(input_phone.getText().trim(), phoneRegex);
         String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
@@ -127,29 +130,26 @@ public class StaffController implements Initializable {
             val_status = "1";
         }
 
+        if(val_phone.equals("0")) {
+            AlertUtil.showError("Phone wrong format !");
+            return;
+        }
+
         if(val_email.equals("0")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Email wrong format, Try again !");
-            alert.show();
+            AlertUtil.showError("Email wrong format, e.g: test@mail.com");
             return;
         }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty() || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty for this request");
-            alert.show();
+            AlertUtil.showError("Input can not empty for this request");
             return;
         }
 
         if (Integer.parseInt(val_role) == 1) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("Staff cannot set role 1");
-            alert.show();
+            AlertUtil.showError("Staff cannot set role 'Admin' aka '1'");
             return;
         } else if (Staff.checkDuplicate(val_account)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("The account is already on the system ! ");
-            alert.show();
+            AlertUtil.showError("This account is existed, try a different one ! ");
             return;
         } else {
             Staff.addStaff(val_account, default_password, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate,val_status);
@@ -162,10 +162,7 @@ public class StaffController implements Initializable {
             input_account.setText("");
             input_role.setValue("");
             input_status.setValue("");
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Create Staff Success !");
-            alert.setContentText("Default password : 123123");
-            alert.show();
+            AlertUtil.showSuccess("Create Staff Successfully ! Default password : 123123");
         }
 
         table();
@@ -176,7 +173,7 @@ public class StaffController implements Initializable {
         id = Integer.parseInt(String.valueOf(table_staff.getItems().get(myIndex).getId()));
 
         String val_fullname = input_fullname.getText().trim();
-        String val_phone = input_phone.getText().trim();
+        String val_phone = Regex.validate(input_phone.getText().trim(), phoneRegex);
         String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
@@ -191,23 +188,23 @@ public class StaffController implements Initializable {
             val_status = "1";
         }
 
+        if(val_phone.equals("0")) {
+            AlertUtil.showError("Phone wrong format !");
+            return;
+        }
+
         if(val_email.equals("0")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Email wrong format, Try again !");
-            alert.show();
+            AlertUtil.showError("Email wrong format, e.g: test@mail.com");
             return;
         }
 
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty() || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty for this request");
-            alert.show();
+            AlertUtil.showError("Input can not empty for this request");
             return;
         }
 
         if (Integer.parseInt(val_role) == 1) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("Staff cannot set role 1");
-            alert.show();
+            AlertUtil.showError("Staff cannot set role 'Admin' aka '1'");
             return;
         } else {
             Staff.updateStaff(id, val_account, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate, val_enddate,val_status);

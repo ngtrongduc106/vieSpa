@@ -1,6 +1,7 @@
 package com.viespa.controller;
 
 import com.viespa.models.Course;
+import com.viespa.utils.AlertUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -129,8 +130,7 @@ public class CourseController implements Initializable {
         }
 
         if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
-            alert.show();
+            AlertUtil.showError("Input can not empty for this request");
             return;
         } else {
             Course.addNew(val_name, val_price, val_description, val_status);
@@ -160,8 +160,7 @@ public class CourseController implements Initializable {
         }
 
         if (val_name.isEmpty() || val_price.isEmpty() || val_description.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
-            alert.show();
+            AlertUtil.showError("Input can not empty for this request");
             return;
         } else {
             Course.update(String.valueOf(id), val_name, val_price, val_description, val_status);
