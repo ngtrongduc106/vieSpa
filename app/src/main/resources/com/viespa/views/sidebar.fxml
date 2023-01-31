@@ -15,7 +15,7 @@
             <children>
                 <VBox alignment="TOP_CENTER">
                     <children>
-                        <Label text="${controller.userNameValue}" textFill="#7f167f">
+                        <Label onMouseClicked="#buttonSetting" text="${controller.userNameValue}" textFill="#7f167f">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>
@@ -102,14 +102,6 @@
                                 <Point3D />
                             </rotationAxis>
                         </Button>
-                  <Button fx:id="setting" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonSetting" styleClass="button-sidebar" text="SETTING" textAlignment="CENTER">
-                     <padding>
-                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
                     </children>
                     <VBox.margin>
                         <Insets />

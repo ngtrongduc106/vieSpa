@@ -33,8 +33,6 @@ public class SideBarController implements Initializable {
     @FXML
     private Button transaction;
 
-    @FXML
-    private Button setting;
 
     public String getUserNameValue() {
         return "Hi! " + userFullNameValue.get();
@@ -101,7 +99,6 @@ public class SideBarController implements Initializable {
             course.setDisable(false);
             transaction.setDisable(false);
             customer.setDisable(false);
-            setting.setDisable(false);
         }
     }
 
@@ -130,9 +127,6 @@ public class SideBarController implements Initializable {
                 transaction.getStyleClass().add("active");
                 break;
             case 5:
-                setting.setDisable(true);
-                setting.getStyleClass().add("active");
-                break;
             default:
                 break;
         }
