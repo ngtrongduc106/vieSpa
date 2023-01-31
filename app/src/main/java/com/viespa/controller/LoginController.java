@@ -2,6 +2,7 @@ package com.viespa.controller;
 
 import com.viespa.App;
 import com.viespa.models.User;
+import com.viespa.utils.AlertUtil;
 import com.viespa.utils.DButil;
 import com.viespa.utils.DateForm;
 import com.viespa.utils.Md5;
@@ -86,15 +87,10 @@ public class LoginController {
                         user.setAddress(resultSet.getString("address"));
                         App.setRoot("views/home-view");
                     } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("You do not have access !");
-                        alert.show();
+                        AlertUtil.showError("You do not hava authority");
                     }
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERROR");
-                    alert.setContentText("Username or password incorrect !");
-                    alert.show();
+                    AlertUtil.showError("Username or password incorrect !");
                 }
 
             } catch (SQLException e) {

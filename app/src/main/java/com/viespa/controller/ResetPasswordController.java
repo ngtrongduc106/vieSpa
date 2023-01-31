@@ -1,6 +1,7 @@
 package com.viespa.controller;
 
 import com.viespa.App;
+import com.viespa.utils.AlertUtil;
 import com.viespa.utils.DButil;
 import com.viespa.utils.Md5;
 import com.viespa.utils.RandomString;
@@ -119,15 +120,10 @@ public class ResetPasswordController implements Initializable {
                     msg.setSentDate(new Date());
                     msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(val_email, false));
                     Transport.send(msg);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setContentText("Reset password successful ! Pls check your email .");
-                    alert.show();
+                    AlertUtil.showSuccess("Reset password successfully ! Please check your email");
                     App.setRoot("views/login-view");
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERROR");
-                    alert.setContentText("Account or email incorrect !");
-                    alert.show();
+                    AlertUtil.showError("Account or email incorrect !");
                 }
 
             } catch (SQLException | MessagingException | IOException e) {

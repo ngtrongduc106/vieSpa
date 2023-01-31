@@ -1,7 +1,9 @@
 package com.viespa.controller;
 
 import com.viespa.models.Customer;
+import com.viespa.utils.AlertUtil;
 import com.viespa.utils.DateForm;
+import com.viespa.utils.Regex;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -70,6 +72,8 @@ public class CustomerController implements Initializable {
 
     int id;
     int myIndex;
+    String phoneRegex = "(84|0[3|5|7|8|9])+([0-9]{8})\\b";
+    String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     @FXML
     private Button buttonCancel;
     @FXML
@@ -152,8 +156,8 @@ public class CustomerController implements Initializable {
     public void button_add() throws SQLException {
 
         String val_fullname = input_fullname.getText().trim();
-        String val_phone = input_phone.getText().trim();
-        String val_email = input_email.getText().trim();
+        String val_phone = Regex.validate(input_phone.getText().trim(), phoneRegex);
+        String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
         String val_gender;
@@ -163,9 +167,18 @@ public class CustomerController implements Initializable {
             val_gender = "0";
         }
 
+        if(val_phone.equals("0")) {
+            AlertUtil.showError("Phone wrong format !");
+            return;
+        }
+
+        if(val_email.equals("0")) {
+            AlertUtil.showError("Email wrong format, e.g: test@mail.com");
+            return;
+        }
+
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_dob == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
-            alert.show();
+            AlertUtil.showError("Input can not empty for this request");
             return;
         } else {
             Customer.addNewCustomer(val_fullname, val_phone, val_email, val_address, val_gender, val_dob);
@@ -185,8 +198,8 @@ public class CustomerController implements Initializable {
         id = Integer.parseInt(String.valueOf(table_customer.getItems().get(myIndex).getId()));
 
         String val_fullname = input_fullname.getText().trim();
-        String val_phone = input_phone.getText().trim();
-        String val_email = input_email.getText().trim();
+        String val_phone = Regex.validate(input_phone.getText().trim(), phoneRegex);
+        String val_email = Regex.validate(input_email.getText().trim(), emailRegex);
         String val_address = input_address.getText().trim();
         LocalDate val_dob = input_dob.getValue();
         String val_gender;
@@ -197,9 +210,18 @@ public class CustomerController implements Initializable {
             val_gender = "0";
         }
 
-        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty()|| val_dob == null || val_gender.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Input can not empty in this request");
-            alert.show();
+        if(val_phone.equals("0")) {
+            AlertUtil.showError("Phone wrong format !");
+            return;
+        }
+
+        if(val_email.equals("0")) {
+            AlertUtil.showError("Email wrong format, e.g: test@mail.com");
+            return;
+        }
+
+        if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty()|| val_dob == null) {
+            AlertUtil.showError("Input can not empty for this request");
             return;
         } else {
             Customer.updateCustomer(val_fullname, val_phone, val_email, val_address, id, val_gender, val_dob);
