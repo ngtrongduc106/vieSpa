@@ -290,6 +290,8 @@ public class TransactionController implements Initializable {
                     Runtime.getRuntime().exec("cmd /c ..\\invoices\\invoice_" + id + ".html");
                     break;
                 case "Both":
+                    ContractUtil.print(Transaction.getById(id));
+                    InvoiceUtil.print(Transaction.getById(id));
                     Runtime.getRuntime().exec("cmd /c ..\\contracts\\contract_" + id + ".html");
                     Runtime.getRuntime().exec("cmd /c ..\\invoices\\invoice_" + id + ".html");
                 default:
