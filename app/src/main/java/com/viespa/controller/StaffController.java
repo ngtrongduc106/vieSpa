@@ -131,19 +131,13 @@ public class StaffController implements Initializable {
             return;
         }
 
-        if (Integer.parseInt(val_role) == 1) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("Staff cannot set role 1");
-            alert.show();
-            return;
-        } else if (Staff.checkDuplicate(val_account)) {
+        if (Staff.checkDuplicate(val_account)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setContentText("The account is already on the system ! ");
             alert.show();
             return;
-        } else {
+        }
             Staff.addStaff(val_account, default_password, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate,val_status);
             input_fullname.setText("");
             input_phone.setText("");
@@ -158,7 +152,6 @@ public class StaffController implements Initializable {
             alert.setTitle("Create Staff Success !");
             alert.setContentText("Default password : 123123");
             alert.show();
-        }
 
         table();
     }
@@ -189,13 +182,6 @@ public class StaffController implements Initializable {
             return;
         }
 
-        if (Integer.parseInt(val_role) == 1) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("Staff cannot set role 1");
-            alert.show();
-            return;
-        } else {
             Staff.updateStaff(id, val_account, val_fullname, val_address, val_email, val_phone, Integer.parseInt(val_role), val_dob, val_joindate, val_enddate,val_status);
             input_fullname.setText("");
             input_phone.setText("");
@@ -206,7 +192,6 @@ public class StaffController implements Initializable {
             input_account.setText("");
             input_role.setValue("");
             input_status.setValue("");
-        }
 
         table();
     }
