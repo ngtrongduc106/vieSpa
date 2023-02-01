@@ -6,11 +6,14 @@ import com.viespa.models.Customer;
 import com.viespa.models.Staff;
 import com.viespa.models.Transaction;
 import com.viespa.models.User;
+import com.viespa.utils.AutoCompleteComboBoxListener;
 import com.viespa.utils.ContractUtil;
 import com.viespa.utils.CurrencyUtil;
 import com.viespa.utils.DateUtil;
 import com.viespa.utils.InvoiceUtil;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -68,7 +72,7 @@ public class TransactionController implements Initializable {
     Button button_update;
 
     @FXML
-    ChoiceBox<String> input_customer = new ChoiceBox<>();
+    ComboBox<String> input_customer = new ComboBox<>();;
 
     @FXML
     ChoiceBox<String> input_course = new ChoiceBox<>();
@@ -313,8 +317,12 @@ public class TransactionController implements Initializable {
         table(Transaction.search(input_search.getText()));
     }
 
+    String customer =" ";
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        input_customer.setEditable(true);
+        new AutoCompleteComboBoxListener<>(input_customer);
+
         ObservableList<Customer> customers = Customer.getAllCustomers();
         customers.stream().map(Customer::getFullName).forEach(t -> input_customer.getItems().add(t));
 

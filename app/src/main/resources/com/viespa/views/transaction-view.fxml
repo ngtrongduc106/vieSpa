@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -68,11 +69,6 @@
                                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <ChoiceBox fx:id="input_customer" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.rowIndex="1">
-                                    <GridPane.margin>
-                                        <Insets bottom="12.0" />
-                                    </GridPane.margin>
-                                </ChoiceBox>
                                 <ChoiceBox fx:id="input_course" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.rowIndex="3">
                                     <GridPane.margin>
                                         <Insets bottom="12.0" />
@@ -113,6 +109,7 @@
                                         <Button fx:id="button_print" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPrint" styleClass="button-add-new" text="Print document" HBox.hgrow="ALWAYS" />
                                     </children>
                                 </HBox>
+                        <ComboBox fx:id="input_customer" prefWidth="150.0" GridPane.rowIndex="1" />
                             </children>
                             <VBox.margin>
                                 <Insets bottom="60.0" left="60.0" right="60.0" top="20.0" />
