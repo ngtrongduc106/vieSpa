@@ -75,7 +75,7 @@ public class TransactionController implements Initializable {
     ComboBox<String> input_customer = new ComboBox<>();;
 
     @FXML
-    ChoiceBox<String> input_course = new ChoiceBox<>();
+    ComboBox<String> input_course = new ComboBox<>();
 
     @FXML
     ChoiceBox<String> input_staff = new ChoiceBox<>();
@@ -322,6 +322,9 @@ public class TransactionController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         input_customer.setEditable(true);
         new AutoCompleteComboBoxListener<>(input_customer);
+
+        input_course.setEditable(true);
+        new AutoCompleteComboBoxListener<>(input_course);
 
         ObservableList<Customer> customers = Customer.getAllCustomers();
         customers.stream().map(Customer::getFullName).forEach(t -> input_customer.getItems().add(t));
