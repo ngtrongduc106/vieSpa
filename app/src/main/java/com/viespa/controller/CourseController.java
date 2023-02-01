@@ -3,6 +3,7 @@ package com.viespa.controller;
 import com.viespa.models.Course;
 import com.viespa.models.User;
 import com.viespa.utils.AlertUtil;
+import com.viespa.utils.CurrencyUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,7 +19,10 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Objects;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Currency;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class CourseController implements Initializable {
@@ -76,7 +80,7 @@ public class CourseController implements Initializable {
         ObservableList<Course> courses = Course.getAllCourses();
         table_course.setItems(courses);
         column_name.setCellValueFactory(f -> f.getValue().nameProperty());
-        column_price.setCellValueFactory(f -> f.getValue().priceProperty());
+        column_price.setCellValueFactory(f -> CurrencyUtil.formatCur(f.getValue().priceProperty().getValue()));
         column_description.setCellValueFactory(f -> f.getValue().descriptionProperty());
         column_status.setCellValueFactory(f -> f.getValue().activeProperty().getValue().equals("1")
                 ? new SimpleStringProperty("Available")

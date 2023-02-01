@@ -7,6 +7,7 @@ import com.viespa.models.Staff;
 import com.viespa.models.Transaction;
 import com.viespa.models.User;
 import com.viespa.utils.ContractUtil;
+import com.viespa.utils.CurrencyUtil;
 import com.viespa.utils.DateUtil;
 import com.viespa.utils.InvoiceUtil;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -119,7 +120,7 @@ public class TransactionController implements Initializable {
         column_booking.setCellValueFactory(f -> DateUtil.convert(String.valueOf(f.getValue().bookingProperty().getValue())));
         column_note.setCellValueFactory(f -> f.getValue().noteProperty());
         column_createby.setCellValueFactory(f -> f.getValue().createByProperty());
-        column_pay.setCellValueFactory(f -> f.getValue().payProperty());
+        column_pay.setCellValueFactory(f -> CurrencyUtil.formatCur(f.getValue().payProperty().getValue()));
 
         button_update.setDisable(true);
         button_add.setDisable(false);
