@@ -18,6 +18,16 @@ public class Transaction {
     private final SimpleStringProperty customer = new SimpleStringProperty();
     private final SimpleStringProperty course = new SimpleStringProperty();
     private final SimpleStringProperty staff = new SimpleStringProperty();
+
+    public int getStaff_id() {
+        return staff_id;
+    }
+
+    public void setStaff_id(int staff_id) {
+        this.staff_id = staff_id;
+    }
+
+    private int staff_id;
     private final SimpleStringProperty pay = new SimpleStringProperty();
     private final SimpleStringProperty note = new SimpleStringProperty();
     private final SimpleObjectProperty<LocalDate> booking = new SimpleObjectProperty<>();
@@ -104,7 +114,7 @@ public class Transaction {
         ResultSet rs = null;
         Transaction transaction = new Transaction();
         try {
-            pst = connection.prepareStatement("SELECT transactions.id, customers.fullname as customer , course.name as course , u1.fullname as staff_sup , transactions.pay , transactions.note , transactions.booking , u2.fullname as create_by\n" +
+            pst = connection.prepareStatement("SELECT transactions.id, customers.fullname as customer , course.name as course , u1.fullname as staff_sup , transactions.pay , transactions.note , transactions.booking, transactions.created_by as staff_id , u2.fullname as create_by\n" +
                     "FROM `transactions` \n" +
                     "JOIN customers on customers.id = transactions.customer_id\n" +
                     "JOIN course on course.id = transactions.course_id\n" +
@@ -120,6 +130,7 @@ public class Transaction {
                 transaction.setNote(rs.getString("note"));
                 transaction.setBooking(LocalDate.parse(rs.getString("booking")));
                 transaction.setCreateBy(rs.getString("create_by"));
+                transaction.setStaff_id(rs.getInt("staff_id"));
             }
             return transaction;
 

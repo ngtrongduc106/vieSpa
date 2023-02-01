@@ -28,6 +28,20 @@ public class Staff {
     private final SimpleObjectProperty<LocalDate> endDate = new SimpleObjectProperty<>();
     private final SimpleStringProperty status = new SimpleStringProperty();
 
+    public String getRoleName() {
+        return roleName.get();
+    }
+
+    public SimpleStringProperty roleNameProperty() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName.set(roleName);
+    }
+
+    private final SimpleStringProperty roleName = new SimpleStringProperty();
+
     public Staff() {
     }
 
@@ -250,7 +264,7 @@ public class Staff {
             PreparedStatement pst = null;
             ResultSet rs = null;
             try {
-                pst = connection.prepareStatement("select * from users where id = ?");
+                pst = connection.prepareStatement("select users.id, users.account, users.fullname,users.dob , users.phone, users.email, users.address, users.joindate, users.enddate, users.status, users.role, r.role_name from users join roles r on r.id = users.role where users.id = ?");
                 pst.setString(1, id);
                 rs = pst.executeQuery();
                 Staff it = new Staff();
@@ -263,6 +277,7 @@ public class Staff {
                     it.setEmail(rs.getString("email"));
                     it.setAddress(rs.getString("address"));
                     it.setRole((rs.getString("role")));
+                    it.setRoleName(rs.getString("role_name"));
                     it.setJoinDate((rs.getObject("joindate", LocalDate.class)));
                     it.setEndDate((rs.getObject("enddate", LocalDate.class)));
                     it.setStatus((rs.getString("status")));
