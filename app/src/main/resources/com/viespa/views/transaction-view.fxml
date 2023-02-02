@@ -104,8 +104,8 @@
                                         <Button fx:id="button_print" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPrint" styleClass="button-add-new" text="Print document" HBox.hgrow="ALWAYS" />
                                     </children>
                                 </HBox>
-                        <ComboBox fx:id="input_customer" prefWidth="150.0" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="input_course" prefWidth="150.0" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="input_customer" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="input_course" maxWidth="1.7976931348623157E308" GridPane.rowIndex="3" />
                             </children>
                             <VBox.margin>
                                 <Insets bottom="60.0" left="60.0" right="60.0" top="20.0" />

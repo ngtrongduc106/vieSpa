@@ -4,6 +4,7 @@ import com.viespa.models.Role;
 import com.viespa.models.User;
 import com.viespa.utils.AlertUtil;
 import com.viespa.utils.DBUtil;
+import com.viespa.utils.DateUtil;
 import com.viespa.utils.MD5Util;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -91,7 +92,7 @@ public class SettingController implements Initializable {
         lb_username.setText(user.getAccount());
         lb_role.setText(Role.queryRoleName(String.valueOf(user.getRole())));
         lb_email.setText(user.getEmail());
-        lb_dob.setText(user.getDob().toString());
+        lb_dob.setText(DateUtil.convert(user.getDob().toString()).getValue());
         lb_address.setText( user.getAddress());
     }
 }
