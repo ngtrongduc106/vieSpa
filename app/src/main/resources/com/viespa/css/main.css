@@ -120,7 +120,7 @@
 .text-area,
 .date-picker,
 .choice-box,
-.combo-box{
+.combo-box-base {
     -fx-background-color: rgba(255, 255, 255, 0.3);
     -fx-background-radius: 0;
     -fx-border-color: rgba(1, 1, 1, 0.2);
@@ -128,6 +128,7 @@
     -fx-border-width: 1;
     -fx-background-insets: 0 0 1 0;
     -fx-wrap-text: true;
+    -fx-text-fill: #7F167F;
 }
 
 
@@ -216,6 +217,24 @@
     -fx-background-color: #EDDEDF;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
+}
+
+.combo-box-base {
+    -fx-background-color: #EEE4E5;
+    -fx-background-radius: 0;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #7F167F;
+}
+
+.combo-box:focused {
+    -fx-background-color: #EDDEDF;
+}
+
+.combo-box .combo-box-popup .list-view .list-cell:hover,
+.combo-box .combo-box-popup .list-view .list-cell:selected {
+    -fx-background-color: -fx-color-table;
 }
 
 /* Table View

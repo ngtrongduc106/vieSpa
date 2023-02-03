@@ -80,7 +80,7 @@
                                     </GridPane.margin>
                                 </DatePicker>
                                 <TextArea fx:id="input_note" GridPane.rowIndex="7" />
-                                <TextField fx:id="input_pay" GridPane.rowIndex="5">
+                                <TextField fx:id="input_pay" maxWidth="500.0" GridPane.rowIndex="5">
                                     <GridPane.margin>
                                         <Insets bottom="12.0" />
                                     </GridPane.margin>
@@ -104,8 +104,8 @@
                                         <Button fx:id="button_print" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPrint" styleClass="button-add-new" text="Print document" HBox.hgrow="ALWAYS" />
                                     </children>
                                 </HBox>
-                        <ComboBox fx:id="input_customer" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="input_course" maxWidth="1.7976931348623157E308" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="input_customer" maxWidth="500.0" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="input_course" maxWidth="500.0" GridPane.rowIndex="3" />
                             </children>
                             <VBox.margin>
                                 <Insets bottom="60.0" left="60.0" right="60.0" top="20.0" />
