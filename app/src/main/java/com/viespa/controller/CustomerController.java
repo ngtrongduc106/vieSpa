@@ -153,7 +153,7 @@ public class CustomerController implements Initializable {
         String val_fullname = input_fullname.getText().trim();
         String val_phone = RegexUtil.validate(input_phone.getText().trim(), phoneRegex);
         String val_email = RegexUtil.validate(input_email.getText().trim(), emailRegex);
-        String val_address = input_address.getText().trim();
+        String val_address = input_address.getText();
         LocalDate val_dob = input_dob.getValue();
         String val_gender = input_gender.getValue().equals("Female") ? "1" : "0";
 
@@ -189,7 +189,7 @@ public class CustomerController implements Initializable {
         String val_fullname = input_fullname.getText().trim();
         String val_phone = RegexUtil.validate(input_phone.getText().trim(), phoneRegex);
         String val_email = RegexUtil.validate(input_email.getText().trim(), emailRegex);
-        String val_address = input_address.getText().trim();
+        String val_address = input_address.getText();
         LocalDate val_dob = input_dob.getValue();
         String val_gender = input_gender.getValue().equals("Female") ? "1" : "0";
 

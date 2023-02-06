@@ -93,7 +93,7 @@ public class SideBarController implements Initializable {
     }
 
     public void author_active() {
-        if (user.getRole() != 1) {
+        if (user.getRole() > 2) {
             button_staff.setDisable(true);
             home.setDisable(false);
             course.setDisable(false);

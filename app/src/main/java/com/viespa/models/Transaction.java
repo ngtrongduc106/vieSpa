@@ -48,7 +48,8 @@ public class Transaction {
                     "JOIN customers on customers.id = transactions.customer_id\n" +
                     "JOIN course on course.id = transactions.course_id\n" +
                     "JOIN users u1 on u1.id = transactions.staff_id\n" +
-                    "JOIN users u2 on u2.id = transactions.created_by");
+                    "JOIN users u2 on u2.id = transactions.created_by\n" +
+                    "ORDER BY id ASC");
             rs = pst.executeQuery();
             while (rs.next()) {
                 Transaction it = new Transaction();

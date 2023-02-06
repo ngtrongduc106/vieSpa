@@ -2,6 +2,7 @@ package com.viespa.controller;
 
 import com.viespa.models.Role;
 import com.viespa.models.Staff;
+import com.viespa.models.User;
 import com.viespa.utils.AlertUtil;
 import com.viespa.utils.DateUtil;
 import com.viespa.utils.MD5Util;
@@ -144,6 +145,11 @@ public class StaffController implements Initializable {
             return;
         }
 
+        if(User.getInstance().getRole() != 1) {
+            AlertUtil.showError("You do not have the authority to add staff");
+            return;
+        }
+
         Staff.addStaff(val_account, default_password, val_fullname, val_address, val_email, val_phone,
                 Integer.parseInt(val_role), val_dob, val_joindate, val_status);
         input_fullname.setText("");
@@ -188,6 +194,11 @@ public class StaffController implements Initializable {
         if (val_fullname.isEmpty() || val_phone.isEmpty() || val_email.isEmpty() || val_address.isEmpty()
                 || val_dob == null || val_joindate == null || val_account.isEmpty() || val_role == null) {
             AlertUtil.showError("Inputs cannot leave empty!");
+            return;
+        }
+
+        if(User.getInstance().getRole() != 1) {
+            AlertUtil.showError("You do not have the authority to edit staff");
             return;
         }
 

@@ -116,7 +116,7 @@ public class CourseController implements Initializable {
     }
 
     public void button_add() throws SQLException {
-        if (User.getInstance().getRole() != 1) {
+        if (User.getInstance().getRole() > 2) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Insufficient permission!");
             alert.show();
@@ -140,7 +140,7 @@ public class CourseController implements Initializable {
     }
 
     public void button_update() throws SQLException {
-        if (User.getInstance().getRole() != 1) {
+        if (User.getInstance().getRole() > 2) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Insufficient permission!");
             alert.show();

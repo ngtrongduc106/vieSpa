@@ -103,6 +103,7 @@ public class TransactionController implements Initializable {
         input_booking.setValue(null);
         input_note.setText("");
         input_pay.setText("");
+        input_pay.setDisable(true);
         button_update.setDisable(true);
         button_add.setDisable(false);
         button_print.setDisable(true);
@@ -182,7 +183,7 @@ public class TransactionController implements Initializable {
         LocalDate val_booking = input_booking.getValue();
 
         if (val_customer == null || val_course == null || val_staff == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Insufficient permission!");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Pls check all input, some inputs cannot be empty! Note that admin cannot be an staff");
             alert.showAndWait();
             return;
         }
@@ -232,7 +233,7 @@ public class TransactionController implements Initializable {
     }
 
     public void button_update() throws Exception {
-        if (User.getInstance().getRole() != 1) {
+        if (User.getInstance().getRole() > 2) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Insufficient permission!");
             alert.show();
@@ -248,7 +249,7 @@ public class TransactionController implements Initializable {
 
         if (val_customer == null || val_course == null || val_staff == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Admin can't be a staff");
+            alert.setContentText("Pls check all input, some inputs cannot be empty! Note that admin cannot be an staff");
             alert.show();
             return;
         }
