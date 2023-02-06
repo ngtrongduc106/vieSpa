@@ -19,10 +19,6 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Currency;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class CourseController implements Initializable {
